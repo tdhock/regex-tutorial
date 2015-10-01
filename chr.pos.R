@@ -17,9 +17,9 @@ str_match_perl(subject, pattern.greedy.stars)
 
 ## Using a character class [] assumes you know all possible values
 ## that you want to match. May not match all possible things you want
-## to match (e.g. chrUn_ does not match the chrom group below).
+## to match (e.g. chrM does not match the chrom group below).
 pattern.greedy.class <- paste0(
-  "(?<chrom>chr[0-9XYM]+)",
+  "(?<chrom>chr[0-9]+)",
   ":",
   "(?<chromStart>[0-9,]+)",
   "-",

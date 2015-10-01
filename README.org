@@ -1,30 +1,116 @@
 Tutorial on fast, named capture regular expressions in R
 
-R >= 2.14 supports named capture regular expressions via C code that
+# disable underscore subscripts
+#+OPTIONS: ^:nil
+
+In this 60 minute tutorial I will explain how to use named capture
+regular expressions to extract data from several different kinds
+un-structured text data.
+
+** Introduction to named capture regular expressions, 15 minutes
+
+Why would you want to use named capture regular expressions? They are
+useful when you want to extract groups of substrings from
+un-structured text data. 
+- The regular expression =5 foo bar= matches any string that contains
+  =5 foo bar= as a substring.
+- The regular expression =foo|bar= matches any string that contains
+  =foo= or =bar=. The vertical bar indicates *alternation* -- if any one
+  of the options is present, then there is a match.
+- Square brackets are used to indicate a *character class*. The
+  regular expression =[0-9] foo bar= means match any digit, followed
+  by a space, followed by =foo bar=.
+- A *capturing* regular expression includes parentheses for extracting
+  data when there is a match. For example if we apply the regular
+  expression =([0-9]) (foo|bar)= to the string =prefix 8 foo suffix=,
+  we put =8= in the first capture group and =foo= in the second.
+- A *named capture* regular expression includes group names. For
+  example if we apply the regular expression =(?<number>[0-9])
+  (?<string>foo|bar)= to the string =prefix 8 foo suffix=, we put =8=
+  in the capture group named =number=, and =foo= in the capture group
+  named =string=.
+
+Named capture regular expressions are better than simple capturing
+regular expressions, since you can refer to the extracted data by
+*name* rather than by an arbitrary index. That results in code that is
+much easier to understand. For example in Python,
+
+#+BEGIN_SRC python
+import re
+subject = 'chr10:213,054,000-213,055,000'
+compiled_pattern = re.compile(r"""
+(?P<chrom>chr.*?)
+:
+(?P<chromStart>.*?)
+-
+(?P<chromEnd>[0-9,]*)
+""", re.VERBOSE)
+print compiled_pattern.match(subject).groups()[1]
+print compiled_pattern.match(subject).groupdict()["chromStart"]
+#+END_SRC
+
+Both print statements show the same thing, but the intent of the
+second is clearer since we wrote the group name (chromStart) rather
+than the index (1).
+
+*** R
+
+Base R supports named capture regular expressions via C code that
 interfaces the fast Perl-Compatible Regular Expressions (PCRE)
-library. In this 60 minute tutorial I will explain how to use regular
-expressions to extract data from several different kinds of text
-files.
+library. I implemented the code in
+https://svn.r-project.org/R/trunk/src/main/grep.c which implements
+named capture regular expression support for R. It was merged into
+base R in 2011
+https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=14518, and has
+been included with every copy of R since version 2.14.
 
-** Overview, 15 minutes
+The base functions =regexpr= and =gregexpr= use PCRE when given the
+perl=TRUE argument. The first argument is a single regular expression
+(character vector of length 1), and the second argument is a character
+vector of strings to parse. However their output is a bunch of
+integers and group named, so I wrote the [[file:str_match.R][str_match_perl and
+str_match_all_perl functions]] that return character matrices, with
+column names as defined in the named groups of the regular expression.
 
-Base R provides =regexpr= and =gregexpr= functions, which use PCRE
-when given the perl=TRUE argument. The first argument is a single
-regular expression (character vector of length 1), and the second
-argument is a character vector of strings to parse. However their
-output is a bunch of integers so I made some interface functions that
-return character data.
+| base function | my function        | returns                     |
+|---------------+--------------------+-----------------------------|
+| regexpr       | str_match_perl     | one match per subject       |
+| gregexpr      | str_match_all_perl | several matches per subject |
 
-| base function | my function        |
-|---------------+--------------------|
-| regexpr       | str_match_perl     |
-| gregexpr      | str_match_all_perl |
+Notes on related functions/packages which do not support named capture: 
+- =stringr::str_match= implements extracting capture groups. But since
+  it uses the stringi package (an interface to the [[http://userguide.icu-project.org/strings/regexp][ICU]] library), [[https://github.com/hadley/stringr/pull/16][it
+  does not support named capture]].
+- =regexec= and =regmatches= in base R implement extracting capture
+  groups but the =regexec= man page indicates that perl=TRUE (and thus
+  named capture) is not implemented.
 
-** Some examples, 15 minutes
+*** Python
 
-| R code          | functions                                |
-|-----------------+------------------------------------------|
-| [[file:chr.pos.R]]  | str_match_perl, str_match_all_perl, gsub |
-| [[file:qsub-out.R]] | str_match_perl                           |
+The =re= module implements named capture regular expression support,
+and =pandas= has some support.
 
-** Exercises 
+*** References
+
+The definitive reference is the book "Mastering Regular Expressions,"
+by Jeffrey E.F. Freidl. Lots of information on how to write regular
+expressions in several languages (Java, .NET, PHP), and also how to
+implement a regular expression library like PCRE.
+
+http://www.regular-expressions.info has some reference on how to write
+regular expressions in several languages. However it discusses neither
+named capture in R, nor pandas in Python.
+
+** Some examples, 30 minutes
+
+| code            | functions                                    |
+|-----------------+----------------------------------------------|
+| [[file:chr.pos.R]]  | str_match_perl, str_match_all_perl, gsub     |
+| [[file:chr_pos.py]] | str_match, str.extract, str.findall, re.subn |
+| [[file:qsub-out.R]] | str_match_perl                               |
+
+** Exercises from the audience, 15 minutes
+
+How do you ever extracted data from text files? Show us how you
+extracted some data from a particular text file, and we will try to
+suggest improvements.
