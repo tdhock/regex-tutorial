@@ -1,0 +1,260 @@
+----------------------------------------
+Begin PBS Prologue Fri Mar 27 11:48:59 EDT 2015 1427471339
+Job ID:		29427406.gm-1r16-n04.guillimin.clumeq.ca
+Username:	thocking
+Group:		bws-221-01
+Nodes:		aw-4r14-n36
+End PBS Prologue Fri Mar 27 11:48:59 EDT 2015 1427471339
+----------------------------------------
+[1] "/home/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2.bedGraph"  
+[2] "/home/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2_labels.bed"
+Using min/max size of peakStart/peakEnd regions,
+feasible resolutions are:
+   min.bases max.bases bases.per.problem bases.per.bin
+1:       244      2586              4000             2
+2:       244      2586              8000             4
+3:       244      2586             16000             8
+4:       244      2586             20000            10
+5:       244      2586             40000            20
+6:       244      2586             80000            40
+7:       244      2586            160000            80
+8:       244      2586            200000           100
+9:       244      2586            400000           200
+Read 0.0% of 77990058 rowsRead 10.0% of 77990058 rowsRead 19.9% of 77990058 rowsRead 29.9% of 77990058 rowsRead 40.0% of 77990058 rowsRead 50.0% of 77990058 rowsRead 60.0% of 77990058 rowsRead 69.8% of 77990058 rowsRead 79.6% of 77990058 rowsRead 89.4% of 77990058 rowsRead 99.3% of 77990058 rowsRead 77990058 rows and 4 (of 4) columns from 1.888 GB file in 00:00:29
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:019398000-019402000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:019400000-019404000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:019402000-019406000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:021656000-021660000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:021658000-021662000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:021660000-021664000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:021662000-021666000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022090000-022094000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022092000-022096000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022094000-022098000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022096000-022100000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022340000-022344000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022342000-022346000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022344000-022348000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022346000-022350000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022348000-022352000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022350000-022354000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022352000-022356000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022354000-022358000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:022356000-022360000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:023666000-023670000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:023668000-023672000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:023670000-023674000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr1/chr1:023672000-023676000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:019396000-019404000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:019400000-019408000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:021652000-021660000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:021656000-021664000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:021660000-021668000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:022088000-022096000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:022092000-022100000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:022096000-022104000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:022336000-022344000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:022340000-022348000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:022344000-022352000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:022348000-022356000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:022352000-022360000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:022356000-022364000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:023664000-023672000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:023668000-023676000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr1/chr1:023672000-023680000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:019392000-019408000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:019400000-019416000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:021648000-021664000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:021656000-021672000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:022080000-022096000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:022088000-022104000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:022096000-022112000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:022328000-022344000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:022336000-022352000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:022344000-022360000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:022352000-022368000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:023656000-023672000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:023664000-023680000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr1/chr1:023672000-023688000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:019390000-019410000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:019400000-019420000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:021640000-021660000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:021650000-021670000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:021660000-021680000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:022080000-022100000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:022090000-022110000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:022330000-022350000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:022340000-022360000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:022350000-022370000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:023650000-023670000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:023660000-023680000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr1/chr1:023670000-023690000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:019380000-019420000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:019400000-019440000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:021620000-021660000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:021640000-021680000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:021660000-021700000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:022060000-022100000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:022080000-022120000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:022320000-022360000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:022340000-022380000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:023640000-023680000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr1/chr1:023660000-023700000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr1/chr1:019360000-019440000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr1/chr1:019400000-019480000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr1/chr1:021600000-021680000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr1/chr1:021640000-021720000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr1/chr1:022040000-022120000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr1/chr1:022080000-022160000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr1/chr1:022280000-022360000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr1/chr1:022320000-022400000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr1/chr1:023600000-023680000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr1/chr1:023640000-023720000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr1/chr1:019280000-019440000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr1/chr1:019360000-019520000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr1/chr1:021520000-021680000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr1/chr1:021600000-021760000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr1/chr1:022000000-022160000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr1/chr1:022080000-022240000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr1/chr1:022240000-022400000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr1/chr1:022320000-022480000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr1/chr1:023520000-023680000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr1/chr1:023600000-023760000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr1/chr1:019300000-019500000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr1/chr1:019400000-019600000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr1/chr1:021500000-021700000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr1/chr1:021600000-021800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr1/chr1:021900000-022100000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr1/chr1:022000000-022200000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr1/chr1:022200000-022400000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr1/chr1:022300000-022500000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr1/chr1:023500000-023700000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr1/chr1:023600000-023800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr1/chr1:019200000-019600000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr1/chr1:019400000-019800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr1/chr1:021400000-021800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr1/chr1:021600000-022000000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr1/chr1:021800000-022200000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr1/chr1:022000000-022400000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr1/chr1:022200000-022600000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr1/chr1:023400000-023800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr1/chr1:023600000-024000000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116718000-116722000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116720000-116724000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116722000-116726000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116724000-116728000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116726000-116730000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116778000-116782000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116780000-116784000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116782000-116786000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116784000-116788000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116930000-116934000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116932000-116936000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116934000-116938000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:116936000-116940000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:117056000-117060000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:117058000-117062000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:117060000-117064000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:117062000-117066000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:117878000-117882000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:117880000-117884000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:117882000-117886000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/2/chr11/chr11:117884000-117888000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:116716000-116724000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:116720000-116728000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:116724000-116732000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:116776000-116784000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:116780000-116788000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:116784000-116792000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:116928000-116936000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:116932000-116940000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:116936000-116944000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:117052000-117060000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:117056000-117064000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:117060000-117068000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:117876000-117884000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:117880000-117888000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/4/chr11/chr11:117884000-117892000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:116712000-116728000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:116720000-116736000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:116768000-116784000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:116776000-116792000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:116784000-116800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:116920000-116936000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:116928000-116944000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:116936000-116952000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:117048000-117064000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:117056000-117072000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:117872000-117888000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/8/chr11/chr11:117880000-117896000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:116710000-116730000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:116720000-116740000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:116770000-116790000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:116780000-116800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:116920000-116940000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:116930000-116950000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:117040000-117060000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:117050000-117070000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:117060000-117080000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:117870000-117890000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/10/chr11/chr11:117880000-117900000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:116700000-116740000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:116720000-116760000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:116760000-116800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:116780000-116820000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:116900000-116940000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:116920000-116960000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:117020000-117060000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:117040000-117080000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:117060000-117100000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:117860000-117900000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/20/chr11/chr11:117880000-117920000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr11/chr11:116680000-116760000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr11/chr11:116720000-116800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr11/chr11:116760000-116840000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr11/chr11:116880000-116960000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr11/chr11:116920000-117000000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr11/chr11:117000000-117080000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr11/chr11:117040000-117120000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr11/chr11:117840000-117920000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/40/chr11/chr11:117880000-117960000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr11/chr11:116640000-116800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr11/chr11:116720000-116880000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr11/chr11:116800000-116960000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr11/chr11:116880000-117040000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr11/chr11:116960000-117120000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr11/chr11:117040000-117200000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr11/chr11:117760000-117920000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/80/chr11/chr11:117840000-118000000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr11/chr11:116600000-116800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr11/chr11:116700000-116900000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr11/chr11:116800000-117000000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr11/chr11:116900000-117100000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr11/chr11:117000000-117200000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr11/chr11:117700000-117900000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/100/chr11/chr11:117800000-118000000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr11/chr11:116400000-116800000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr11/chr11:116600000-117000000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr11/chr11:116800000-117200000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr11/chr11:117000000-117400000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr11/chr11:117600000-118000000.RData 
+/gs/project/mugqic/projects/thocking/atac_seq/tcell/BCU566_TC_ATACSeq_2/200/chr11/chr11:117800000-118200000.RData 
+null device 
+          1 
+----------------------------------------
+Begin PBS Epilogue Fri Mar 27 11:54:22 EDT 2015 1427471662
+Job ID:		29427406.gm-1r16-n04.guillimin.clumeq.ca
+Username:	thocking
+Group:		bws-221-01
+Job Name:	BCU566_TC_ATACSeq_2
+Session:	29272
+Limits:		neednodes=1:ppn=4,nodes=1:ppn=4,pmem=2700mb,walltime=12:00:00
+Resources:	cput=00:04:39,mem=1843696kb,vmem=2467232kb,walltime=00:05:23
+Queue:		serial-short
+Account:	bws-221-ae
+Exit code:	0
+Nodes:	aw-4r14-n36
+Killing leftovers...
+
+End PBS Epilogue Fri Mar 27 11:54:23 EDT 2015 1427471663
+----------------------------------------
