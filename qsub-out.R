@@ -1,4 +1,4 @@
-source("str_match.R")
+library(namedCapture)
 
 out.file.vec <- Sys.glob("qsub-out/*_residuals.out")
 
@@ -21,7 +21,7 @@ walltime.pattern <-
          "(?<seconds>[0-9]+)")
 
 time.lines <- system("grep Res qsub-out/*.out", intern=TRUE)
-time.df <- str_match_perl(
+time.df <- str_match_named(
   time.lines, walltime.pattern,
   list(hours=as.integer, minutes=as.integer, seconds=as.integer)
   )

@@ -69,9 +69,15 @@ perl=TRUE argument. The first argument is the *pattern*, a single
 regular expression (character vector of length 1), and the second
 argument is the character vector of *subjects* (strings to
 parse). However their output is a bunch of integers and group names,
-so I wrote the [[file:str_match.R][str_match_perl and str_match_all_perl wrapper functions]]
-that return character matrices, with column names as defined in the
-named groups of the regular expression.
+so I wrote some functions in the [[https://github.com/tdhock/namedCapture][namedCapture]] package that return
+character matrices or data.frames, with column names as defined in the
+named groups of the regular expression. To install the namedCapture
+package, run the following commands in R:
+
+#+BEGIN_SRC R
+if(!require(devtools))install.packages("devtools")
+devtools::install_github("tdhock/namedCapture")
+#+END_SRC
 
 Notes on related functions/packages: 
 - =regexec= and =regmatches= in base R implement extracting capture
@@ -95,7 +101,13 @@ via the =M.groupdict()= method for a match object =M=.
 The =pandas= module for data analysis has some support for named
 capture regular expressions, but it is not as complete as the R
 support. In particular an instance =S= of the Series class provides
-the =S.str.findall= method which does not support named capture.
+the =S.str.findall= method which does not support named capture. To
+install pandas execute one of the following shell commands:
+
+#+BEGIN_SRC shell
+pip install pandas
+easy_install pandas
+#+END_SRC
 
 *** Summary of functions
 
@@ -104,8 +116,8 @@ regular expression pattern =P=,
 
 | base R function           | R wrapper function       | Python pandas           | returns                     |
 |---------------------------+--------------------------+-------------------------+-----------------------------|
-| regexpr(P, S, perl=TRUE)  | str_match_perl(S, P)     | S.str.extract(P, flags) | one match per subject       |
-| gregexpr(P, S, perl=TRUE) | str_match_all_perl(S, P) | S.str.findall(P, flags) | several matches per subject |
+| regexpr(P, S, perl=TRUE)  | str_match_named(S, P)     | S.str.extract(P, flags) | one match per subject       |
+| gregexpr(P, S, perl=TRUE) | str_match_all_named(S, P) | S.str.findall(P, flags) | several matches per subject |
 
 *** References
 
@@ -122,9 +134,10 @@ named capture in R, nor pandas in Python.
 
 | code            | functions                                    |
 |-----------------+----------------------------------------------|
-| [[file:chr.pos.R]]  | str_match_perl, str_match_all_perl, gsub     |
+| [[file:chr.pos.R]]  | str_match_named, str_match_all_named, gsub   |
 | [[file:chr_pos.py]] | str_match, str.extract, str.findall, re.subn |
-| [[file:qsub-out.R]] | str_match_perl                               |
+| [[file:qsub-out.R]] | str_match_named                              |
+| [[file:trackDb.R]]  | str_match_all_named                          |
 
 ** Exercises from the audience, 15 minutes
 

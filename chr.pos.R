@@ -1,4 +1,4 @@
-source("str_match.R")
+library(namedCapture)
 
 subject <- 
   c("chr10:213,054,000-213,055,000",
@@ -16,7 +16,7 @@ pattern.greedy.stars <- paste0(
   "(?<chromStart>.*)",
   "-",
   "(?<chromEnd>.*)")
-str_match_perl(subject, pattern.greedy.stars)
+str_match_named(subject, pattern.greedy.stars)
 
 ## Using a character class [] assumes you know all possible values
 ## that you want to match. May not match all possible things you want
@@ -27,7 +27,7 @@ pattern.greedy.class <- paste0(
   "(?<chromStart>[0-9,]+)",
   "-",
   "(?<chromEnd>[0-9,]+)")
-str_match_perl(subject, pattern.greedy.class)
+str_match_named(subject, pattern.greedy.class)
 
 ## You can specify the pattern using a negated character class
 ## (beginning with ^) but that is repetitive. For example you have to
@@ -39,7 +39,7 @@ pattern.greedy.negated <- paste0(
   "(?<chromStart>[^-]+)",
   "-",
   "(?<chromEnd>[^ ]*)")
-str_match_perl(subject, pattern.greedy.negated)
+str_match_named(subject, pattern.greedy.negated)
 
 ## I prefer using the .*? non-greedy match. Like .* it matches 0 or
 ## more of any characters, but it prefers the smallest possible match.
@@ -49,20 +49,20 @@ pattern.not.greedy <- paste0(
   "(?<chromStart>.*?)",
   "-",
   "(?<chromEnd>[0-9,]*)")
-str_match_perl(subject, pattern.not.greedy)
+str_match_named(subject, pattern.not.greedy)
 
 ## Specify a list of conversion functions as the third argument if you
 ## want a data.frame with non-character columns.
 keep.digits <- function(x)as.integer(gsub("[^0-9]", "", x))
 conversion.list <- list(chromStart=keep.digits, chromEnd=keep.digits)
-(match.df <- str_match_perl(subject, pattern.not.greedy, conversion.list))
+(match.df <- str_match_named(subject, pattern.not.greedy, conversion.list))
 str(match.df)
 
-## Note that str_match_perl above returned only the first match in
+## Note that str_match_named above returned only the first match in
 ## every subject string. If you want EVERY match, use
-## str_match_all_perl instead.
-(match.mat.list <- str_match_all_perl(subject, pattern.not.greedy))
+## str_match_all_named instead.
+(match.mat.list <- str_match_all_named(subject, pattern.not.greedy))
 str(match.mat.list)
-(match.df.list <- str_match_all_perl(subject, pattern.not.greedy, conversion.list))
+(match.df.list <- str_match_all_named(subject, pattern.not.greedy, conversion.list))
 str(match.df.list)
 
