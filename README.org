@@ -11,8 +11,9 @@ structured text data.
 
 Why would you want to use named capture regular expressions? They are
 useful when you want to extract groups of substrings from text data
-for which there no delimiter between groups (as in CSV/TSV), but still
-some structure.
+which has some structure, but no clear delimiter between groups. They
+make it easy to convert such loosely structured text data into regular
+CSV/TSV data.
 - The regular expression =5 foo bar= matches any string that contains
   =5 foo bar= as a substring.
 - The regular expression =foo|bar= matches any string that contains
