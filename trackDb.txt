@@ -1,0 +1,544 @@
+track ac3-i3-h2192
+compositeTrack on
+shortLabel Histone - Blueprint
+longLabel Histone Modifications - Blueprint
+subGroup1 sampleType Sample_Type CD14positiveCD16negativeclassicalmonocyte=CD14-positive,_CD16-negative_classical_monocyte alternativelyactivatedmacrophage=alternatively_activated_macrophage Myeloidcell=Myeloid_cell
+subGroup2 assayType Assay_Type H3K27ac=H3K27ac
+subGroup3 view View peaks=Peaks signal=Signal signal_forward=Signal_Forward signal_reverse=Signal_Reverse profile=Profile
+dimensions dimensionX=assayType dimensionY=sampleType dimA=view
+sortOrder assayType=+ sampleType=+
+dividers assayType
+dragAndDrop subTracks  
+priority 1
+type bed 5
+visibility pack
+color 40,175,220
+
+    track bpHistoneModsC000S5H2H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel C000S5.K27ac.peak.mono
+    longLabel C000S5 H3K27ac MASC2_peak CD14-positive, CD16-negative classical monocyte peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/C000S5/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C000S5H2.H3K27ac.ppqt_macs2_v2.20130415.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000027.1 DONOR_AGE=65_-_70 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS150369 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX173536 DONOR_ID=C000S5 DONOR_SEX=Male DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC0010KH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel C0010K.K27ac.peak.mono
+    longLabel C0010K H3K27ac MASC2_peak CD14-positive, CD16-negative classical monocyte peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/C0010K/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C0010KH1.H3K27ac.ppqt_macs2_v2.20130415.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000096.1 DONOR_AGE=60_-_65 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS150390 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX197174 DONOR_ID=C0010K DONOR_SEX=Female DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC0011IH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel C0011I.K27ac.peak.mono
+    longLabel C0011I H3K27ac MASC2_peak CD14-positive, CD16-negative classical monocyte peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/C0011I/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C0011IH1.H3K27ac.ppqt_macs2_v2.20130415.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000097.1 DONOR_AGE=50_-_55 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS150388 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX197160 DONOR_ID=C0011I DONOR_SEX=Female DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC001UYH2H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel C001UY.K27ac.peak.mono
+    longLabel C001UY H3K27ac MASC2_peak CD14-positive, CD16-negative classical monocyte peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/C001UY/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C001UYH2.H3K27ac.ppqt_macs2_v2.20141014.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000189.1 DONOR_AGE=60_-_65 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS150413 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX547988 DONOR_ID=C001UY DONOR_SEX=Male DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC00264H1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel C00264.K27ac.peak.mono
+    longLabel C00264 H3K27ac MASC2_peak CD14-positive, CD16-negative classical monocyte peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Cord_blood/C00264/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C00264H1.H3K27ac.ppqt_macs2_v2.20130415.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000135.1 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS158623 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0012168 EXPERIMENT_ID=ERX190914 DONOR_ID=C00264 DONOR_SEX=Male DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC004SQH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel C004SQ.K27ac.peak.mono
+    longLabel C004SQ H3K27ac MASC2_peak CD14-positive, CD16-negative classical monocyte peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/C004SQ/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C004SQH1.H3K27ac.ppqt_macs2_v2.20130415.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000101.1 DONOR_AGE=60_-_65 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS202663 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX190917 DONOR_ID=C004SQ DONOR_SEX=Female ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC005PSH2H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel C005PS.K27ac.peak.mono
+    longLabel C005PS H3K27ac MASC2_peak CD14-positive, CD16-negative classical monocyte peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Cord_blood/C005PS/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C005PSH2.H3K27ac.ppqt_macs2_v2.20141014.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000155.1 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS206567 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0012168 EXPERIMENT_ID=ERX547986 DONOR_ID=C005PS DONOR_SEX=Female ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS000RDH2H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel S000RD.K27ac.peak.mono
+    longLabel S000RD H3K27ac MASC2_peak CD14-positive, CD16-negative classical monocyte peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Cord_blood/S000RD/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/S000RDH2.H3K27ac.ppqt_macs2_v2.20141014.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000048.1 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS208290 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0012168 EXPERIMENT_ID=ERX547985 DONOR_ID=S000RD DONOR_SEX=Male ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS005DLH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel pz 283.K27ac.peak.AML_SAHA
+    longLabel pz 283 H3K27ac MASC2_peak Acute myeloid leukemia - SAHA peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_283/Acute_myeloid_leukemia_-_SAHA/ChIP-Seq/NCMLS/S005DLH1.H3K27ac.ppqt_macs2_v2.20130819.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000031.1 DISEASE=Acute_myeloid_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023467 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_283 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=65_-_70 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS255945 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX300668 DONOR_SEX=Male DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS005FHH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel UMCG 2012-082.K27ac.peak.AML
+    longLabel UMCG 2012-082 H3K27ac MASC2_peak Acute myeloid leukemia peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/UMCG_2012-082/acute_myeloid_leukemia/ChIP-Seq/NCMLS/S005FHH1.H3K27ac.ppqt_macs2_v2.20140513.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000014.1 DISEASE=Acute_myeloid_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023467 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=UMCG_2012-082 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=acute_myeloid_leukemia DONOR_AGE=70_-_75 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS353039 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX406934 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS005HDH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel pz 286.K27ac.peak.AML_SAHA
+    longLabel pz 286 H3K27ac MASC2_peak Acute myeloid leukemia - SAHA peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_286/Acute_myeloid_leukemia_-_SAHA/ChIP-Seq/NCMLS/S005HDH1.H3K27ac.ppqt_macs2_v2.20130819.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000041.1 DISEASE=Acute_myeloid_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023467 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_286 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=60_-_65 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS255952 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX300669 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS00622H1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel S00622.K27ac.peak.M2
+    longLabel S00622 H3K27ac MASC2_peak alternatively activated macrophage peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/S00622/alternatively_activated_macrophage/ChIP-Seq/NCMLS/S00622H1.H3K27ac.ppqt_macs2_v2.20140106.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=alternativelyactivatedmacrophage assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000129.1 DONOR_AGE=65_-_70 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS257336 CELL_TYPE=alternatively_activated_macrophage BIOMATERIAL_TYPE=Primary_Cell_Culture SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000890;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX337015 DONOR_ID=S00622 DONOR_SEX=Male DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS006VIH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel S006VI.K27ac.peak.M2
+    longLabel S006VI H3K27ac MASC2_peak alternatively activated macrophage peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/S006VI/alternatively_activated_macrophage/ChIP-Seq/NCMLS/S006VIH1.H3K27ac.ppqt_macs2_v2.20140106.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=alternativelyactivatedmacrophage assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000059.1 DONOR_AGE=50_-_55 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS257378 CELL_TYPE=alternatively_activated_macrophage BIOMATERIAL_TYPE=Primary_Cell_Culture SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000890;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX337022 DONOR_ID=S006VI DONOR_SEX=Male ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS008QKH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.peak.APL-CTR
+    longLabel pz 289 H3K27ac MASC2_peak Acute promyelocytic leukemia - CTR peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_CTR/ChIP-Seq/NCMLS/S008QKH1.H3K27ac.ppqt_macs2_v2.20140106.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000087.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS365962 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX337018 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS008RIH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.peak.APL-ATRA
+    longLabel pz 289 H3K27ac MASC2_peak Acute promyelocytic leukemia - ATRA peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_ATRA/ChIP-Seq/NCMLS/S008RIH1.H3K27ac.ppqt_macs2_v2.20140106.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000011.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS365963 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX337019 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS008SGH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.peak.APL-MC2392
+    longLabel pz 289 H3K27ac MASC2_peak Acute promyelocytic leukemia - MC2392 peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_MC2392/ChIP-Seq/NCMLS/S008SGH1.H3K27ac.ppqt_macs2_v2.20140513.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000132.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS365966 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX406923 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS008TEH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.peak.APL-MS275
+    longLabel pz 289 H3K27ac MASC2_peak Acute promyelocytic leukemia - MS275 peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_MS275/ChIP-Seq/NCMLS/S008TEH1.H3K27ac.ppqt_macs2_v2.20140106.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000141.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS365967 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX337068 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS008UCH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.peak.APL-MC2884(24h)
+    longLabel pz 289 H3K27ac MASC2_peak Acute promyelocytic leukemia - MC2884 (24h) peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_MC2884_24h/ChIP-Seq/NCMLS/S008UCH1.H3K27ac.ppqt_macs2_v2.20140513.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000181.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS365965 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX406905 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS008Y4H1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.peak.APL-MC2884(4h)
+    longLabel pz 289 H3K27ac MASC2_peak Acute promyelocytic leukemia - MC2884 (4h) peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_MC2884_4h/ChIP-Seq/NCMLS/S008Y4H1.H3K27ac.ppqt_macs2_v2.20140513.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000002.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS365964 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX406926 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS00BS4H1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel S00BS4.K27ac.peak.M2
+    longLabel S00BS4 H3K27ac MASC2_peak alternatively activated macrophage peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/S00BS4/alternatively_activated_macrophage/ChIP-Seq/NCMLS/S00BS4H1.H3K27ac.ppqt_macs2_v2.20140513.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=alternativelyactivatedmacrophage assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000013.1 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS358691 CELL_TYPE=alternatively_activated_macrophage BIOMATERIAL_TYPE=Primary_Cell_Culture SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000890;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX406930 DONOR_ID=S00BS4 DONOR_SEX=Female ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS00C1HH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel S00C1H.K27ac.peak.M2
+    longLabel S00C1H H3K27ac MASC2_peak alternatively activated macrophage peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Cord_blood/S00C1H/alternatively_activated_macrophage/ChIP-Seq/NCMLS/S00C1HH1.H3K27ac.ppqt_macs2_v2.20140513.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=alternativelyactivatedmacrophage assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000055.1 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS358696 CELL_TYPE=alternatively_activated_macrophage BIOMATERIAL_TYPE=Primary_Cell_Culture SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000890;http://purl.obolibrary.org/obo/UBERON_0012168 EXPERIMENT_ID=ERX406932 DONOR_ID=S00C1H DONOR_SEX=Female ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS00FTNH1H3K27acMASC2_peakEMBL-EBI
+    type bigBed
+    parent ac3-i3-h2192 on
+    shortLabel S00FTN.K27ac.peak.M2
+    longLabel S00FTN H3K27ac MASC2_peak alternatively activated macrophage peak from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/S00FTN/alternatively_activated_macrophage/ChIP-Seq/NCMLS/S00FTNH1.H3K27ac.ppqt_macs2_v2.20141014.bb
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=alternativelyactivatedmacrophage assayType=H3K27ac view=peaks
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000071.1 DONOR_AGE=25_-_30 ANALYSIS_SOFTWARE=MACS2 SAMPLE_ID=ERS422247 CELL_TYPE=alternatively_activated_macrophage BIOMATERIAL_TYPE=Primary_Cell_Culture SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000890;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX547950 DONOR_ID=S00FTN DONOR_SEX=Female ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC000S5H2H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel C000S5.K27ac.wig.mono
+    longLabel C000S5 H3K27ac MACS2_wiggler CD14-positive, CD16-negative classical monocyte signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/C000S5/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C000S5H2.H3K27ac.wiggler.20130415.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000027.1 DONOR_AGE=65_-_70 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS150369 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX173536 DONOR_ID=C000S5 DONOR_SEX=Male DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC0010KH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel C0010K.K27ac.wig.mono
+    longLabel C0010K H3K27ac MACS2_wiggler CD14-positive, CD16-negative classical monocyte signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/C0010K/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C0010KH1.H3K27ac.wiggler.20130415.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000096.1 DONOR_AGE=60_-_65 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS150390 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX197174 DONOR_ID=C0010K DONOR_SEX=Female DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC0011IH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel C0011I.K27ac.wig.mono
+    longLabel C0011I H3K27ac MACS2_wiggler CD14-positive, CD16-negative classical monocyte signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/C0011I/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C0011IH1.H3K27ac.wiggler.20130415.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000097.1 DONOR_AGE=50_-_55 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS150388 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX197160 DONOR_ID=C0011I DONOR_SEX=Female DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC001UYH2H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel C001UY.K27ac.wig.mono
+    longLabel C001UY H3K27ac MACS2_wiggler CD14-positive, CD16-negative classical monocyte signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/C001UY/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C001UYH2.H3K27ac.wiggler.20141014.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000189.1 DONOR_AGE=60_-_65 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS150413 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX547988 DONOR_ID=C001UY DONOR_SEX=Male DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC00264H1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel C00264.K27ac.wig.mono
+    longLabel C00264 H3K27ac MACS2_wiggler CD14-positive, CD16-negative classical monocyte signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Cord_blood/C00264/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C00264H1.H3K27ac.wiggler.20130415.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000135.1 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS158623 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0012168 EXPERIMENT_ID=ERX190914 DONOR_ID=C00264 DONOR_SEX=Male DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC004SQH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel C004SQ.K27ac.wig.mono
+    longLabel C004SQ H3K27ac MACS2_wiggler CD14-positive, CD16-negative classical monocyte signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/C004SQ/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C004SQH1.H3K27ac.wiggler.20130415.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000101.1 DONOR_AGE=60_-_65 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS202663 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX190917 DONOR_ID=C004SQ DONOR_SEX=Female ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsC005PSH2H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel C005PS.K27ac.wig.mono
+    longLabel C005PS H3K27ac MACS2_wiggler CD14-positive, CD16-negative classical monocyte signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Cord_blood/C005PS/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/C005PSH2.H3K27ac.wiggler.20141014.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000155.1 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS206567 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0012168 EXPERIMENT_ID=ERX547986 DONOR_ID=C005PS DONOR_SEX=Female ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS000RDH2H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel S000RD.K27ac.wig.mono
+    longLabel S000RD H3K27ac MACS2_wiggler CD14-positive, CD16-negative classical monocyte signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Cord_blood/S000RD/CD14-positive_CD16-negative_classical_monocyte/ChIP-Seq/NCMLS/S000RDH2.H3K27ac.wiggler.20141014.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=CD14positiveCD16negativeclassicalmonocyte assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000048.1 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS208290 CELL_TYPE=CD14-positive,_CD16-negative_classical_monocyte BIOMATERIAL_TYPE=Primary_Cell SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0002057;http://purl.obolibrary.org/obo/UBERON_0012168 EXPERIMENT_ID=ERX547985 DONOR_ID=S000RD DONOR_SEX=Male ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS005DLH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel pz 283.K27ac.wig.AML_SAHA
+    longLabel pz 283 H3K27ac MACS2_wiggler Acute myeloid leukemia - SAHA signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_283/Acute_myeloid_leukemia_-_SAHA/ChIP-Seq/NCMLS/S005DLH1.H3K27ac.wiggler.20130819.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000031.1 DISEASE=Acute_myeloid_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023467 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_283 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=65_-_70 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS255945 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX300668 DONOR_SEX=Male DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS005FHH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel UMCG 2012-082.K27ac.wig.AML
+    longLabel UMCG 2012-082 H3K27ac MACS2_wiggler Acute myeloid leukemia signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/UMCG_2012-082/acute_myeloid_leukemia/ChIP-Seq/NCMLS/S005FHH1.H3K27ac.wiggler.20140513.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000014.1 DISEASE=Acute_myeloid_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023467 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=UMCG_2012-082 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=acute_myeloid_leukemia DONOR_AGE=70_-_75 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS353039 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX406934 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS005HDH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel pz 286.K27ac.wig.AML_SAHA
+    longLabel pz 286 H3K27ac MACS2_wiggler Acute myeloid leukemia - SAHA signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_286/Acute_myeloid_leukemia_-_SAHA/ChIP-Seq/NCMLS/S005HDH1.H3K27ac.wiggler.20130819.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000041.1 DISEASE=Acute_myeloid_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023467 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_286 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=60_-_65 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS255952 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX300669 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS00622H1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel S00622.K27ac.wig.M2
+    longLabel S00622 H3K27ac MACS2_wiggler alternatively activated macrophage signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/S00622/alternatively_activated_macrophage/ChIP-Seq/NCMLS/S00622H1.H3K27ac.wiggler.20140106.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=alternativelyactivatedmacrophage assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000129.1 DONOR_AGE=65_-_70 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS257336 CELL_TYPE=alternatively_activated_macrophage BIOMATERIAL_TYPE=Primary_Cell_Culture SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000890;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX337015 DONOR_ID=S00622 DONOR_SEX=Male DONOR_ETHNICITY=Northern_European ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS006VIH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel S006VI.K27ac.wig.M2
+    longLabel S006VI H3K27ac MACS2_wiggler alternatively activated macrophage signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/S006VI/alternatively_activated_macrophage/ChIP-Seq/NCMLS/S006VIH1.H3K27ac.wiggler.20140106.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=alternativelyactivatedmacrophage assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000059.1 DONOR_AGE=50_-_55 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS257378 CELL_TYPE=alternatively_activated_macrophage BIOMATERIAL_TYPE=Primary_Cell_Culture SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000890;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX337022 DONOR_ID=S006VI DONOR_SEX=Male ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS008QKH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.wig.APL-CTR
+    longLabel pz 289 H3K27ac MACS2_wiggler Acute promyelocytic leukemia - CTR signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_CTR/ChIP-Seq/NCMLS/S008QKH1.H3K27ac.wiggler.20140106.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000087.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS365962 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX337018 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS008RIH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.wig.APL-ATRA
+    longLabel pz 289 H3K27ac MACS2_wiggler Acute promyelocytic leukemia - ATRA signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_ATRA/ChIP-Seq/NCMLS/S008RIH1.H3K27ac.wiggler.20140106.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000011.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS365963 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX337019 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS008SGH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.wig.APL-MC2392
+    longLabel pz 289 H3K27ac MACS2_wiggler Acute promyelocytic leukemia - MC2392 signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_MC2392/ChIP-Seq/NCMLS/S008SGH1.H3K27ac.wiggler.20140513.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000132.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS365966 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX406923 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS008TEH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.wig.APL-MS275
+    longLabel pz 289 H3K27ac MACS2_wiggler Acute promyelocytic leukemia - MS275 signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_MS275/ChIP-Seq/NCMLS/S008TEH1.H3K27ac.wiggler.20140106.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000141.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS365967 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX337068 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS008UCH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.wig.APL-MC2884(24h)
+    longLabel pz 289 H3K27ac MACS2_wiggler Acute promyelocytic leukemia - MC2884 (24h) signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_MC2884_24h/ChIP-Seq/NCMLS/S008UCH1.H3K27ac.wiggler.20140513.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000181.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS365965 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX406905 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS008Y4H1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel pz 289.K27ac.wig.APL-MC2884(4h)
+    longLabel pz 289 H3K27ac MACS2_wiggler Acute promyelocytic leukemia - MC2884 (4h) signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Bone_marrow/pz_289/Acute_promyelocytic_leukemia_-_MC2884_4h/ChIP-Seq/NCMLS/S008Y4H1.H3K27ac.wiggler.20140513.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=Myeloidcell assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac EPIRR_ID=IHECRE00000002.1 DISEASE=Acute_promyelocytic_leukemia CELL_TYPE=Myeloid_cell DISEASE_ONTOLOGY_URI=http://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0023487 SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000763 DONOR_ID=pz_289 ALIGNMENT_SOFTWARE=BWA DONOR_HEALTH_STATUS=Leukemia DONOR_AGE=30_-_35 MOLECULE=genomic_DNA ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS365964 BIOMATERIAL_TYPE=Primary_Cell EXPERIMENT_ID=ERX406926 DONOR_SEX=Female DONOR_ETHNICITY=Caucasian
+
+    track bpHistoneModsS00BS4H1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel S00BS4.K27ac.wig.M2
+    longLabel S00BS4 H3K27ac MACS2_wiggler alternatively activated macrophage signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/S00BS4/alternatively_activated_macrophage/ChIP-Seq/NCMLS/S00BS4H1.H3K27ac.wiggler.20140513.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=alternativelyactivatedmacrophage assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000013.1 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS358691 CELL_TYPE=alternatively_activated_macrophage BIOMATERIAL_TYPE=Primary_Cell_Culture SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000890;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX406930 DONOR_ID=S00BS4 DONOR_SEX=Female ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS00C1HH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel S00C1H.K27ac.wig.M2
+    longLabel S00C1H H3K27ac MACS2_wiggler alternatively activated macrophage signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Cord_blood/S00C1H/alternatively_activated_macrophage/ChIP-Seq/NCMLS/S00C1HH1.H3K27ac.wiggler.20140513.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=alternativelyactivatedmacrophage assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000055.1 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS358696 CELL_TYPE=alternatively_activated_macrophage BIOMATERIAL_TYPE=Primary_Cell_Culture SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000890;http://purl.obolibrary.org/obo/UBERON_0012168 EXPERIMENT_ID=ERX406932 DONOR_ID=S00C1H DONOR_SEX=Female ALIGNMENT_SOFTWARE=BWA
+
+    track bpHistoneModsS00FTNH1H3K27acMACS2_wigglerEMBL-EBIwiggler
+    type bigWig
+    parent ac3-i3-h2192 on
+    shortLabel S00FTN.K27ac.wig.M2
+    longLabel S00FTN H3K27ac MACS2_wiggler alternatively activated macrophage signal from NCMLS
+    visibility pack
+    bigDataUrl http://ftp.ebi.ac.uk/pub/databases/blueprint/data/homo_sapiens/Venous_blood/S00FTN/alternatively_activated_macrophage/ChIP-Seq/NCMLS/S00FTNH1.H3K27ac.wiggler.20141014.bw
+    maxHeightPixels 25:25:8
+    autoScale on
+    subGroups sampleType=alternativelyactivatedmacrophage assayType=H3K27ac view=signal
+    metadata EXPERIMENT_TYPE=H3K27ac MOLECULE=genomic_DNA EPIRR_ID=IHECRE00000071.1 DONOR_AGE=25_-_30 ANALYSIS_SOFTWARE=WIGGLER SAMPLE_ID=ERS422247 CELL_TYPE=alternatively_activated_macrophage BIOMATERIAL_TYPE=Primary_Cell_Culture SAMPLE_ONTOLOGY_URI=http://purl.obolibrary.org/obo/CL_0000890;http://purl.obolibrary.org/obo/UBERON_0013756 EXPERIMENT_ID=ERX547950 DONOR_ID=S00FTN DONOR_SEX=Female ALIGNMENT_SOFTWARE=BWA
+

@@ -100,23 +100,26 @@ The =re= module implements named capture regular expression support
 via the =M.groupdict()= method for a match object =M=.
 
 The =pandas= module for data analysis has some support for named
-capture regular expressions, but it is not as complete as the R
-support. In particular an instance =S= of the Series class provides
-the =S.str.findall= method which does not support named capture. To
-install pandas execute one of the following shell commands:
+capture regular expressions. To install pandas execute one of the
+following shell commands:
 
 #+BEGIN_SRC shell
 pip install pandas
 easy_install pandas
 #+END_SRC
 
-*** Summary of functions
+For an instance =S= of the Series class, pandas provides the excellent
+=S.str.extract= method which is the analog of =str_match_named= in
+R. However the analog of =str_match_all_named= seems to be
+=S.str.findall=, which does not support named capture.
+
+*** Summary of function syntax
 
 For a subject =S= (R character vector or Python pandas Series) and a
-regular expression pattern =P=,
+regular expression pattern =P= (string),
 
-| base R function           | R wrapper function       | Python pandas           | returns                     |
-|---------------------------+--------------------------+-------------------------+-----------------------------|
+| base R function           | R wrapper function        | Python pandas           | returns                     |
+|---------------------------+---------------------------+-------------------------+-----------------------------|
 | regexpr(P, S, perl=TRUE)  | str_match_named(S, P)     | S.str.extract(P, flags) | one match per subject       |
 | gregexpr(P, S, perl=TRUE) | str_match_all_named(S, P) | S.str.findall(P, flags) | several matches per subject |
 
@@ -133,15 +136,35 @@ named capture in R, nor pandas in Python.
 
 ** Some examples, 30 minutes
 
-| code            | functions                                    |
-|-----------------+----------------------------------------------|
-| [[file:chr.pos.R]]  | str_match_named, str_match_all_named, gsub   |
-| [[file:chr_pos.py]] | str_match, str.extract, str.findall, re.subn |
-| [[file:qsub-out.R]] | str_match_named                              |
-| [[file:trackDb.R]]  | str_match_all_named                          |
+| code                       | functions                                    |
+|----------------------------+----------------------------------------------|
+| [[file:chr.pos.R]]             | str_match_named, str_match_all_named, gsub   |
+| [[file:differences_from_R.py]] | re.search, re.compile                        |
+| [[file:qsub-out.R]]            | str_match_named                              |
+| [[file:trackDb.R]]             | str_match_all_named                          |
 
-** Exercises from the audience, 15 minutes
+** Exercises, 15 minutes
+
+*** Questions from the audience
 
 How do you ever extracted data from text files? Show us how you
 extracted some data from a particular text file, and we will try to
 suggest improvements.
+
+*** Implementing a Python function for named capture
+
+I wrote the Python function [[file:str_match.py][str_match_named]] to be analogous to the R
+function. To my knowledge there is no analog for =str_match_all_named=
+in Python. Exercise 1: implement a function that inputs a list of
+subject strings and outputs a list of multiple matches per subject
+(each list should contain a list of dicts, one for each match).
+
+Exercise 2: As of pandas 0.16.2 there is no =str.extractall= method
+which I expect should return a list of DataFrames, one for each
+subject. Exercise for the reader: fork pandas, add the
+=str_extractall= function to
+https://github.com/pydata/pandas/blob/master/pandas/core/strings.py,
+and submit them a PR, being careful to follow [[http://pandas.pydata.org/pandas-docs/stable/contributing.html][their guidelines for
+code contributions]].
+
+
