@@ -1,5 +1,3 @@
-works_with_R("3.2.2", data.table="1.9.6")
-
 source("str_match.R")
 
 out.file.vec <- Sys.glob("qsub-out/*_residuals.out")
