@@ -63,6 +63,9 @@ str(match.df)
 ## str_match_all_named instead.
 (match.mat.list <- str_match_all_named(subject, pattern.not.greedy))
 str(match.mat.list)
+
+## str_match_all_named also accepts a list of conversion functions as
+## its third argument.
 (match.df.list <- str_match_all_named(subject, pattern.not.greedy, conversion.list))
 str(match.df.list)
 
