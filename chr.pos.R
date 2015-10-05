@@ -1,7 +1,10 @@
+source("str_match.R")
+
 subject <- 
   c("chr10:213,054,000-213,055,000",
     "chrM:111,000-222,000",
     "foo bar",
+    NA,
     "chr1:110-111 chr2:220-222")
 
 ## The .* pattern means to match 0 or more of any characters. If there
@@ -52,11 +55,14 @@ str_match_perl(subject, pattern.not.greedy)
 ## want a data.frame with non-character columns.
 keep.digits <- function(x)as.integer(gsub("[^0-9]", "", x))
 conversion.list <- list(chromStart=keep.digits, chromEnd=keep.digits)
-str_match_perl(subject, pattern.not.greedy, conversion.list)
+(match.df <- str_match_perl(subject, pattern.not.greedy, conversion.list))
+str(match.df)
 
 ## Note that str_match_perl above returned only the first match in
 ## every subject string. If you want EVERY match, use
 ## str_match_all_perl instead.
-str_match_all_perl(subject, pattern.not.greedy)
-str_match_all_perl(subject, pattern.not.greedy, conversion.list)
+(match.mat.list <- str_match_all_perl(subject, pattern.not.greedy))
+str(match.mat.list)
+(match.df.list <- str_match_all_perl(subject, pattern.not.greedy, conversion.list))
+str(match.df.list)
 
