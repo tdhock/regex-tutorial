@@ -136,13 +136,13 @@ named capture in R, nor pandas in Python.
 
 ** Some examples, 30 minutes
 
-| code                       | functions                                    |
-|----------------------------+----------------------------------------------|
-| [[file:chr.pos.R]]             | str_match_named, str_match_all_named, gsub   |
-| [[file:differences_from_R.py]] | re.search, re.compile                        |
-| [[file:chr_pos.py]]            | str_match, str.extract, str.findall, re.subn |
-| [[file:qsub-out.R]]            | str_match_named                              |
-| [[file:trackDb.R]]             | str_match_all_named                          |
+| code                       | functions                                  |
+|----------------------------+--------------------------------------------|
+| [[file:chr.pos.R]]             | str_match_named, str_match_all_named, gsub |
+| [[file:differences_from_R.py]] | re.search, re.compile                      |
+| [[file:chr_pos.py]]            | str.extract, str.findall, re.subn          |
+| [[file:qsub-out.R]]            | str_match_named                            |
+| [[file:trackDb.R]]             | str_match_all_named                        |
 
 ** Exercises, 15 minutes
 
