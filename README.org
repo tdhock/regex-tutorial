@@ -161,11 +161,12 @@ subject strings and outputs a list of matches per subject (each list
 should contain zero or more dicts, one for each match).
 
 Exercise 2: As of pandas 0.16.2 there is no =str.extractall= method
-which I expect should return a list or Series of DataFrames, one for
-each subject. Exercise for the reader: fork pandas, add the
-=str_extractall= function to
+which I expect should return a Series with the same length as the
+input/subject Series. Each of its elements should be a DataFrame with
+a row for each match, and a column for each named group. Exercise for
+the reader: fork pandas, add the =str_extractall= function to
 https://github.com/pydata/pandas/blob/master/pandas/core/strings.py,
-and submit them a PR, being careful to follow [[http://pandas.pydata.org/pandas-docs/stable/contributing.html][their guidelines for
-code contributions]].
+and submit them a Pull Request, being careful to follow
+[[http://pandas.pydata.org/pandas-docs/stable/contributing.html][their guidelines for code contributions]].
 
 
