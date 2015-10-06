@@ -157,12 +157,12 @@ suggest improvements.
 I wrote the Python function [[file:str_match.py][str_match_named]] to be analogous to the R
 function. To my knowledge there is no analog for =str_match_all_named=
 in Python. Exercise 1: implement a function that inputs a list of
-subject strings and outputs a list of multiple matches per subject
-(each list should contain a list of dicts, one for each match).
+subject strings and outputs a list of matches per subject (each list
+should contain zero or more dicts, one for each match).
 
 Exercise 2: As of pandas 0.16.2 there is no =str.extractall= method
-which I expect should return a list of DataFrames, one for each
-subject. Exercise for the reader: fork pandas, add the
+which I expect should return a list or Series of DataFrames, one for
+each subject. Exercise for the reader: fork pandas, add the
 =str_extractall= function to
 https://github.com/pydata/pandas/blob/master/pandas/core/strings.py,
 and submit them a PR, being careful to follow [[http://pandas.pydata.org/pandas-docs/stable/contributing.html][their guidelines for
