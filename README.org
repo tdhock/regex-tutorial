@@ -1,4 +1,6 @@
-Tutorial on named capture regular expressions in R and Python
+#+TITLE: Tutorial on named capture regular expressions in R and Python
+
+#+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
 
 # disable underscore subscripts
 #+OPTIONS: ^:nil
@@ -7,7 +9,7 @@ In this 60 minute tutorial I will explain how to use named capture
 regular expressions to extract data from several different kinds
 structured text data.
 
-** Introduction to named capture regular expressions, 15 minutes
+** Motivation for using named capture regular expressions, 5 minutes
 
 Why would you want to use named capture regular expressions? They are
 useful when you want to extract groups of substrings from text data
@@ -47,13 +49,81 @@ compiled_pattern = re.compile(r"""
 -
 (?P<chromEnd>[0-9,]*)
 """, re.VERBOSE)
-print compiled_pattern.match(subject).groups()[1]
-print compiled_pattern.match(subject).groupdict()["chromStart"]
+match = compiled_pattern.match(subject)
+print match.groups()[1]
+print match.groupdict()["chromStart"]
 #+END_SRC
 
 Both print statements show the same thing, but the intent of the
 second is clearer since we wrote the group name (chromStart) rather
 than the index (1).
+
+** History, 5 minutes
+
+Regular sets and regular expressions were introduced on paper by
+Stephen Cole Kleene in 1956 (including the "Kleene star" =*= for zero
+or more). Among the first uses of a regular expression in a program
+was Ken Thompson (Bachelors 1965, Masters 1966, UC Berkeley) for his
+version of the QED (1968) and ed (1969) text editors, developed at
+Bell Labs for Unix. In ed, =g/re/p= means "Global Regular Expression
+Print," which gave the name to the grep program, also written by
+Thompson (1974). I'm not sure about the origin of capture groups, but
+Friedl claimed that "The regular expressions supported by grep and
+other early tools were quite limited...grep's capturing metacharacters
+were =\(...\)=, with unescaped parenthesies representing literal
+text." Larry Wall wrote Perl version 1 in 1987 while working at Unisys
+Corporation, and it had capturing regular expressions. Perl version 5
+in 1994 introduced many extensions using the =(?= notation. Sources:
+[[https://en.wikipedia.org/w/index.php?title%3DRegular_expression&oldid%3D682153405][wikipedia:Regular_expression]] and "A Casual Stroll Across the Regex
+Landscape," in Ch.3 of Friedl's book Mastering Regular Expressions.
+
+Philip Hazel started writing the Perl-Compatible Regular Expressions
+(PCRE) library for the exim mail program in 1997. Python used PCRE
+starting with version 1.5 in 1997. Source: [[file:python-1.5.2-Misc-HISTORY.txt][Python-1.5/Misc/HISTORY]].
+
+#+BEGIN_SRC text
+From 1.5a3 to 1.5a4...
+- A completely new re.py module is provided (thanks to Andrew
+Kuchling, Tim Peters and Jeffrey Ollie) which uses Philip Hazel's
+"pcre" re compiler and engine.
+#+END_SRC
+
+Python 1.5 introduced named capture groups and the =(?P<name>foo)=
+syntax. Source: [[file:python-1.5-Doc-libre.tex][Python-1.5/Doc/libre.tex]].
+
+#+BEGIN_SRC tex
+\item[\code{(?P<\var{name}>...)}] Similar to regular parentheses, but
+the text matched by the group is accessible via the symbolic group
+name \var{name}.
+#+END_SRC
+
+PCRE support for named capture was introduced in 2003. Source: [[http://pcre.org/original/changelog.txt][PCRE
+changelog]] ([[file:pcre1-changelog.txt][my copy]]).
+
+#+BEGIN_SRC text
+Version 4.0 17-Feb-03...
+36. Added support for named subpatterns. The Python syntax (?P<name>...) is
+used to name a group. Names consist of alphanumerics and underscores, and must
+be unique. Back references use the syntax (?P=name) and recursive calls use
+(?P>name) which is a PCRE extension to the Python extension. Groups still have
+numbers.
+#+END_SRC
+
+** Current usage in R and Python, 10 minutes
+
+For a subject =S= (R character vector or Python pandas Series) and a
+regular expression pattern =P= (string),
+
+| base R function  | R namedCapture package      | Python pandas      | returns                     |
+|------------------+-----------------------------+--------------------+-----------------------------|
+| =regexpr(P, S)=  | =str_match_named(S, P)=     | =S.str.extract(P)= | one match per subject       |
+| =gregexpr(P, S)= | =str_match_all_named(S, P)= | =S.str.findall(P)= | several matches per subject |
+
+Notes:
+- =regexpr= and =gregexpr= in R need the perl=TRUE argument for named
+  capture.
+- =S.str.findall= in Python pandas does not return capture group
+  names.
 
 *** Named capture in R
 
@@ -103,7 +173,7 @@ The =pandas= module for data analysis has some support for named
 capture regular expressions. To install pandas execute one of the
 following shell commands:
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC shell-script
 pip install pandas
 easy_install pandas
 #+END_SRC
@@ -113,26 +183,6 @@ For an instance =S= of the Series class, pandas provides the excellent
 R. However the analog of =str_match_all_named= seems to be
 =S.str.findall=, which does not support named capture.
 
-*** Summary of function syntax
-
-For a subject =S= (R character vector or Python pandas Series) and a
-regular expression pattern =P= (string),
-
-| base R function           | R wrapper function        | Python pandas           | returns                     |
-|---------------------------+---------------------------+-------------------------+-----------------------------|
-| regexpr(P, S, perl=TRUE)  | str_match_named(S, P)     | S.str.extract(P, flags) | one match per subject       |
-| gregexpr(P, S, perl=TRUE) | str_match_all_named(S, P) | S.str.findall(P, flags) | several matches per subject |
-
-*** References
-
-The definitive reference is the book "Mastering Regular Expressions,"
-by Jeffrey E.F. Freidl. It contains lots of information on how to
-write regular expressions in several languages (Java, .NET, PHP), and
-also how to implement a regular expression library like PCRE.
-
-http://www.regular-expressions.info has some reference on how to write
-regular expressions in several languages. However it discusses neither
-named capture in R, nor pandas in Python.
 
 ** Some examples, 30 minutes
 
@@ -144,23 +194,21 @@ named capture in R, nor pandas in Python.
 | [[file:qsub-out.R]]            | str_match_named                            |
 | [[file:trackDb.R]]             | str_match_all_named                        |
 
-** Exercises, 15 minutes
-
-*** Questions from the audience
+** Questions from the audience, 10 minutes
 
 How do you ever extracted data from text files? Show us how you
 extracted some data from a particular text file, and we will try to
 suggest improvements.
 
-*** Implementing a Python function for named capture
+** Coding projects: implementing functions for named capture
 
-I wrote the Python function [[file:str_match.py][str_match_named]] to be analogous to the R
-function. To my knowledge there is no analog for =str_match_all_named=
-in Python. Exercise 1: implement a function that inputs a list of
-subject strings and outputs a list of matches per subject (each list
-should contain zero or more dicts, one for each match).
+Project 1: I wrote the Python function [[file:str_match.py][str_match_named]] to be
+analogous to the R function. To my knowledge there is no analog for
+=str_match_all_named= in Python. Implement a function that inputs a
+list of subject strings and outputs a list of matches per subject
+(each list should contain zero or more dicts, one for each match).
 
-Exercise 2: As of pandas 0.16.2 there is no =str.extractall= method
+Project 2: As of pandas 0.16.2 there is no =str.extractall= method
 which I expect should return a Series with the same length as the
 input/subject Series. Each of its elements should be a DataFrame with
 a row for each match, and a column for each named group. Exercise for
@@ -169,4 +217,31 @@ https://github.com/pydata/pandas/blob/master/pandas/core/strings.py,
 and submit them a Pull Request, being careful to follow
 [[http://pandas.pydata.org/pandas-docs/stable/contributing.html][their guidelines for code contributions]].
 
+Project 3: Russ Cox's "[[https://swtch.com/~rsc/regexp/regexp1.html][Regular Expression Matching Can Be Simple And
+Fast]]" explains that due to backreference support, several common
+regular expression engines can have an exponential runtime. One way to
+achieve a speedup is to drop backreference support and use the [[https://github.com/google/re2][re2]] C++
+library, [[https://github.com/google/re2/wiki/Syntax][which supports named capture]]. Write an R package with a
+function =str_match_re2= that uses the [[https://github.com/google/re2/wiki/CplusplusAPI][RE2::FullMatch]] C++ function to
+obtain a match matrix like the output of =str_match_named=. Run a
+benchmark on matching the regular expression =a?a?a?aaa= against the
+string =aaa= (for up to 30 repetitions). Does your result agree with
+the predictions in the complexity column of the table below?
+
+| R function          | library | named capture | complexity  |
+|---------------------+---------+---------------+-------------|
+| regexpr(perl=FALSE) | TRE     | no            | polynomial  |
+| regexpr(perl=TRUE)  | PCRE    | yes           | exponential |
+| str_match_re2()     | re2     | yes           | polynomial  |
+
+** References
+
+http://www.regular-expressions.info has some basic reference on how to
+write regular expressions in several languages. However it discusses
+neither named capture in R, nor pandas in Python.
+
+The definitive reference on current regular expression implementations
+is the book "Mastering Regular Expressions," by Jeffrey
+E.F. Freidl. It contains a discussion of Python and named capture but
+does not specifically discuss R.
 
