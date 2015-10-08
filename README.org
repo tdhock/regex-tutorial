@@ -60,6 +60,18 @@ than the index (1).
 
 ** History, 5 minutes
 
+| Who            | When | First                           |
+|----------------+------+---------------------------------|
+| Kleene         | 1956 | Regular expression on paper     |
+| Thompson       | 1968 | Regular expression in a program |
+| Thompson       | 1974 | grep                            |
+| Wall           | 1994 | Perl5 =(?= extensions           |
+| Hazel          | 1997 | PCRE                            |
+| Kuchling et al | 1997 | Named capture in Python1.5      |
+| R core         | 2002 | PCRE in R                       |
+| Hazel          | 2003 | Named capture in PCRE           |
+| Hocking        | 2011 | Named capture in R              |
+
 Regular sets and regular expressions were introduced on paper by
 Stephen Cole Kleene in 1956 (including the "Kleene star" =*= for zero
 or more). Among the first uses of a regular expression in a program
@@ -109,6 +121,21 @@ be unique. Back references use the syntax (?P=name) and recursive calls use
 numbers.
 #+END_SRC
 
+R includes PCRE starting with version 1.6.0 in 2002. Source:
+[[file:R.NEWS.1.txt][R-src/NEWS.1]].
+
+#+BEGIN_SRC text
+CHANGES IN R VERSION 1.6.0...
+    o	grep(), (g)sub() and regexpr() have a new argument `perl'
+	which if TRUE uses Perl-style regexps from PCRE (if installed).
+#+END_SRC
+
+I wrote the code in https://svn.r-project.org/R/trunk/src/main/grep.c
+which implements named capture regular expression support for R. It
+was merged into base R in 2011
+https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=14518, and has
+been included with every copy of R since version 2.14.
+
 ** Current usage in R and Python, 10 minutes
 
 For a subject =S= (R character vector or Python pandas Series) and a
@@ -128,13 +155,7 @@ Notes:
 *** Named capture in R
 
 Base R supports named capture regular expressions via C code that
-interfaces the Perl-Compatible Regular Expressions (PCRE) library. I
-wrote the code in https://svn.r-project.org/R/trunk/src/main/grep.c
-which implements named capture regular expression support for R. It
-was merged into base R in 2011
-https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=14518, and has
-been included with every copy of R since version 2.14.
-
+interfaces the Perl-Compatible Regular Expressions (PCRE) library. 
 The base functions =regexpr= and =gregexpr= use PCRE when given the
 perl=TRUE argument. The first argument is the *pattern*, a single
 regular expression (character vector of length 1), and the second
@@ -154,9 +175,10 @@ Notes on related functions/packages:
 - =regexec= and =regmatches= in base R implement extracting capture
   groups but the =regexec= man page indicates that perl=TRUE (and thus
   named capture) is not implemented.
-- =stringr::str_match= implements extracting capture groups. But since
-  it uses the stringi package (an interface to the [[http://userguide.icu-project.org/strings/regexp][ICU]] library), [[https://github.com/hadley/stringr/pull/16][it
-  does not support named capture]].
+- =stringr::str_match= and =stringi::stri_match= implement extracting
+  capture groups, but [[https://github.com/hadley/stringr/pull/16][the stringi package developer does not seem to
+  think that named capture is supported]], even though [[http://userguide.icu-project.org/strings/regexp][named capture
+  does appear in the ICU regexp docs]].
 - https://github.com/tdhock/revector provides fast C code for a
   *vector* of named capture regular expressions (base R only provides
   functions for a single regular expression).
@@ -222,17 +244,72 @@ Fast]]" explains that due to backreference support, several common
 regular expression engines can have an exponential runtime. One way to
 achieve a speedup is to drop backreference support and use the [[https://github.com/google/re2][re2]] C++
 library, [[https://github.com/google/re2/wiki/Syntax][which supports named capture]]. Write an R package with a
-function =str_match_re2= that uses the [[https://github.com/google/re2/wiki/CplusplusAPI][RE2::FullMatch]] C++ function to
-obtain a match matrix like the output of =str_match_named=. Run a
-benchmark on matching the regular expression =a?a?a?aaa= against the
-string =aaa= (for up to 30 repetitions). Does your result agree with
-the predictions in the complexity column of the table below?
+function =str_match_re2= that uses the [[https://github.com/google/re2/wiki/CplusplusAPI][RE2::PartialMatch]] C++ function
+to obtain a match matrix like the output of =str_match_named=
+([[https://github.com/rstats-gsoc/gsoc2016/wiki/re2-regular-expressions][GSOC2016 project proposal]]). Add =str_match_re2= to the benchmark code
+below.
 
-| R function          | library | named capture | complexity  |
-|---------------------+---------+---------------+-------------|
-| regexpr(perl=FALSE) | TRE     | no            | polynomial  |
-| regexpr(perl=TRUE)  | PCRE    | yes           | exponential |
-| str_match_re2()     | re2     | yes           | polynomial  |
+#+BEGIN_SRC R
+  max.N <- 25
+  times.list <- list()
+  for(N in 1:max.N){
+    cat(sprintf("subject/pattern size %4d / %4d\n", N, max.N))
+    subject <- paste(rep("a", N), collapse="")
+    pattern <- paste(rep(c("a?", "a"), each=N), collapse="")
+    N.times <- microbenchmark::microbenchmark(
+      ICU=stringi::stri_match(subject, regex=pattern),
+      PCRE=regexpr(pattern, subject, perl=TRUE),
+      TRE=regexpr(pattern, subject, perl=FALSE),
+      times=10)
+    times.list[[N]] <- data.frame(N, N.times)
+  }
+  times <- do.call(rbind, times.list)
+  save(times, file="times.RData")
+  
+  library(ggplot2)
+  library(directlabels)
+  linear.legend <- ggplot()+
+    ggtitle("Timing regular expressions in R, linear scale")+
+    scale_y_continuous("seconds")+
+    scale_x_continuous("subject/pattern size",
+                       limits=c(1, 27),
+                       breaks=c(1, 5, 10, 15, 20, 25))+
+    geom_point(aes(N, time/1e9, color=expr),
+               shape=1,
+               data=times)
+  (linear.dl <- direct.label(linear.legend, "last.polygons"))
+  png("figure-complexity-linear.png")
+  print(linear.dl)
+  dev.off()
+  
+  log.legend <- ggplot()+
+    ggtitle("Timing regular expressions in R, log scale")+
+    scale_y_log10("seconds")+
+    scale_x_log10("subject/pattern size",
+                  limits=c(1, 30),
+                  breaks=c(1, 5, 10, 15, 20, 25))+
+    geom_point(aes(N, time/1e9, color=expr),
+               shape=1,
+               data=times)
+  (log.dl <- direct.label(log.legend, "last.polygons"))
+  png("figure-complexity-log.png")
+  print(log.dl)
+  dev.off()
+#+END_SRC
+
+[[file:figure-complexity-linear.png]] 
+
+[[file:figure-complexity-log.png]]  
+
+Does your result agree with the predictions in the complexity column
+of the table below?
+
+| R function            | library | named capture | complexity  |
+|-----------------------+---------+---------------+-------------|
+| regexpr(perl=FALSE)   | TRE     | no            | polynomial  |
+| stringi::stri_match() | ICU     | no            | exponential |
+| regexpr(perl=TRUE)    | PCRE    | yes           | exponential |
+| str_match_re2()       | re2     | yes           | polynomial  |
 
 ** References
 
