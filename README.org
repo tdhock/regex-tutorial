@@ -109,7 +109,7 @@ Kuchling, Tim Peters and Jeffrey Ollie) which uses Philip Hazel's
 "pcre" re compiler and engine.
 #+END_SRC
 
-Python 1.5 introduced named capture groups and the =(?P<name>foo)=
+Python 1.5 introduced named capture groups and the =(?P<name>subpattern)=
 syntax. Source: [[file:python-1.5-Doc-libre.tex][Python-1.5/Doc/libre.tex]].
 
 #+BEGIN_SRC tex
@@ -185,9 +185,8 @@ Notes on related functions/packages:
   groups but the =regexec= man page indicates that perl=TRUE (and thus
   named capture) is not implemented.
 - =stringr::str_match= and =stringi::stri_match= implement extracting
-  capture groups, but [[https://github.com/hadley/stringr/pull/16][the stringi package developer does not seem to
-  think that named capture is supported]], even though [[http://userguide.icu-project.org/strings/regexp][named capture
-  does appear in the ICU regexp docs]].
+  capture groups, but [[https://github.com/hadley/stringr/pull/16][the stringi package does not support named capture yet as such a
+ feature set is still considered as experimental in ICU]]. 
 - https://github.com/tdhock/revector provides fast C code for a
   *vector* of named capture regular expressions (base R only provides
   functions for a single regular expression).

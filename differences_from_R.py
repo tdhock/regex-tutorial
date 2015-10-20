@@ -38,10 +38,8 @@ assert contains_backslash == also_contains_backslash
 subject = """this is some long text foo
 bar suffix
 sars"""
-re_backslash = re.compile(contains_backslash)
-re_newline = re.compile(contains_newline)
-re_backslash.search(subject)
-re_newline.search(subject)
+re.search(contains_backslash, subject)
+re.search(contains_newline, subject)
 
 # Raw strings and triple quotes are useful for constructing readable
 # regular expressions. Note that named groups in python use the
