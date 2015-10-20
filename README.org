@@ -37,26 +37,35 @@ structured text data into regular CSV/TSV data.
 Named capture regular expressions are better than simple capturing
 regular expressions, since you can refer to the extracted data by
 *name* rather than by an arbitrary index. That results in code that is
-much easier to understand. For example in Python,
+a bit more verbose, but much easier to understand. For example in
+Python,
 
 #+BEGIN_SRC python
 import re
 subject = 'chr10:213,054,000-213,055,000'
-compiled_pattern = re.compile(r"""
+# Without named capture:
+group_tuple = re.search("(chr.*?):(.*?)-([0-9,]*)", subject).groups()
+print group_tuple[1]
+# With named capture:
+group_dict = re.search(r"""
 (?P<chrom>chr.*?)
 :
 (?P<chromStart>.*?)
 -
 (?P<chromEnd>[0-9,]*)
-""", re.VERBOSE)
-match = compiled_pattern.match(subject)
-print match.groups()[1]
-print match.groupdict()["chromStart"]
+""", subject, re.VERBOSE).groupdict()
+print group_dict["chromStart"]
 #+END_SRC
 
 Both print statements show the same thing, but the intent of the
-second is clearer since we wrote the group name (chromStart) rather
-than the index (1).
+second is clearer for two reasons:
+- The group names in the regular expression serve to document their
+  purpose. Regular expressions have a bad reputation as a [[http://regex.info/blog/2006-09-15/247][write-only
+  language]] but named capture can be used to make them more readable:
+  "Hmmm... what was the second group =.*?= supposed to match?  Oh
+  yeah, the chromStart!"
+- We can extract the data by group name (chromStart) rather than an
+  arbitrary index (1), clarifying the intent of the Python code.
 
 ** History, 5 minutes
 
