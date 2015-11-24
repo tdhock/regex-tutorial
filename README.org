@@ -223,6 +223,7 @@ R. However the analog of =str_match_all_named= seems to be
 | [[file:chr_pos.py]]            | str.extract, str.findall, re.subn          |
 | [[file:qsub-out.R]]            | str_match_named                            |
 | [[file:trackDb.R]]             | str_match_all_named                        |
+| [[file:R-Forge.org][R-Forge exercises]]          | str_match_named, str_match_all_named       |
 
 ** Questions from the audience, 10 minutes
 

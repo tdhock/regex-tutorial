@@ -1,0 +1,65 @@
+The goal of this tutorial is to convert R-Forge project data from web
+pages to CSV format data tables that can be plotted in R.
+
+# disable underscore subscripts
+#+OPTIONS: ^:nil
+
+| web page | to extract                 |
+|----------+----------------------------|
+| [[http://r-forge.r-project.org/scm/?group_id%3D496][SCM]]      | project name, committers   |
+| [[http://r-forge.r-project.org/projects/inlinedocs/][project]]  | [[file:project.stats.csv][registration time]], [[file:project.users.csv][members]] |
+
+*** Step 1: from project id to project name
+
+R-Forge assigns a unique integer ID number to each new project
+registered, in chronological order. The first project is ID 1, second
+project is ID 2, etc. 
+
+Unfortunately, there is no web page that gives us the mapping from
+project id number (e.g. 496) to project name (inlinedocs). The [[https://r-forge.r-project.org/softwaremap/full_list.php][project
+list page]] does not help.
+
+However, given one ID number, we can find its project name. 
+
+Exercise 0: clone this repository, then use
+=download.file("http://r-forge.r-project.org/scm/?group_id=496",
+"R-Forge/SCM-496.html")= to download SCM web pages for project IDs 50
+to 100 into [[file:R-Forge][the R-Forge subdirectory]]. Read the set of web pages into R
+as a character vector:
+
+#+BEGIN_SRC R
+  scm.file.vec <- Sys.glob(file.path("R-Forge", "SCM-*.html"))
+  scm.html.vec <- sapply(scm.file.vec, function(scm.file){
+    paste(readLines(scm.file), collapse="\n")
+  })
+#+END_SRC
+
+Exercise 1: use =str_match_named(scm.html.vec, name.pattern)= to
+extract the single project name from each of the SCM web pages.
+
+Exercise 2: use =str_match_all_named(scm.html.vec, scm.row.pattern)=
+to extract all repository statistics from all SCM web pages.
+
+*** Step 2: from project name to project info
+
+Now that we know the project names, we can download the project info
+pages, e.g.  ([[file:R-Forge/project-inlinedocs.html][my copy]]).
+
+Exercise 4: use
+=download.file("http://r-forge.r-project.org/projects/inlinedocs/",
+"R-Forge/project-inlinedocs.html")= to download project web pages,
+then read them into R as a character vector:
+
+#+BEGIN_SRC R
+  project.file.vec <- Sys.glob(file.path("R-Forge", "project-*.html"))
+  project.html.vec <- sapply(project.file.vec, function(project.file){
+    paste(readLines(project.file), collapse="\n")
+  })
+#+END_SRC
+
+Exercise 3: use =str_match_named(project.html.vec, registration.pattern)= 
+to extract the single project
+registration time from each of the project web pages.
+
+Exercise 4: use =str_match_all_named(project.html.vec, member.pattern)= to
+extract all project members from all project web pages.
