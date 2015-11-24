@@ -6,7 +6,7 @@ pages to CSV format data tables that can be plotted in R.
 
 | web page | to extract                 |
 |----------+----------------------------|
-| [[http://r-forge.r-project.org/scm/?group_id%3D496][SCM]]      | project name, committers   |
+| [[http://r-forge.r-project.org/scm/?group_id=496][SCM]]      | project name, committers   |
 | [[http://r-forge.r-project.org/projects/inlinedocs/][project]]  | [[file:project.stats.csv][registration time]], [[file:project.users.csv][members]] |
 
 *** Step 1: from project id to project name
