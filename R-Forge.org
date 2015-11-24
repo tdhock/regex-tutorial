@@ -1,6 +1,10 @@
 The goal of this tutorial is to convert R-Forge project data from web
 pages to CSV format data tables that can be plotted in R.
 
+[[file:figure-R-Forge-projects-cumulative.png]]
+
+[[file:figure-R-Forge-registrations-per-month.png]]
+
 # disable underscore subscripts
 #+OPTIONS: ^:nil
 
@@ -70,6 +74,7 @@ extract all project members from all project web pages.
   sorted.projects <- read.csv("project.stats.csv",header=TRUE, 
                               colClasses=c("POSIXct","factor","integer"))
   sorted.projects$count <- 1:nrow(sorted.projects)
+  png("figure-R-Forge-projects-cumulative.png")
   par(mar=c(3,4,2,3.5))
   plot(count~registered,sorted.projects,type="s",las=1,
        xlab="",
@@ -92,6 +97,8 @@ extract all project members from all project web pages.
   axis(3,last.date,format(last.date,"%e %B %Y"))
   axis(4,last.line$count,las=1)
   
+  dev.off()
+  
   sorted.projects$year <- as.integer(strftime(sorted.projects$registered, "%Y"))
   sorted.projects$month <- as.integer(strftime(sorted.projects$registered, "%m"))
   sorted.projects$reg.month <- with(sorted.projects, year + (month-1)/12)
@@ -99,7 +106,7 @@ extract all project members from all project web pages.
   month.df <- data.frame(month=as.numeric(names(month.tab)),
                          projects.registered=as.numeric(month.tab))
   library(ggplot2)
-  ggplot()+ 
+  gg <- ggplot()+ 
     geom_vline(aes(xintercept=month),
                data=data.frame(month=2008+7/12))+
     geom_vline(aes(xintercept=month), 
@@ -114,4 +121,8 @@ extract all project members from all project web pages.
     geom_point(aes(month, projects.registered), 
                shape=1,
                data=month.df)
+  
+  png("figure-R-Forge-registrations-per-month.png")
+  print(gg)
+  dev.off()
 #+END_SRC
