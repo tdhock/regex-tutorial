@@ -63,3 +63,55 @@ registration time from each of the project web pages.
 
 Exercise 4: use =str_match_all_named(project.html.vec, member.pattern)= to
 extract all project members from all project web pages.
+
+*** Step 3: plot number of R-Forge projects over time
+
+#+BEGIN_SRC R
+  sorted.projects <- read.csv("project.stats.csv",header=TRUE, 
+                              colClasses=c("POSIXct","factor","integer"))
+  sorted.projects$count <- 1:nrow(sorted.projects)
+  par(mar=c(3,4,2,3.5))
+  plot(count~registered,sorted.projects,type="s",las=1,
+       xlab="",
+       ylab="Total number of projects on R-Forge")
+  
+  user2008 <- as.POSIXct("2008-08-13")
+  user2008.y <- with(sorted.projects,approx(registered,count,user2008))$y
+  points(user2008,user2008.y,pch=20)
+  text(user2008,user2008.y,"R-Forge announcement\nat useR 2008",
+       adj=c(-0.2,0.5))
+  
+  devtools.on.CRAN <- as.POSIXct("2011-06-22")
+  devtools.y <- with(sorted.projects,approx(registered,count,devtools.on.CRAN))$y
+  points(devtools.on.CRAN,devtools.y,pch=20, col="blue")
+  text(devtools.on.CRAN,devtools.y,"First devtools\non CRAN",
+       adj=c(-0.2,0.5), col="blue")
+  
+  last.line <- tail(sorted.projects,1)
+  last.date <- last.line$registered
+  axis(3,last.date,format(last.date,"%e %B %Y"))
+  axis(4,last.line$count,las=1)
+  
+  sorted.projects$year <- as.integer(strftime(sorted.projects$registered, "%Y"))
+  sorted.projects$month <- as.integer(strftime(sorted.projects$registered, "%m"))
+  sorted.projects$reg.month <- with(sorted.projects, year + (month-1)/12)
+  month.tab <- table(sorted.projects$reg.month)
+  month.df <- data.frame(month=as.numeric(names(month.tab)),
+                         projects.registered=as.numeric(month.tab))
+  library(ggplot2)
+  ggplot()+ 
+    geom_vline(aes(xintercept=month),
+               data=data.frame(month=2008+7/12))+
+    geom_vline(aes(xintercept=month), 
+               data=data.frame(month=2011+5/12),
+               color="blue")+
+    geom_text(aes(month, projects.registered, label=label), 
+              data=data.frame(month=2012, 
+                projects.registered=35, 
+                label="First devtools\non CRAN"),
+              hjust=0,
+              color="blue")+
+    geom_point(aes(month, projects.registered), 
+               shape=1,
+               data=month.df)
+#+END_SRC
