@@ -19,11 +19,11 @@ R-Forge assigns a unique integer ID number to each new project
 registered, in chronological order. The first project is ID 1, second
 project is ID 2, etc. 
 
-Unfortunately, there is no web page that gives us the mapping from
-project id number (e.g. 496) to project name (inlinedocs). The [[https://r-forge.r-project.org/softwaremap/full_list.php][project
-list page]] does not help.
-
-However, given one ID number, we can find its project name. 
+Unfortunately, there is no single web page that gives us all the
+mappings from project id number (e.g. 496) to project name
+(inlinedocs). The [[https://r-forge.r-project.org/softwaremap/full_list.php][project list page]] does not help. However, there is a
+web page for each project ID number where we can find the
+corresponding project name.
 
 Exercise 0: clone this repository, then use
 =download.file("http://r-forge.r-project.org/scm/?group_id=496",
@@ -42,7 +42,7 @@ Exercise 1: use =str_match_named(scm.html.vec, name.pattern)= to
 extract the single project name from each of the SCM web pages.
 
 Exercise 2: use =str_match_all_named(scm.html.vec, scm.row.pattern)=
-to extract all repository statistics from all SCM web pages.
+to extract all committer data from all SCM web pages.
 
 *** Step 2: from project name to project info
 
