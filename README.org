@@ -147,6 +147,11 @@ been included with every copy of R since version 2.14.
 
 ** Current usage in R and Python, 10 minutes
 
+When developing complex regular expressions, it is useful to have
+interactive visual feedback about what parts of your subject string
+matches. This functionality is provided by [[http://www.emacswiki.org/emacs/ReBuilder][M-x re-builder]] ([[https://www.masteringemacs.org/article/re-builder-interactive-regexp-builder][mastering
+emacs]]) and web pages such as [[http://pythex.org/][pythex]].
+
 For a subject =S= (R character vector or Python pandas Series) and a
 regular expression pattern =P= (string),
 
