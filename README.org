@@ -80,6 +80,7 @@ second is clearer for two reasons:
 | R core         | 2002 | PCRE in R                       |
 | Hazel          | 2003 | Named capture in PCRE           |
 | Hocking        | 2011 | Named capture in R              |
+| Hocking        | 2016 | extractall in Python pandas     |
 
 Regular sets and regular expressions were introduced on paper by
 Stephen Cole Kleene in 1956 (including the "Kleene star" =*= for zero
@@ -91,7 +92,7 @@ Print," which gave the name to the grep program, also written by
 Thompson (1974). I'm not sure about the origin of capture groups, but
 Friedl claimed that "The regular expressions supported by grep and
 other early tools were quite limited...grep's capturing metacharacters
-were =\(...\)=, with unescaped parenthesies representing literal
+were =\(...\)=, with unescaped parentheses representing literal
 text." Larry Wall wrote Perl version 1 in 1987 while working at Unisys
 Corporation, and it had capturing regular expressions. Perl version 5
 in 1994 introduced many extensions using the =(?= notation. Sources:
@@ -145,35 +146,36 @@ was merged into base R in 2011
 https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=14518, and has
 been included with every copy of R since version 2.14.
 
+I wrote the =str.extractall= method in [[http://pandas.pydata.org/][pandas]], first included with
+release version 0.18.0 ([[https://github.com/pydata/pandas/pull/11386][my Pull Request]] was merged in Feb 2016).
+
 ** Current usage in R and Python, 10 minutes
 
 For a subject =S= (R character vector or Python pandas Series) and a
 regular expression pattern =P= (string),
 
-| base R function  | R namedCapture package      | Python pandas      | returns                     |
-|------------------+-----------------------------+--------------------+-----------------------------|
-| =regexpr(P, S)=  | =str_match_named(S, P)=     | =S.str.extract(P)= | one match per subject       |
-| =gregexpr(P, S)= | =str_match_all_named(S, P)= | =S.str.findall(P)= | several matches per subject |
-
-Notes:
-- =regexpr= and =gregexpr= in R need the perl=TRUE argument for named
-  capture.
-- =S.str.findall= in Python pandas does not return capture group
-  names.
+| R namedCapture package      | Python pandas         | returns                     |
+|-----------------------------+-----------------------+-----------------------------|
+| =str_match_named(S, P)=     | =S.str.extract(P)=    | one match per subject       |
+| =str_match_all_named(S, P)= | =S.str.extractall(P)= | several matches per subject |
 
 *** Named capture in R
 
 Base R supports named capture regular expressions via C code that
-interfaces the Perl-Compatible Regular Expressions (PCRE) library. 
-The base functions =regexpr= and =gregexpr= use PCRE when given the
-perl=TRUE argument. The first argument is the *pattern*, a single
-regular expression (character vector of length 1), and the second
-argument is the character vector of *subjects* (strings to
+interfaces the Perl-Compatible Regular Expressions (PCRE) library.
+The base functions =regexpr(P, S)= and =gregexpr(P, S)= use PCRE when
+given the perl=TRUE argument. The first argument =P= is a single
+regular expression *pattern* (character vector of length 1), and the
+second argument =S= is the character vector of *subjects* (strings to
 parse). However their output is a bunch of integers and group names,
-so I wrote some functions in the [[https://github.com/tdhock/namedCapture][namedCapture]] package that return
-character matrices or data.frames, with column names as defined in the
-named groups of the regular expression. To install the namedCapture
-package, run the following commands in R:
+which is not very user-friendly.
+
+Instead I recommend using the [[https://github.com/tdhock/namedCapture][namedCapture]] package, which provides the
+=str_match_named(S, P)= and =str_match_all_named(S, P)=
+functions. They are a user-friendly interface to the base =regexpr=
+and =gregexpr= functions. They return character matrices with column
+names as defined in the named groups of the regular expression. To
+install the namedCapture package, run the following commands in R:
 
 #+BEGIN_SRC R
 if(!require(devtools))install.packages("devtools")
@@ -190,29 +192,29 @@ Notes on related functions/packages:
 - https://github.com/tdhock/revector provides fast C code for a
   *vector* of named capture regular expressions (base R only provides
   functions for a single regular expression).
-
+  
 *** Named capture in Python
 
-Note that in Python a =P= is required after the initial question mark
-of each group: =(?P<name>pattern)=.
+The [[https://docs.python.org/2/library/re.html][re]] module of the Python Standard Library implements named capture
+regular expression support via the =M.groupdict()= method for a [[https://docs.python.org/2/library/re.html#match-objects][match
+object]] =M=.
 
-The =re= module implements named capture regular expression support
-via the =M.groupdict()= method for a match object =M=.
-
-The =pandas= module for data analysis has some support for named
-capture regular expressions. To install pandas execute one of the
-following shell commands:
+For data analysis I recommend using the [[http://pandas.pydata.org/][pandas]] library, which supports
+named capture regular expressions via the =S.str.extract(P)= and
+=S.str.extractall(P)= methods for a *subject* Series =S= and a regular
+expression *pattern* =P=. Both methods are an interface to the =re=
+module, and return a =DataFrame= with one row per match and one column
+per capture group. To install pandas execute one of the following
+shell commands:
 
 #+BEGIN_SRC shell-script
 pip install pandas
 easy_install pandas
 #+END_SRC
 
-For an instance =S= of the Series class, pandas provides the excellent
-=S.str.extract= method which is the analog of =str_match_named= in
-R. However the analog of =str_match_all_named= seems to be
-=S.str.findall=, which does not support named capture.
-
+Note that in Python a =P= is required after the initial question mark
+of each group: =(?P<name>pattern)=. In contrast, in
+R/PCRE/namedCapture the =P= is allowed but not required.
 
 ** Some examples, 30 minutes
 
