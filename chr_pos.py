@@ -61,10 +61,8 @@ match_df["chromStart_float"] = tofloat(match_df["chromStart"])
 match_df["chromEnd_float"] = tofloat(match_df["chromStart"])
 print match_df
 
-# str.findall returns an object series. each element is a list of
-# tuples containing the match but with no names.
-findall_series = subject_series.str.findall(pattern_not_greedy, re.VERBOSE)
-print findall_series
-print findall_series[0]
-print findall_series[4]
+# str.extractall returns a DataFrame with one row for each match and
+# one column for each capture group.
+extractall_df = subject_series.str.extractall(pattern_not_greedy, re.VERBOSE)
+print extractall_df
 
