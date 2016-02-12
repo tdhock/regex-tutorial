@@ -251,6 +251,9 @@ to obtain a match matrix like the output of =str_match_named=
 below.
 
 #+BEGIN_SRC R
+  if(!require(re2r))devtools::install_github("qinwf/re2r", build_vignettes=FALSE, dep=FALSE)
+  if(!require(stringi))install.packages("stringi")
+  
   max.N <- 25
   times.list <- list()
   for(N in 1:max.N){
@@ -261,6 +264,7 @@ below.
       ICU=stringi::stri_match(subject, regex=pattern),
       PCRE=regexpr(pattern, subject, perl=TRUE),
       TRE=regexpr(pattern, subject, perl=FALSE),
+      RE2=re2r::re2_match(pattern, subject),
       times=10)
     times.list[[N]] <- data.frame(N, N.times)
   }
