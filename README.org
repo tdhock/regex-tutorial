@@ -238,17 +238,24 @@ How do you ever extracted data from text files? Show us how you
 extracted some data from a particular text file, and we will try to
 suggest improvements.
 
-** Coding project: polynomial time named capture
+** Polynomial time named capture
 
 Russ Cox's "[[https://swtch.com/~rsc/regexp/regexp1.html][Regular Expression Matching Can Be Simple And Fast]]"
 explains that due to backreference support, several common regular
-expression engines can have an exponential runtime. One way to achieve
-a speedup is to drop backreference support and use the [[https://github.com/google/re2][re2]] C++
-library, [[https://github.com/google/re2/wiki/Syntax][which supports named capture]]. Write an R package with a
-function =str_match_re2= that uses the [[https://github.com/google/re2/wiki/CplusplusAPI][RE2::PartialMatch]] C++ function
-to obtain a match matrix like the output of =str_match_named=
-([[https://github.com/rstats-gsoc/gsoc2016/wiki/re2-regular-expressions][GSOC2016 project proposal]]). Add =str_match_re2= to the benchmark code
-below.
+expression engines can have an exponential runtime (including PCRE
+which is used by R and Python). One way to achieve a speedup is to
+drop backreference support and use the [[https://github.com/google/re2][re2]] C++ library, [[https://github.com/google/re2/wiki/Syntax][which supports
+named capture]]. [[https://github.com/qinwf][Qin Wenfeng]] implemented the excellent [[https://github.com/qinwf/re2r][re2r]] package as
+his [[https://github.com/rstats-gsoc/gsoc2016/wiki/re2-regular-expressions][Google Summer of Code 2016 project]]. If you need a provably fast
+(polynomial time) regular expression engine in R, I recommend using
+re2r! See speed benchmarks below and in the [[http://qinwenfeng.com/re2r_doc/re2r-benchmark.html][re2r vignette]].
+
+| R function            | library | named capture | complexity  |
+|-----------------------+---------+---------------+-------------|
+| regexpr(perl=FALSE)   | TRE     | no            | polynomial  |
+| stringi::stri_match() | ICU     | no            | exponential |
+| regexpr(perl=TRUE)    | PCRE    | yes           | exponential |
+| str_match_re2()       | re2     | yes           | polynomial  |
 
 #+BEGIN_SRC R
   if(!require(re2r))devtools::install_github("qinwf/re2r", build_vignettes=FALSE, dep=FALSE)
@@ -305,16 +312,6 @@ below.
 [[file:figure-complexity-linear.png]] 
 
 [[file:figure-complexity-log.png]]  
-
-Does your result agree with the predictions in the complexity column
-of the table below?
-
-| R function            | library | named capture | complexity  |
-|-----------------------+---------+---------------+-------------|
-| regexpr(perl=FALSE)   | TRE     | no            | polynomial  |
-| stringi::stri_match() | ICU     | no            | exponential |
-| regexpr(perl=TRUE)    | PCRE    | yes           | exponential |
-| str_match_re2()       | re2     | yes           | polynomial  |
 
 ** References
 
