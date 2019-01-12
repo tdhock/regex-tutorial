@@ -1,5 +1,5 @@
 ---
-title: "Data manipulation with regular expressions"
+title: "Extracting tabular data from text using regular expressions"
 author: |
    | Toby Dylan Hocking^1^ 
    |
@@ -35,11 +35,12 @@ regex thus makes a useR much more productive.
 ## Brief description of Tutorial
  
 Regular expressions have been available for many years in R. In recent
-years there have been several new packages that use regex
-(namedCapture, rex, stringr, stringi, tidyr, rematch2, re2r). This
-tutorial will give an overview of these packages, highlighting their
-similarities, differences, and individual strengths. It is highly
-interactive, and uses packages available on CRAN and GitHub.
+years there have been several new packages for regex (namedCapture,
+rex, stringr, stringi, tidyr, rematch2, re2r). This tutorial will give
+an overview of these packages, highlighting their similarities,
+differences, and individual strengths. It contains interactive
+exercises with real-world examples (web scraping, genomics,
+supercomputing, log parsing).
 
 ## Detailed outline of tutorial content
 
@@ -70,52 +71,56 @@ The columns can be interpreted as follows:
 * named is for named capture group support.
 * types is for built-in type conversion (useful for extracting numeric data from text).
 
-### TODO subject 30 minutes
+### Intro to regex, 30 minutes
+
+* Example: converting chrom position strings "chr1:100-200" to three-column data table.
+* Use of ".*?" versus "[^:]*:" patterns.
+* Capturing groups, adding names.
+* Application/exercise: sort positions by chrom number then start/end.
+
+```
+c("chr1", "chr1", "chr10", "chr2", "chrY", "chrX", "chr17_ctg5_hap1", "chr21", "chr17")
+```
+
+### Web scraping, 30 minutes
+
+### qsub, 30 m
  
 ## Pre-requisite background knowledge and packages
 
-* Basic knowledge of R; reading in data, working with vectors and functions. 
-* Basic knowledge of likelihood and hypothesis testing / model choice would be useful.
- 
-We will provide a script that will automatically install all packages
-required for this tutorial:
+Only a basic knowledge of R is required, so even new useRs should be
+able to benefit from this tutorial.
 
-* changepoint: parametric changepoint models.
-* changepoint.np: non-parametric changepoint models.
-* neuroblastoma: labeled data for supervised changepoint detection.
-* Segmentor3IsBack: parametric changepoint models.
-* survival: supervised penalty learning via un-regularized interval regression.
-* iregnet: supervised penalty learning via elastic net regularized
-  interval regression.
+We will provide a rendered Rmd to tutorial attendees for reference. At the top it
+will have a code chunk which will install all required packages.
 
 ## Potential attendees
 
-Time series data are rather common in many fields (finance, genomics, 
-environment), so changepoint detection should be a rather popular
-topic. We expect an audience of about 50 people, so please reserve a
-large classroom or small lecture hall.
+This tutorial should be useful for both new and power useRs, because
+it explains both the basics of regex, as well as new/advanced features
+of some packages (namedCapture, rex, re2r). 
 
 ## Instructor Biographies
 
-Toby Dylan Hocking (McGill University, Montreal, Canada;
-toby.hocking@r-project.org, https://github.com/tdhock) is a
-post-doctoral researcher, working on new machine learning models for
-genomic data. He has implemented several R packages for changepoint
-detection (neuroblastoma, bams, PeakSegDP, PeakSegJoint, coseg). He
-has also implemented several R graphics packages, including
-directlabels (won best student poster at useR2011) and animint
-(presented in a JSM2015 invited session and a useR2016 tutorial).
+Toby Dylan Hocking (toby.hocking@r-project.org,
+https://github.com/tdhock) is an Assistant Professor in the School of
+Informatics, Computing, and Cyber Systems at Northern Arizona
+University. His main research project concerns new machine learning
+models for genomic data, which often requires pre-processing using
+regular expressions.
 
-Rebecca Killick (Lancaster University, UK; r.killick@lancs.ac.uk,
-http://www.lancs.ac.uk/~killick) is a Lecturer in Statistics at the
-University of Lancaster. Her research is in developing methodology for
-the analysis of nonstationary time series to address real world
-problems.  She has taught a range of courses over the last 10 years
-from first year undergraduate introductory courses to PhD level
-courses both theoretical and practical. She has created and
-contributed to several R packages on changepoint detection including
-changepoint, changepoint.np, EnvCpt and delivered a workshop on
-changepoint detection at eRum2016. Her code has been adapted for
-delivery in commercial software and is available as part of the NAG
-libraries.
+He contributed the code in
+https://svn.r-project.org/R/trunk/src/main/grep.c which implements
+named capture regular expression support for R. It was merged into
+base R in 2011
+https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=14518, and has
+been included with every copy of R since version 2.14. He is the
+author of the namedCapture package which provides a user-friendly
+interface for extracting tabular data from loosely structured text
+using regular expressions.
+
+He has implemented several R graphics packages, including directlabels
+(won best student poster at useR2011) and animint (presented in a
+JSM2015 invited session and a useR2016 tutorial). He has also
+presented a useR2017 tutorial on Supervised Changepoint Detection.
 
