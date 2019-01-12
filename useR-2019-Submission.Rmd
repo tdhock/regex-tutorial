@@ -1,0 +1,121 @@
+---
+title: "Data manipulation with regular expressions"
+author: |
+   | Toby Dylan Hocking^1^ 
+   |
+   | 1. Northern Arizona University, Flagstaff, USA
+institute: 
+   - $^Northern Arizona University, Flagstaff, USA
+output: html_document
+---
+
+**Keywords**: text, tabular, data, manipulation, regex, pattern, regular, expression.
+
+## Goals/Aims/Learning objectives
+
+Following the course participants will be able to:
+
+* recognize structure in non-tabular textual data files (html, logs, genomics, etc) that can be matched via regex.
+* create regular expressions using basic and advanced features (character classes, alternation, multi-line patterns, etc).
+* use (named) capture groups to extract data tables with numeric columns from loosely structured textual data.
+* use rex/namedCapture packages to create readable and maintainable R code that generates regular expressions.
+* create R applications that acccept user-defined regex patterns, and resist denial-of-service attacks, by using polynomial time regex libraries (TRE/RE2).
+ 
+## Justification
+
+Regular expressions are extremely powerful tools for manipulating
+non-tabular textual data. For many tasks (visualization, fitting
+machine learning models, etc), tables of numbers must be extracted
+from such data before processing by other R functions. One line of
+R/regex code can often be used to compute the same result as many
+lines of non-regex R code. Furthermore, using regex for text
+manipulation often results in much faster computation times. Learning
+regex thus makes a useR much more productive.
+
+## Brief description of Tutorial
+ 
+Regular expressions have been available for many years in R. In recent
+years there have been several new packages that use regex
+(namedCapture, rex, stringr, stringi, tidyr, rematch2, re2r). This
+tutorial will give an overview of these packages, highlighting their
+similarities, differences, and individual strengths. It is highly
+interactive, and uses packages available on CRAN and GitHub.
+
+## Detailed outline of tutorial content
+
+We have created the following reference table for this tutorial, which
+will be used to explain the similarities and differences between the regex
+R packages that we will discuss.
+
+  Package        First match                 All matches                library    subject   pattern        outputs       named   types
+  -------------- --------------------------- -------------------------- ---------- --------- -------------- ------------- ------- -------
+  base           `regexpr`                   `gregexpr`                 PCRE/TRE   chr       chr            mat/list      yes     no
+  utils          `str_capture`               NA                         PCRE/TRE   chr       chr            df            no      some
+  namedCapture   `str_match_named`           `str_match_all_named`      PCRE       chr       chr            mat/df/list   yes     any
+  namedCapture   `str_match_variable`        `str_match_all_variable`   PCRE       chr       verbose        mat/df/list   yes     any
+  namedCapture   `df_match_variable`         NA                         PCRE       df/dt     verbose        df/dt         yes     any
+  rex            `re_matches(global=FALSE)`  `re_matches(global=TRUE)`  PCRE       chr       verbose        df            yes     no
+  stringr        `str_match`                 `str_match_all`            ICU        chr       chr            mat/list      no      no
+  stringi        `stri_match`                `stri_match_all`           ICU        chr       chr            mat/list      no      no
+  tidyr          `extract`                   NA                         ICU        df/dt     chr            df/dt         no      some
+  rematch2       `re_match`                  `re_match_all`             PCRE/TRE   chr       chr            tibble        yes     no
+  re2r           `re2_match`                 `re2_match_all`            RE2        chr       chr/compiled   df/list       yes     no
+
+The columns can be interpreted as follows:
+
+* First match is a function that extracts the first regex match found in the subjects.
+* All matches is a function that extracts each regex match found in the subjects.
+* library is the underlying C code used for regex parsing. PCRE and ICU are exponential time complexity, whereas RE2/TRE are polynomial time complexity (which can be used to avoid denial-of-service attacks in R applications which allow users to input a regex).
+* subject/pattern/outputs shows the supported data types.
+* named is for named capture group support.
+* types is for built-in type conversion (useful for extracting numeric data from text).
+
+### TODO subject 30 minutes
+ 
+## Pre-requisite background knowledge and packages
+
+* Basic knowledge of R; reading in data, working with vectors and functions. 
+* Basic knowledge of likelihood and hypothesis testing / model choice would be useful.
+ 
+We will provide a script that will automatically install all packages
+required for this tutorial:
+
+* changepoint: parametric changepoint models.
+* changepoint.np: non-parametric changepoint models.
+* neuroblastoma: labeled data for supervised changepoint detection.
+* Segmentor3IsBack: parametric changepoint models.
+* survival: supervised penalty learning via un-regularized interval regression.
+* iregnet: supervised penalty learning via elastic net regularized
+  interval regression.
+
+## Potential attendees
+
+Time series data are rather common in many fields (finance, genomics, 
+environment), so changepoint detection should be a rather popular
+topic. We expect an audience of about 50 people, so please reserve a
+large classroom or small lecture hall.
+
+## Instructor Biographies
+
+Toby Dylan Hocking (McGill University, Montreal, Canada;
+toby.hocking@r-project.org, https://github.com/tdhock) is a
+post-doctoral researcher, working on new machine learning models for
+genomic data. He has implemented several R packages for changepoint
+detection (neuroblastoma, bams, PeakSegDP, PeakSegJoint, coseg). He
+has also implemented several R graphics packages, including
+directlabels (won best student poster at useR2011) and animint
+(presented in a JSM2015 invited session and a useR2016 tutorial).
+
+Rebecca Killick (Lancaster University, UK; r.killick@lancs.ac.uk,
+http://www.lancs.ac.uk/~killick) is a Lecturer in Statistics at the
+University of Lancaster. Her research is in developing methodology for
+the analysis of nonstationary time series to address real world
+problems.  She has taught a range of courses over the last 10 years
+from first year undergraduate introductory courses to PhD level
+courses both theoretical and practical. She has created and
+contributed to several R packages on changepoint detection including
+changepoint, changepoint.np, EnvCpt and delivered a workshop on
+changepoint detection at eRum2016. Her code has been adapted for
+delivery in commercial software and is available as part of the NAG
+libraries.
+
