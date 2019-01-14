@@ -69,6 +69,12 @@ The columns can be interpreted as follows:
 * named is for named capture group support.
 * types is for built-in type conversion (useful for extracting numeric
   data from text).
+  
+As explained below, the tutorial is divided into two 90 minute
+talks. The first half gives an overview of the relative advantages of
+the different regex packages in R, and the second goes in depth about
+how to use regex to parse several types of files (web pages, logs,
+genomic data).
 
 ### First half of tutorial: overview of regex and R packages
 

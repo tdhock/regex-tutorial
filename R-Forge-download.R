@@ -12,8 +12,10 @@ users <- read.csv("project.users.csv",header=TRUE,
 home <- readLines(home.conn <- url("http://r-forge.r-project.org/"))
 close(home.conn)
 lines.after.recently <- paste(home[-(1:grep("Recently",home))],collapse="")
-source("regexp.R")
-most.recent.project <- get.first(lines.after.recently,"projects/","[^/]+")
+most.recent.project <- paste(namedCapture::str_match_variable(
+  lines.after.recently,
+  "projects/",
+  project="[^/]+"))
 ## now download the most recent project page to get its project id
 download.project.html <- function(project){
   project.url.format <- "http://r-forge.r-project.org/projects/%s/"
