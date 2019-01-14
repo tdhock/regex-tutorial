@@ -1,0 +1,950 @@
+
+track bcell
+superTrack on show
+shortLabel bcell
+longLabel bcell ChIP-seq samples
+
+
+track kidneyCancer
+superTrack on show
+shortLabel kidneyCancer
+longLabel kidneyCancer ChIP-seq samples
+
+
+track kidney
+superTrack on show
+shortLabel kidney
+longLabel kidney ChIP-seq samples
+
+
+track monocyte
+superTrack on show
+shortLabel monocyte
+longLabel monocyte ChIP-seq samples
+
+
+track skeletalMuscleCtrl
+superTrack on show
+shortLabel skeletalMuscleCtrl
+longLabel skeletalMuscleCtrl ChIP-seq samples
+
+
+track skeletalMuscleMD
+superTrack on show
+shortLabel skeletalMuscleMD
+longLabel skeletalMuscleMD ChIP-seq samples
+
+
+track tcell
+superTrack on show
+shortLabel tcell
+longLabel tcell ChIP-seq samples
+
+
+
+track all_labels
+type bigBed 9
+shortLabel _model_all_labels
+longLabel Manually labeled regions with and without peaks
+visibility pack
+itemRgb on
+spectrum off
+bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/all_labels.bigBed
+
+track problems
+type bigBed 3
+shortLabel _model_problems
+longLabel Separate problems (PeakSegFPOP looks for multiple peaks in each region, independently for each sample)
+visibility pack
+itemRgb off
+spectrum off
+bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/problems.bigBed
+
+track jointProblems
+type bigBed 3
+shortLabel _model_jointProblems
+longLabel Joint problems (PeakSegJoint looks for one common peak in each region, across all samples)
+visibility pack
+itemRgb off
+spectrum off
+bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/jointProblems.bigBed
+
+track peaks_summary
+type bigBed 5
+shortLabel _model_peaks_summary
+longLabel Regions with a peak in at least one sample
+visibility pack
+itemRgb off
+spectrum on
+bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/peaks_summary.bigBed
+
+
+ track bcell_McGill0322
+ parent bcell
+ container multiWig
+ type bigWig
+ shortLabel bcell_McGill0322
+ longLabel bcell | McGill0322
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track bcell_McGill0322Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/bcell/McGill0322/coverage.bigWig
+  shortLabel bcell_McGill0322Coverage
+  longLabel bcell | McGill0322 | Coverage
+  parent bcell_McGill0322
+  type bigWig
+  color 141,211,199
+
+  track bcell_McGill0322Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/bcell/McGill0322/joint_peaks.bigWig
+  shortLabel bcell_McGill0322Peaks
+  longLabel bcell | McGill0322 | Peaks
+  parent bcell_McGill0322
+  type bigWig
+  color 0,0,0
+
+
+ track kidneyCancer_McGill0022
+ parent kidneyCancer
+ container multiWig
+ type bigWig
+ shortLabel kidneyCancer_McGill0022
+ longLabel kidneyCancer | McGill0022
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track kidneyCancer_McGill0022Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/kidneyCancer/McGill0022/coverage.bigWig
+  shortLabel kidneyCancer_McGill0022Coverage
+  longLabel kidneyCancer | McGill0022 | Coverage
+  parent kidneyCancer_McGill0022
+  type bigWig
+  color 190,186,218
+
+  track kidneyCancer_McGill0022Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/kidneyCancer/McGill0022/joint_peaks.bigWig
+  shortLabel kidneyCancer_McGill0022Peaks
+  longLabel kidneyCancer | McGill0022 | Peaks
+  parent kidneyCancer_McGill0022
+  type bigWig
+  color 0,0,0
+
+
+ track kidney_McGill0023
+ parent kidney
+ container multiWig
+ type bigWig
+ shortLabel kidney_McGill0023
+ longLabel kidney | McGill0023
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track kidney_McGill0023Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/kidney/McGill0023/coverage.bigWig
+  shortLabel kidney_McGill0023Coverage
+  longLabel kidney | McGill0023 | Coverage
+  parent kidney_McGill0023
+  type bigWig
+  color 251,128,114
+
+  track kidney_McGill0023Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/kidney/McGill0023/joint_peaks.bigWig
+  shortLabel kidney_McGill0023Peaks
+  longLabel kidney | McGill0023 | Peaks
+  parent kidney_McGill0023
+  type bigWig
+  color 0,0,0
+
+
+ track monocyte_McGill0001
+ parent monocyte
+ container multiWig
+ type bigWig
+ shortLabel monocyte_McGill0001
+ longLabel monocyte | McGill0001
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track monocyte_McGill0001Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/monocyte/McGill0001/coverage.bigWig
+  shortLabel monocyte_McGill0001Coverage
+  longLabel monocyte | McGill0001 | Coverage
+  parent monocyte_McGill0001
+  type bigWig
+  color 128,177,211
+
+  track monocyte_McGill0001Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/monocyte/McGill0001/joint_peaks.bigWig
+  shortLabel monocyte_McGill0001Peaks
+  longLabel monocyte | McGill0001 | Peaks
+  parent monocyte_McGill0001
+  type bigWig
+  color 0,0,0
+
+
+ track monocyte_McGill0002
+ parent monocyte
+ container multiWig
+ type bigWig
+ shortLabel monocyte_McGill0002
+ longLabel monocyte | McGill0002
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track monocyte_McGill0002Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/monocyte/McGill0002/coverage.bigWig
+  shortLabel monocyte_McGill0002Coverage
+  longLabel monocyte | McGill0002 | Coverage
+  parent monocyte_McGill0002
+  type bigWig
+  color 128,177,211
+
+  track monocyte_McGill0002Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/monocyte/McGill0002/joint_peaks.bigWig
+  shortLabel monocyte_McGill0002Peaks
+  longLabel monocyte | McGill0002 | Peaks
+  parent monocyte_McGill0002
+  type bigWig
+  color 0,0,0
+
+
+ track monocyte_McGill0079
+ parent monocyte
+ container multiWig
+ type bigWig
+ shortLabel monocyte_McGill0079
+ longLabel monocyte | McGill0079
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track monocyte_McGill0079Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/monocyte/McGill0079/coverage.bigWig
+  shortLabel monocyte_McGill0079Coverage
+  longLabel monocyte | McGill0079 | Coverage
+  parent monocyte_McGill0079
+  type bigWig
+  color 128,177,211
+
+  track monocyte_McGill0079Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/monocyte/McGill0079/joint_peaks.bigWig
+  shortLabel monocyte_McGill0079Peaks
+  longLabel monocyte | McGill0079 | Peaks
+  parent monocyte_McGill0079
+  type bigWig
+  color 0,0,0
+
+
+ track monocyte_McGill0101
+ parent monocyte
+ container multiWig
+ type bigWig
+ shortLabel monocyte_McGill0101
+ longLabel monocyte | McGill0101
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track monocyte_McGill0101Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/monocyte/McGill0101/coverage.bigWig
+  shortLabel monocyte_McGill0101Coverage
+  longLabel monocyte | McGill0101 | Coverage
+  parent monocyte_McGill0101
+  type bigWig
+  color 128,177,211
+
+  track monocyte_McGill0101Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/monocyte/McGill0101/joint_peaks.bigWig
+  shortLabel monocyte_McGill0101Peaks
+  longLabel monocyte | McGill0101 | Peaks
+  parent monocyte_McGill0101
+  type bigWig
+  color 0,0,0
+
+
+ track monocyte_McGill0104
+ parent monocyte
+ container multiWig
+ type bigWig
+ shortLabel monocyte_McGill0104
+ longLabel monocyte | McGill0104
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track monocyte_McGill0104Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/monocyte/McGill0104/coverage.bigWig
+  shortLabel monocyte_McGill0104Coverage
+  longLabel monocyte | McGill0104 | Coverage
+  parent monocyte_McGill0104
+  type bigWig
+  color 128,177,211
+
+  track monocyte_McGill0104Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/monocyte/McGill0104/joint_peaks.bigWig
+  shortLabel monocyte_McGill0104Peaks
+  longLabel monocyte | McGill0104 | Peaks
+  parent monocyte_McGill0104
+  type bigWig
+  color 0,0,0
+
+
+ track skeletalMuscleCtrl_McGill0019
+ parent skeletalMuscleCtrl
+ container multiWig
+ type bigWig
+ shortLabel skeletalMuscleCtrl_McGill0019
+ longLabel skeletalMuscleCtrl | McGill0019
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track skeletalMuscleCtrl_McGill0019Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleCtrl/McGill0019/coverage.bigWig
+  shortLabel skeletalMuscleCtrl_McGill0019Coverage
+  longLabel skeletalMuscleCtrl | McGill0019 | Coverage
+  parent skeletalMuscleCtrl_McGill0019
+  type bigWig
+  color 253,180,98
+
+  track skeletalMuscleCtrl_McGill0019Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleCtrl/McGill0019/joint_peaks.bigWig
+  shortLabel skeletalMuscleCtrl_McGill0019Peaks
+  longLabel skeletalMuscleCtrl | McGill0019 | Peaks
+  parent skeletalMuscleCtrl_McGill0019
+  type bigWig
+  color 0,0,0
+
+
+ track skeletalMuscleCtrl_McGill0036
+ parent skeletalMuscleCtrl
+ container multiWig
+ type bigWig
+ shortLabel skeletalMuscleCtrl_McGill0036
+ longLabel skeletalMuscleCtrl | McGill0036
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track skeletalMuscleCtrl_McGill0036Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleCtrl/McGill0036/coverage.bigWig
+  shortLabel skeletalMuscleCtrl_McGill0036Coverage
+  longLabel skeletalMuscleCtrl | McGill0036 | Coverage
+  parent skeletalMuscleCtrl_McGill0036
+  type bigWig
+  color 253,180,98
+
+  track skeletalMuscleCtrl_McGill0036Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleCtrl/McGill0036/joint_peaks.bigWig
+  shortLabel skeletalMuscleCtrl_McGill0036Peaks
+  longLabel skeletalMuscleCtrl | McGill0036 | Peaks
+  parent skeletalMuscleCtrl_McGill0036
+  type bigWig
+  color 0,0,0
+
+
+ track skeletalMuscleCtrl_McGill0037
+ parent skeletalMuscleCtrl
+ container multiWig
+ type bigWig
+ shortLabel skeletalMuscleCtrl_McGill0037
+ longLabel skeletalMuscleCtrl | McGill0037
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track skeletalMuscleCtrl_McGill0037Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleCtrl/McGill0037/coverage.bigWig
+  shortLabel skeletalMuscleCtrl_McGill0037Coverage
+  longLabel skeletalMuscleCtrl | McGill0037 | Coverage
+  parent skeletalMuscleCtrl_McGill0037
+  type bigWig
+  color 253,180,98
+
+  track skeletalMuscleCtrl_McGill0037Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleCtrl/McGill0037/joint_peaks.bigWig
+  shortLabel skeletalMuscleCtrl_McGill0037Peaks
+  longLabel skeletalMuscleCtrl | McGill0037 | Peaks
+  parent skeletalMuscleCtrl_McGill0037
+  type bigWig
+  color 0,0,0
+
+
+ track skeletalMuscleMD_McGill0012
+ parent skeletalMuscleMD
+ container multiWig
+ type bigWig
+ shortLabel skeletalMuscleMD_McGill0012
+ longLabel skeletalMuscleMD | McGill0012
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track skeletalMuscleMD_McGill0012Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleMD/McGill0012/coverage.bigWig
+  shortLabel skeletalMuscleMD_McGill0012Coverage
+  longLabel skeletalMuscleMD | McGill0012 | Coverage
+  parent skeletalMuscleMD_McGill0012
+  type bigWig
+  color 179,222,105
+
+  track skeletalMuscleMD_McGill0012Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleMD/McGill0012/joint_peaks.bigWig
+  shortLabel skeletalMuscleMD_McGill0012Peaks
+  longLabel skeletalMuscleMD | McGill0012 | Peaks
+  parent skeletalMuscleMD_McGill0012
+  type bigWig
+  color 0,0,0
+
+
+ track skeletalMuscleMD_McGill0013
+ parent skeletalMuscleMD
+ container multiWig
+ type bigWig
+ shortLabel skeletalMuscleMD_McGill0013
+ longLabel skeletalMuscleMD | McGill0013
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track skeletalMuscleMD_McGill0013Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleMD/McGill0013/coverage.bigWig
+  shortLabel skeletalMuscleMD_McGill0013Coverage
+  longLabel skeletalMuscleMD | McGill0013 | Coverage
+  parent skeletalMuscleMD_McGill0013
+  type bigWig
+  color 179,222,105
+
+  track skeletalMuscleMD_McGill0013Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleMD/McGill0013/joint_peaks.bigWig
+  shortLabel skeletalMuscleMD_McGill0013Peaks
+  longLabel skeletalMuscleMD | McGill0013 | Peaks
+  parent skeletalMuscleMD_McGill0013
+  type bigWig
+  color 0,0,0
+
+
+ track skeletalMuscleMD_McGill0016
+ parent skeletalMuscleMD
+ container multiWig
+ type bigWig
+ shortLabel skeletalMuscleMD_McGill0016
+ longLabel skeletalMuscleMD | McGill0016
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track skeletalMuscleMD_McGill0016Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleMD/McGill0016/coverage.bigWig
+  shortLabel skeletalMuscleMD_McGill0016Coverage
+  longLabel skeletalMuscleMD | McGill0016 | Coverage
+  parent skeletalMuscleMD_McGill0016
+  type bigWig
+  color 179,222,105
+
+  track skeletalMuscleMD_McGill0016Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/skeletalMuscleMD/McGill0016/joint_peaks.bigWig
+  shortLabel skeletalMuscleMD_McGill0016Peaks
+  longLabel skeletalMuscleMD | McGill0016 | Peaks
+  parent skeletalMuscleMD_McGill0016
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0004
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0004
+ longLabel tcell | McGill0004
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0004Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0004/coverage.bigWig
+  shortLabel tcell_McGill0004Coverage
+  longLabel tcell | McGill0004 | Coverage
+  parent tcell_McGill0004
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0004Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0004/joint_peaks.bigWig
+  shortLabel tcell_McGill0004Peaks
+  longLabel tcell | McGill0004 | Peaks
+  parent tcell_McGill0004
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0005
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0005
+ longLabel tcell | McGill0005
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0005Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0005/coverage.bigWig
+  shortLabel tcell_McGill0005Coverage
+  longLabel tcell | McGill0005 | Coverage
+  parent tcell_McGill0005
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0005Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0005/joint_peaks.bigWig
+  shortLabel tcell_McGill0005Peaks
+  longLabel tcell | McGill0005 | Peaks
+  parent tcell_McGill0005
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0007
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0007
+ longLabel tcell | McGill0007
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0007Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0007/coverage.bigWig
+  shortLabel tcell_McGill0007Coverage
+  longLabel tcell | McGill0007 | Coverage
+  parent tcell_McGill0007
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0007Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0007/joint_peaks.bigWig
+  shortLabel tcell_McGill0007Peaks
+  longLabel tcell | McGill0007 | Peaks
+  parent tcell_McGill0007
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0008
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0008
+ longLabel tcell | McGill0008
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0008Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0008/coverage.bigWig
+  shortLabel tcell_McGill0008Coverage
+  longLabel tcell | McGill0008 | Coverage
+  parent tcell_McGill0008
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0008Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0008/joint_peaks.bigWig
+  shortLabel tcell_McGill0008Peaks
+  longLabel tcell | McGill0008 | Peaks
+  parent tcell_McGill0008
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0009
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0009
+ longLabel tcell | McGill0009
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0009Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0009/coverage.bigWig
+  shortLabel tcell_McGill0009Coverage
+  longLabel tcell | McGill0009 | Coverage
+  parent tcell_McGill0009
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0009Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0009/joint_peaks.bigWig
+  shortLabel tcell_McGill0009Peaks
+  longLabel tcell | McGill0009 | Peaks
+  parent tcell_McGill0009
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0011
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0011
+ longLabel tcell | McGill0011
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0011Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0011/coverage.bigWig
+  shortLabel tcell_McGill0011Coverage
+  longLabel tcell | McGill0011 | Coverage
+  parent tcell_McGill0011
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0011Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0011/joint_peaks.bigWig
+  shortLabel tcell_McGill0011Peaks
+  longLabel tcell | McGill0011 | Peaks
+  parent tcell_McGill0011
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0024
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0024
+ longLabel tcell | McGill0024
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0024Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0024/coverage.bigWig
+  shortLabel tcell_McGill0024Coverage
+  longLabel tcell | McGill0024 | Coverage
+  parent tcell_McGill0024
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0024Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0024/joint_peaks.bigWig
+  shortLabel tcell_McGill0024Peaks
+  longLabel tcell | McGill0024 | Peaks
+  parent tcell_McGill0024
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0025
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0025
+ longLabel tcell | McGill0025
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0025Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0025/coverage.bigWig
+  shortLabel tcell_McGill0025Coverage
+  longLabel tcell | McGill0025 | Coverage
+  parent tcell_McGill0025
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0025Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0025/joint_peaks.bigWig
+  shortLabel tcell_McGill0025Peaks
+  longLabel tcell | McGill0025 | Peaks
+  parent tcell_McGill0025
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0026
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0026
+ longLabel tcell | McGill0026
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0026Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0026/coverage.bigWig
+  shortLabel tcell_McGill0026Coverage
+  longLabel tcell | McGill0026 | Coverage
+  parent tcell_McGill0026
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0026Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0026/joint_peaks.bigWig
+  shortLabel tcell_McGill0026Peaks
+  longLabel tcell | McGill0026 | Peaks
+  parent tcell_McGill0026
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0027
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0027
+ longLabel tcell | McGill0027
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0027Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0027/coverage.bigWig
+  shortLabel tcell_McGill0027Coverage
+  longLabel tcell | McGill0027 | Coverage
+  parent tcell_McGill0027
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0027Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0027/joint_peaks.bigWig
+  shortLabel tcell_McGill0027Peaks
+  longLabel tcell | McGill0027 | Peaks
+  parent tcell_McGill0027
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0028
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0028
+ longLabel tcell | McGill0028
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0028Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0028/coverage.bigWig
+  shortLabel tcell_McGill0028Coverage
+  longLabel tcell | McGill0028 | Coverage
+  parent tcell_McGill0028
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0028Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0028/joint_peaks.bigWig
+  shortLabel tcell_McGill0028Peaks
+  longLabel tcell | McGill0028 | Peaks
+  parent tcell_McGill0028
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0029
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0029
+ longLabel tcell | McGill0029
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0029Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0029/coverage.bigWig
+  shortLabel tcell_McGill0029Coverage
+  longLabel tcell | McGill0029 | Coverage
+  parent tcell_McGill0029
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0029Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0029/joint_peaks.bigWig
+  shortLabel tcell_McGill0029Peaks
+  longLabel tcell | McGill0029 | Peaks
+  parent tcell_McGill0029
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0102
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0102
+ longLabel tcell | McGill0102
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0102Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0102/coverage.bigWig
+  shortLabel tcell_McGill0102Coverage
+  longLabel tcell | McGill0102 | Coverage
+  parent tcell_McGill0102
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0102Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0102/joint_peaks.bigWig
+  shortLabel tcell_McGill0102Peaks
+  longLabel tcell | McGill0102 | Peaks
+  parent tcell_McGill0102
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0106
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0106
+ longLabel tcell | McGill0106
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0106Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0106/coverage.bigWig
+  shortLabel tcell_McGill0106Coverage
+  longLabel tcell | McGill0106 | Coverage
+  parent tcell_McGill0106
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0106Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0106/joint_peaks.bigWig
+  shortLabel tcell_McGill0106Peaks
+  longLabel tcell | McGill0106 | Peaks
+  parent tcell_McGill0106
+  type bigWig
+  color 0,0,0
+
+
+ track tcell_McGill0107
+ parent tcell
+ container multiWig
+ type bigWig
+ shortLabel tcell_McGill0107
+ longLabel tcell | McGill0107
+ graphType points
+ aggregate transparentOverlay
+ showSubtrackColorOnUi on
+ maxHeightPixels 25:12:8
+ visibility full
+ autoScale on
+
+  track tcell_McGill0107Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0107/coverage.bigWig
+  shortLabel tcell_McGill0107Coverage
+  longLabel tcell | McGill0107 | Coverage
+  parent tcell_McGill0107
+  type bigWig
+  color 252,205,229
+
+  track tcell_McGill0107Peaks
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/tcell/McGill0107/joint_peaks.bigWig
+  shortLabel tcell_McGill0107Peaks
+  longLabel tcell | McGill0107 | Peaks
+  parent tcell_McGill0107
+  type bigWig
+  color 0,0,0
+

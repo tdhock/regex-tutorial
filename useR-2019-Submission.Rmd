@@ -4,8 +4,6 @@ author: |
    | Toby Dylan Hocking^1^ 
    |
    | 1. Northern Arizona University, Flagstaff, USA
-institute: 
-   - $^Northern Arizona University, Flagstaff, USA
 output: html_document
 ---
 
@@ -69,23 +67,62 @@ The columns can be interpreted as follows:
 * library is the underlying C code used for regex parsing. PCRE and ICU are exponential time complexity, whereas RE2/TRE are polynomial time complexity (which can be used to avoid denial-of-service attacks in R applications which allow users to input a regex).
 * subject/pattern/outputs shows the supported data types.
 * named is for named capture group support.
-* types is for built-in type conversion (useful for extracting numeric data from text).
+* types is for built-in type conversion (useful for extracting numeric
+  data from text).
 
-### Intro to regex, 30 minutes
+### First half of tutorial: overview of regex and R packages
+
+#### Intro to regex, 30 minutes
 
 * Example: converting chrom position strings "chr1:100-200" to three-column data table.
 * Use of ".*?" versus "[^:]*:" patterns.
-* Capturing groups, adding names.
-* Application/exercise: sort positions by chrom number then start/end.
+* Capturing groups without names -- ICU, stringr, stringi, tidyr packages.
+* Named capture groups -- PCRE, namedCapture, rex, rematch2 packages.
+* Application/exercise: sort positions by chrom number then
+  start/end. Tricky since some chrom names have letters and suffixes,
+  e.g. chr1, chr2, chr17, chr17_ctg5_hap1, chrY.
 
-```
-c("chr1", "chr1", "chr10", "chr2", "chrY", "chrX", "chr17_ctg5_hap1", "chr21", "chr17")
-```
+#### Maintainable R/regex code 20 minutes
 
-### Web scraping, 30 minutes
+* namedCapture and rex packages.
+* rex log parsing example.
 
-### qsub, 30 m
+#### Polynomial time regex, 20 minutes
+
+* Base R (TRE), re2r package (RE2).
+* Examples from StackOverflow ReDoS, Java classname,
+  etc. http://qinwenfeng.com/re2r_doc/benchmark.html
+
+#### Tidy regex functions which input/output data frame, 20 minutes
+
+* tidyr::extract and namedCapture::df_match_variable.
+* Example: parsing sacct output.
+* Short versus long syntax.
+
+### Second half of tutorial: regex for several specific examples
  
+#### Web scraping, 30 minutes
+
+* Example: parsing data from R-Forge web pages.
+* Plot number of R-Forge projects over time.
+* Plot users per project.
+
+#### Parsing qsub logs, 30 minutes
+
+* Examples: https://github.com/tdhock/regex-tutorial/tree/master/qsub-out
+* Use system/grep to get only Resources lines, parse with `str_match_variable`.
+* Extract all limits/resources using `str_match_all_variable`, subject
+  is character vector with one element per line of one file.
+* Extract two time specs using `str_match_variable`, show re-use of
+  sub-patterns, subject
+  character vector is one element per file.
+
+#### Parsing trackDb files, 30 minutes
+
+* https://raw.githubusercontent.com/tdhock/regex-tutorial/master/trackDb.txt
+* https://raw.githubusercontent.com/tdhock/regex-tutorial/master/trackDb2.txt
+* Contrast strsplit + single-line regex with multi-line regex.
+
 ## Pre-requisite background knowledge and packages
 
 Only a basic knowledge of R is required, so even new useRs should be
