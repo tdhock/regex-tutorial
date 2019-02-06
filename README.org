@@ -131,6 +131,19 @@ be unique. Back references use the syntax (?P=name) and recursive calls use
 numbers.
 #+END_SRC
 
+PCRE supports alternative syntax for named capture in 2006:
+#+BEGIN_SRC text
+Version 7.0 19-Dec-06
+...
+34. Added a number of extra features that are going to be in Perl 5.10. On the
+    whole, these are just syntactic alternatives for features that PCRE had
+    previously implemented using the Python syntax or my own invention. The
+    other formats are all retained for compatibility.
+
+    (a) Named groups can now be defined as (?<name>...) or (?'name'...) as well
+        as (?P<name>...). The new forms, as well as being in Perl 5.10, are
+        also .NET compatible.
+#+END_SRC
 R includes PCRE starting with version 1.6.0 in 2002. Source:
 [[file:R.NEWS.1.txt][R-src/NEWS.1]].
 
