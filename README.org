@@ -261,7 +261,9 @@ drop backreference support and use the [[https://github.com/google/re2][re2]] C+
 named capture]]. [[https://github.com/qinwf][Qin Wenfeng]] implemented the excellent [[https://github.com/qinwf/re2r][re2r]] package as
 his [[https://github.com/rstats-gsoc/gsoc2016/wiki/re2-regular-expressions][Google Summer of Code 2016 project]]. If you need a provably fast
 (polynomial time) regular expression engine in R, I recommend using
-re2r! See speed benchmarks below and in the [[http://qinwenfeng.com/re2r_doc/re2r-benchmark.html][re2r vignette]].
+re2r! One example of when re2r is useful: [[https://docs.microsoft.com/en-us/dotnet/standard/base-types/best-practices][validating email using a
+specific problematic pattern]]. Also speed benchmarks below and in the
+[[http://qinwenfeng.com/re2r_doc/re2r-benchmark.html][re2r vignette]].
 
 | R function            | library | named capture | complexity  |
 |-----------------------+---------+---------------+-------------|
