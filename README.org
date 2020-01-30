@@ -9,6 +9,8 @@ In this 60 minute tutorial I will explain how to use named capture
 regular expressions to extract data from several different kinds
 structured text data.
 
+For additional reading see my R journal articles about [[https://github.com/tdhock/namedCapture-article][namedCapture]] and [[https://github.com/tdhock/nc-article][nc]].
+
 ** Motivation for using named capture regular expressions, 5 minutes
 
 Why would you want to use named capture regular expressions? They are
