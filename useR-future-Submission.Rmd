@@ -1,0 +1,155 @@
+---
+title: "Regular expressions for data parsing, reshaping, and visualization"
+author: |
+   | Toby Dylan Hocking^1^ 
+   |
+   | 1. Northern Arizona University, Flagstaff, USA
+output: html_document
+---
+
+**Keywords**: text, tabular, data, manipulation, parsing, reshape, regex, pattern, regular, expression, visualization.
+
+## Goals/Aims/Learning objectives
+
+Following the course participants will be able to:
+
+* recognize structure in non-tabular text data files (html, logs,
+  genomics, etc) that can be matched and parsed via regex.
+* create regular expressions using basic and advanced matching
+  features (character classes, alternation, multi-line patterns, etc).
+* use a capturing regular expression to extract a data table from
+  non-tabular text data.
+* understand the basic differences in terms of functionality between
+  the regex libraries available in R (C libraries PCRE, TRE, ICU, RE2;
+  R packages stringi and re2r).
+* create readable and maintainable R code that generates regular
+  expressions (R packages nc and rex).
+* use regular expressions to specify columns in a wide-to-long data
+  reshaping operation (R packages tidyr, data.table, nc).
+ 
+## Justification
+
+Regular expressions are extremely powerful tools for parsing
+non-tabular text data, and for specifying columns in wide-to-long data
+reshape operations. For many tasks (visualization, fitting machine
+learning models, etc), tables of numbers must be extracted from such
+data before processing by other R functions. One line of R/regex code
+can often be used to compute the same result as many lines of
+non-regex R code. Furthermore, using regex for text manipulation often
+results in much faster computation times. Learning regex thus makes a
+useR much more productive.
+
+## Brief description of Tutorial
+ 
+Regular expressions have been available for many years in R. In recent
+years there have been several new packages which provide regex
+functionality for data parsing and reshaping (stringi, re2r, rex,
+tidyr, data.table, nc). This tutorial will give an overview of these
+packages, highlighting their similarities, differences, and individual
+strengths. It contains interactive exercises with real-world examples
+(web scraping, genomics, supercomputing, log parsing).
+
+## Detailed outline of tutorial content
+
+We have written two research articles on this subject, which we will
+draw from (TODO CITE R Journal papers). As explained below, the
+tutorial is divided into two 90 minute talks. The first half goes in
+depth about how to use regex to parse and visualize several types of
+non-tabular text data files (web pages, logs, genomic data). The
+second half continues discussion of several real data examples, and
+gives an overview of some advanced features (wide-to-long data
+reshaping, etc).
+
+### First half of tutorial: overview of regex and R packages
+
+#### Intro to regex, 15 minutes
+
+* Example: converting chrom position strings "chr1:100-200" to three-column data table.
+* Use of ".*?:" versus "[^:]*:" patterns. Greedy vs non-greedy matches.
+* Capturing groups without names -- ICU C library, stringi package.
+* Named capture groups -- PCRE C library, R packages nc and rex.
+* Mention time complexity of different libraries, with examples from
+  StackOverflow ReDoS, Java classname,
+  etc. http://qinwenfeng.com/re2r_doc/benchmark.html
+* Application/exercise: sort positions by chrom number then
+  start/end. Tricky since some chrom names have letters and suffixes,
+  e.g. `chr1, chr2, chr17, chr17_ctg5_hap1, chrY`.
+* Integrated type conversion with `utils::strcapture`, `tidyr::extract`,
+  `nc::capture_first_vec`.
+  
+#### Web scraping, 15 minutes
+
+* Example: parsing data from R-Forge web pages.
+* Plot number of R-Forge projects over time.
+* Plot users per project.
+
+#### Parsing qsub logs, 15 minutes
+
+* Examples: https://github.com/tdhock/regex-tutorial/tree/master/qsub-out
+* Use system/grep to get only Resources lines, parse with `str_match_variable`.
+* Extract all limits/resources using `str_match_all_variable`, subject
+  is character vector with one element per line of one file.
+* Extract two time specs using `str_match_variable`, show re-use of
+  sub-patterns, subject
+  character vector is one element per file.
+
+#### Parsing trackDb files, 15 minutes
+
+* https://raw.githubusercontent.com/tdhock/regex-tutorial/master/trackDb.txt
+* https://raw.githubusercontent.com/tdhock/regex-tutorial/master/trackDb2.txt
+* Contrast strsplit + single-line regex with multi-line regex.
+
+### Second half of tutorial: regex for several specific examples
+ 
+#### R-to-regex translators 20 minutes
+
+* nc and rex packages.
+* rex log parsing example.
+
+#### Tidy regex functions which input/output data frame, 20 minutes
+
+* `tidyr::extract` and `nc::capture_first_df`.
+* Example: parsing sacct output.
+* Short versus long syntax.
+
+#### Wide-to-long data reshaping, TODO minutes
+
+* `tidyr::pivot_longer`.
+* data.table package: `melt`, `measure`.
+* nc package: `capture_melt_single`, `capture_melt_multiple`.
+
+## Pre-requisite background knowledge and packages
+
+Only a basic knowledge of R is required, so even new useRs should be
+able to benefit from this tutorial. 
+
+We will provide a rendered Rmd to tutorial attendees for reference. At
+the top it will have a code chunk which will install all required
+packages.
+
+## Potential attendees
+
+This tutorial should be useful for both new and power useRs, because
+it explains both the basics of regex, as well as new/advanced features
+of some packages (for example nc, rex, tidyr, data.table). Both new
+and advanced useRs will certainly appreciate our detailed presentation
+of the similarities and differences between the various R packages
+with regex functionality.
+
+## Instructor Biographies
+
+Toby Dylan Hocking (toby.hocking@r-project.org,
+https://github.com/tdhock) is an Assistant Professor in the School of
+Informatics, Computing, and Cyber Systems at Northern Arizona
+University. His main research project concerns new machine learning
+models for genomic data, which often requires pre-processing using
+regular expressions. He contributed the code in base R which
+implements named capture regular expressions, as well as several other
+improvements related regular expressions in base R and the data.table
+package. He is maintainer of the CRAN package nc for "named capture"
+regular expressions. In previous conferences he has presented his
+packages directlabels (won best student poster at useR2011) animint
+(JSM2015 invited session and useR2016 tutorial on interactive
+graphics), penaltyLearning (useR2017 tutorial on supervised
+changepoint detection), and PeakSegDisk (useR2019 contributed talk).
+
