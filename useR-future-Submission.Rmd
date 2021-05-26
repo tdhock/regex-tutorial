@@ -62,20 +62,26 @@ reshaping, etc).
 
 ### First half of tutorial: overview of regex and R packages
 
-#### Intro to regex, 15 minutes
+#### Overview of regex packages, 30 minutes
 
-* Example: converting chrom position strings "chr1:100-200" to three-column data table.
-* Use of ".*?:" versus "[^:]*:" patterns. Greedy vs non-greedy matches.
-* Capturing groups without names -- ICU C library, stringi package.
-* Named capture groups -- PCRE C library, R packages nc and rex.
-* Mention time complexity of different libraries, with examples from
+* Running example: converting chrom position strings "chr1:100" to
+  two-column data table.
+* Base R functions: `strcapture`, `regexec`, `gregexec`.
+* Plotting using `ggplot2` package.
+* Comparison with functions from `stringi`, `rex`, `re2r`, `rematch2`
+  packages.
+* Advantages of functions from `nc` package.
+* Mention time complexity of different C libraries, with examples from
   StackOverflow ReDoS, Java classname,
   etc. http://qinwenfeng.com/re2r_doc/benchmark.html
 * Application/exercise: sort positions by chrom number then
   start/end. Tricky since some chrom names have letters and suffixes,
   e.g. `chr1, chr2, chr17, chr17_ctg5_hap1, chrY`.
-* Integrated type conversion with `utils::strcapture`, `tidyr::extract`,
-  `nc::capture_first_vec`.
+
+#### Functions which parse character columns, 15 minutes
+
+* Functions from `tidyr` package.
+* `nc::capture_first_df`.
   
 #### Web scraping, 15 minutes
 
@@ -142,10 +148,10 @@ Toby Dylan Hocking (toby.hocking@r-project.org,
 https://github.com/tdhock) is an Assistant Professor in the School of
 Informatics, Computing, and Cyber Systems at Northern Arizona
 University. His main research project concerns new machine learning
-models for genomic data, which often requires pre-processing using
+models for genomic data, which often require pre-processing using
 regular expressions. He contributed the code in base R which
 implements named capture regular expressions, as well as several other
-improvements related regular expressions in base R and the data.table
+improvements related to regular expressions in base R and the data.table
 package. He is maintainer of the CRAN package nc for "named capture"
 regular expressions. In previous conferences he has presented his
 packages directlabels (won best student poster at useR2011) animint
