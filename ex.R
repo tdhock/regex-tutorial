@@ -183,22 +183,41 @@ subject.dt <- data.table::data.table(
   JobID = c("13937810_25", "14022192_1"),
   Elapsed = c("07:04:42", "07:04:49"))
 int.pat <- list("[0-9]+", as.integer)
+## Sub-pattern and type conversion defined together.
 options(datatable.print.class=TRUE)
 nc::capture_first_df(
   subject.dt,
   JobID=list(job=int.pat, "_", task=int.pat),
   Elapsed=list(hours=int.pat, ":", minutes=int.pat, ":", seconds=int.pat))
+## One call to nc::capture_first_df parses both input columns.
+
 subject.dt |> tidyr::extract(
-  JobID, c("job", "task"),
+  JobID, into=c("job", "task"),
   regex="([0-9]+)_([0-9]+)", remove=FALSE, convert=TRUE
 ) |> tidyr::extract(
-  Elapsed, c("hours", "minutes", "seconds"),
+  Elapsed,  into=c("hours", "minutes", "seconds"),
   regex="([0-9]+):([0-9]+):([0-9]+)", remove=FALSE, convert=TRUE
 )
+## Pattern defined by regex argument, separate from names which are
+## defined by into argument. Limited type conversion: when
+## convert=TRUE the type.convert() function is used. Also note that
+## tidyr::extract must be called twice (once for each input column to
+## parse).
+
 subject.dt |> tidyr::separate(
-  JobID, c("job", "task"),
+  JobID, into=c("job", "task"),
   sep="_", remove=FALSE, convert=TRUE
 ) |> tidyr::separate(
   Elapsed, c("hours", "minutes", "seconds"),
   sep=":", remove=FALSE, convert=TRUE
 )
+## In this case a separator is simpler to use than a regex.
+
+## Python pandas has some way to do this, see ex.py and
+## https://pandas.pydata.org/docs/reference/api/pandas.wide_to_long.html
+## but it is complicated and limited, like stats::reshape in R.
+stats::reshape(d, TODO)
+tidyr::pivot_longer(d, TODO)
+data.table::melt(d, measure=measure(TODO))
+nc::capture_melt_single(d, TODO)
+nc::capture_melt_multiple(d, TODO)
