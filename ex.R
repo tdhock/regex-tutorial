@@ -16,13 +16,10 @@ ggplot()+
 regexec(pos.pattern, subject)
 regmatches(subject, regexec(pos.pattern, subject))
 (regexec_mat <- do.call(rbind, regmatches(subject, regexec(pos.pattern, subject))))
-(regexec_df <- data.frame(position_int=as.integer(regexec_mat[,2])))
+colnames(regexec_mat) <- c("full.match", "position_chr")
+(regexec_df <- data.frame(position_int=as.integer(regexec_mat[,"position_chr"])))
 ## Here the names and types must be defined after computing the match
-## matrix (separate from the pattern). Numeric indices are used in the
-## conversion code, which can be confusing and difficult to maintain!
-## For example, if you add a capture group at the beginning of the
-## pattern, then you have to change ALL the numeric indices in the
-## conversion code.
+## matrix (separate from the pattern). 
 
 ## Exercise 1 (easy): the pattern below captures the chr ID in
 ## addition to the position. What modifications would you need for the
@@ -33,10 +30,11 @@ chr.pos.pattern <- "chr(.):([0-9]+)"
 gregexec_df_list <- list()
 for(subject_int in seq_along(gregexec_result)){
   gregexec_mat <- gregexec_result[[subject_int]]
+  rownames(gregexec_mat) <- c("full.match", "chrom", "position_chr")
   gregexec_df_list[[subject_int]] <- data.frame(
     subject_fac=factor(subject_int),
-    chrom=gregexec_mat[2,],
-    position_int=as.integer(gregexec_mat[3,]))
+    chrom=gregexec_mat["chrom",],
+    position_int=as.integer(gregexec_mat["position_chr",]))
 }
 (gregexec_df <- do.call(rbind, gregexec_df_list))
 ## Again names and types must be defined after computing the match
@@ -46,7 +44,7 @@ ggplot()+
     chrom, position_int, color=subject_fac),
     data=gregexec_df)
 
-named.pattern <- "chr(?P<chrom>.):(?P<position>[0-9]+)"
+named.pattern <- "chr(?P<chrom>.):(?P<position_chr>[0-9]+)"
 ## Names defined together with the pattern, but type conversion must
 ## be specified separately.
 
@@ -58,25 +56,19 @@ regmatches(subject, gregexec(named.pattern, subject))
 ## need perl=TRUE (PCRE not TRE) for named groups.
 
 ## Exercise 2 (easy): using the named pattern above with regexec or
-## gregexec, convert the output to a data frame for plotting. Use
-## column names instead of numeric indices to make the code easier to
-## understand and maintain.
+## gregexec, convert the output to a data frame (with columns
+## position_int and subject_fac) for plotting.
 
 stringi::stri_match_first_regex(subject, chr.pos.pattern)
 stringi::stri_match_all_regex(subject, chr.pos.pattern)
-stringi::stri_match_all_regex(subject, named.pattern)#error!
-stringi::stri_match_all_regex(subject, "chr(?<chrom>.):(?<position>[0-9]+)")#name ignored.
-## stringi uses the ICU library which does NOT support (?P<name>)
-## syntax for named groups, nor export of group names to R. Column
-## names/types must be defined after, separately from the pattern (as
+stringi::stri_match_all_regex(subject, named.pattern)#error, (?P< not allowed in ICU regex.
+stringi::stri_match_all_regex(subject, "chr(?<chrom>.):(?<position>[0-9]+)")#name output to R as of stringi-1.7.1 (2021-06-19)
+## Column types must be defined after, separately from the pattern (as
 ## with regexec/gregexec above).
-
-?tidyr::extract_numeric
-
 
 rex::matches(subject, chr.pos.pattern)
 (rex.first.match <- rex::matches(subject, named.pattern))
-rex.first.match[["position_int"]] <- as.integer(rex.first.match[["position"]])
+rex.first.match[["position_int"]] <- as.integer(rex.first.match[["position_chr"]])
 str(rex.first.match)
 rex::matches(subject, named.pattern, global=TRUE)
 ## Column names defined together with pattern, but type conversion
@@ -191,6 +183,12 @@ nc::capture_first_df(
   Elapsed=list(hours=int.pat, ":", minutes=int.pat, ":", seconds=int.pat))
 ## One call to nc::capture_first_df parses both input columns.
 
+## using data.table::tstrsplit
+subject.dt[, tstrsplit(
+  JobID, "_", type.convert=TRUE, names=c("job", "task"))]
+subject.dt[, tstrsplit(
+  Elapsed, ":", type.convert=TRUE, names=c("hours", "minutes", "seconds"))]
+
 subject.dt |> tidyr::extract(
   JobID, into=c("job", "task"),
   regex="([0-9]+)_([0-9]+)", remove=FALSE, convert=TRUE
@@ -213,11 +211,84 @@ subject.dt |> tidyr::separate(
 )
 ## In this case a separator is simpler to use than a regex.
 
-## Python pandas has some way to do this, see ex.py and
-## https://pandas.pydata.org/docs/reference/api/pandas.wide_to_long.html
-## but it is complicated and limited, like stats::reshape in R.
-stats::reshape(d, TODO)
-tidyr::pivot_longer(d, TODO)
-data.table::melt(d, measure=measure(TODO))
-nc::capture_melt_single(d, TODO)
-nc::capture_melt_multiple(d, TODO)
+## Data reshaping!
+(one.iris <- iris[1,])
+nc::capture_melt_single(one.iris, part=".*", "[.]", dim=".*")
+
+names_pattern <- "(.*)[.](.*)"
+tidyr::pivot_longer(
+  one.iris, matches(names_pattern),
+  names_pattern=names_pattern,
+  names_to=c("part","dim"))
+
+library(data.table)
+melt(as.data.table(one.iris), measure=measure(part, dim, pattern=names_pattern))
+
+## base R equivalent!
+capture.df <- strcapture(
+  names_pattern,
+  names(one.iris),
+  data.frame(part=character(), dim=character()))
+rownames(capture.df) <- names(one.iris)
+match.df <- subset(capture.df, !is.na(part))
+times <- rownames(match.df)
+one.long <- stats::reshape(
+  one.iris,
+  varying=list(times),
+  direction="long",
+  v.names="cm",
+  times=times,
+  timevar="variable")
+data.frame(one.long, match.df[paste(one.long$variable),])
+
+## Exercise: use one of these tools to reshape entire iris data set,
+## then use ggplot2 to make a histogram (fill=Species) with facets for
+## part and dim.
+
+## special multiple output column keywords for
+## nc(column),data.table(value.name),tidyr(.value)
+nc::capture_melt_multiple(one.iris, column=".*", "[.]", dim=".*")
+melt(
+  as.data.table(one.iris),
+  measure=measure(value.name, dim, pattern=names_pattern))
+tidyr::pivot_longer(
+  one.iris, matches(names_pattern),
+  names_pattern=names_pattern,
+  names_to=c(".value","dim"))
+
+varying <- list(
+  Sepal=c("Sepal.Length", "Sepal.Width"),
+  Petal=c("Petal.Length", "Petal.Width"))
+stats::reshape(
+  one.iris,
+  varying=varying,
+  direction="long",
+  v.names=names(varying),
+  times=c("Length", "Width"),
+  timevar="dim")
+
+
+
+library(bit64)
+library(data.table)
+value <- list(NA, NA_character_, NA_complex_, NA_integer_, NA_integer64_, NA_real_)
+DT <- data.table(value, class=sapply(value, class), is.na=sapply(value, is.na))
+DT[is.na(value)==FALSE]
+DT[is.na==FALSE]
+DT.wide <- data.table(l1=list(NA, c(NA,NA)), l2=list(NA_complex_, NA_integer64_))
+(DT.long.na.rm <- melt(DT.wide, measure=c("l1","l2"), na.rm=TRUE))
+DT.long.na.keep <- melt(DT.wide, measure=c("l1","l2"), na.rm=FALSE)
+DT.long.na.keep[!is.na(value)]
+DT.long.na.list <- lapply(DT.long.na.keep[["value"]], is.na)
+lengths(DT.long.na.list)==1 & DT.long.na.listis
+is.na(l)
+sapply(l, is.na)
+DT <- data.table(l, i=seq_along(l))
+times <- ,"i")
+stats::reshape(
+  DT,
+  varying=list(times),
+  direction="long",
+  v.names="cm",
+  times=times,
+  timevar="variable")

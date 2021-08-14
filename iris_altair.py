@@ -1,13 +1,32 @@
 # https://pandas.pydata.org/docs/user_guide/reshaping.html#reshaping
-iris_url = "https://raw.github.com/pandas-dev/pandas/master/pandas/tests/io/data/csv/iris.csv"
-import pandas as pd
-iris_dt = pd.read_csv(iris_url)
 import re
-d=pd.DataFrame({"Petal.Width":[1], "Sepal.Width":[2], "Petal.Length":[3], "Species":"setosa"})
-d=pd.DataFrame({"Petal.Width":[1], "Sepal.Width":[2], "Petal.Length":[3], "Species":"setosa", "Sepal.Length":[4]})
-d["id"] = d.index
+import pandas as pd
+import altair as alt
+from vega_datasets import data
+iris_wide = data.iris()
+
+chart = alt.Chart(iris_wide).mark_circle().encode(
+    x="petalWidth",
+    y="petalLength",
+    color="species"
+).interactive()
+chart.save("iris_altair_no_facets.html")
+
 # https://pandas.pydata.org/docs/reference/api/pandas.wide_to_long.html
-pd.wide_to_long(d, ["Petal", "Sepal"], i="id", j="dim", sep=".", suffix="(Width|Length)")
+iris_wide["id"] = iris_wide.index
+iris_parts = pd.wide_to_long(iris_wide, ["petal", "sepal"], i="id", j="dim", sep="", suffix="(Width|Length)").reset_index()
+chart = alt.Chart(iris_parts).mark_circle().encode(
+    x="petal",
+    y="sepal",
+    color="species"
+).facet(column="dim")
+chart.save("iris_altair_facet_dim.html")
+# seems like there is no way to specify equal
+# aspect. https://github.com/altair-viz/altair/issues/1628
+
+# also no geom_abline yet
+# https://stackoverflow.com/questions/62854174/altair-draw-a-line-in-plot-where-x-y
+
 pattern = re.compile("(?P<part>.*)[.](?P<dim>.*)")
 def my_rename(x):
     m = pattern.match(x)

@@ -1,13 +1,18 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+plt.ion()
+import altair
+from vega_datasets import data
+iris_df = data.iris()
+import re
 # https://pandas.pydata.org/docs/user_guide/reshaping.html#reshaping
 iris_url = "https://raw.github.com/pandas-dev/pandas/master/pandas/tests/io/data/csv/iris.csv"
-import pandas as pd
-iris_dt = pd.read_csv(iris_url)
-import re
-d=pd.DataFrame({"Petal.Width":[1], "Sepal.Width":[2], "Petal.Length":[3], "Species":"setosa"})
-d=pd.DataFrame({"Petal.Width":[1], "Sepal.Width":[2], "Petal.Length":[3], "Species":"setosa", "Sepal.Length":[4]})
-d["id"] = d.index
+iris_wide = pd.read_csv(iris_url)
 # https://pandas.pydata.org/docs/reference/api/pandas.wide_to_long.html
-pd.wide_to_long(d, ["Petal", "Sepal"], i="id", j="dim", sep=".", suffix="(Width|Length)")
+iris_wide["id"] = iris_wide.index
+iris_parts = pd.wide_to_long(iris_wide, ["Petal", "Sepal"], i="id", j="dim", sep="", suffix="(Width|Length)")
+iris_parts.plot.scatter("Petal", "Sepal", by="dim")
+
 pattern = re.compile("(?P<part>.*)[.](?P<dim>.*)")
 def my_rename(x):
     m = pattern.match(x)
