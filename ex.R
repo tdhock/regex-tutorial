@@ -13,9 +13,9 @@ ggplot()+
     seq_along(position_int), position_int),
     data=strcapture_df)
 
-regexec(pos.pattern, subject)
-regmatches(subject, regexec(pos.pattern, subject))
-(regexec_mat <- do.call(rbind, regmatches(subject, regexec(pos.pattern, subject))))
+(regexec.result <- regexec(pos.pattern, subject))
+(regmatches.result <- regmatches(subject, regexec.result))
+(regexec_mat <- do.call(rbind, regmatches.result))
 colnames(regexec_mat) <- c("full.match", "position_chr")
 (regexec_df <- data.frame(position_int=as.integer(regexec_mat[,"position_chr"])))
 ## Here the names and types must be defined after computing the match
@@ -74,9 +74,9 @@ rex::matches(subject, named.pattern, global=TRUE)
 ## Column names defined together with pattern, but type conversion
 ## must be done after, separately.
 
-re2r::re2_match(subject, chr.pos.pattern)
-re2r::re2_match(subject, named.pattern)
-re2r::re2_match_all(subject, named.pattern)
+re2::re2_match(subject, chr.pos.pattern)
+re2::re2_match(subject, named.pattern)
+re2::re2_match_all(subject, named.pattern)
 ## similar.
 
 rematch2::re_match(subject, chr.pos.pattern)
@@ -109,11 +109,14 @@ nc::var_args_list(nc.pos.pattern)
 
 nc::capture_all_str(subject, nc.pos.pattern)#treats as one subject.
 library(data.table)
-data.table(subject)[, j=nc::capture_all_str(subject, nc.pos.pattern), by=subject]
+data.table(subject)[
+, j=nc::capture_all_str(subject, nc.pos.pattern),
+  by=subject]
 ## j argument evaluated for each unique value of by (here each subject).
 
-data.table(subject)[, nc::capture_all_str(
-  subject, nc.pos.pattern), by=.(subject_fac=factor(seq_along(subject)))]
+data.table(subject)[
+, nc::capture_all_str(subject, nc.pos.pattern),
+  by=.(subject_fac=factor(seq_along(subject)))]
 ## can create new variables in by.
 
 range.subjects <- c(
@@ -133,7 +136,8 @@ range.subjects <- c(
 ## Solution!
 int.pattern <- list("[0-9]+", as.integer)
 range.dt <- nc::capture_first_vec(
-  range.subjects, "chr", chrom=".*?", ":", start=int.pattern, "-", end=int.pattern)
+  range.subjects,
+  "chr", chrom=".*?", ":", start=int.pattern, "-", end=int.pattern)
 ggplot()+
   geom_segment(aes(
     chrom, start,
