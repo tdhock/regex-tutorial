@@ -1,0 +1,16 @@
+The [[file:trackDb.txt]] and [[file:trackDb2.txt]] are plain text meta-data
+files with entries such as
+
+#+begin_src
+  track bcell_McGill0322Coverage
+  bigDataUrl http://hubs.hpc.mcgill.ca/~thocking/PeakSegFPOP-labels/H3K36me3_TDH_immune/samples/bcell/McGill0322/coverage.bigWig
+  shortLabel bcell_McGill0322Coverage
+  longLabel bcell | McGill0322 | Coverage
+  parent bcell_McGill0322
+  type bigWig
+  color 141,211,199
+#+end_src
+
+For each file, find the blocks such as the one above, of type bigWig,
+and then count how many blocks of each cell type (which is the prefix
+in parent/shortLabel, bcell in the example above).

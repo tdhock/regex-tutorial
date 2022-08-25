@@ -32,7 +32,9 @@ str(time.df)
 ## Compute quantiles and plot walltime in minutes.
 minutes <- with(time.df, hours*60 + minutes + seconds/60)
 quantile(minutes)
+png("qsub-out/hist.png")
 hist(minutes)
+dev.off()
 
 ## ex 2.
 out.lines <- readLines("qsub-out/BF775_Mono_ATACSeq_2_residuals.out")

@@ -1,0 +1,36 @@
+At the end of each of these files there is a footer/epilogue,
+
+#+begin_src
+----------------------------------------
+Begin PBS Epilogue Fri Mar 27 11:55:12 EDT 2015 1427471712
+Job ID:		29427401.gm-1r16-n04.guillimin.clumeq.ca
+Username:	thocking
+Group:		bws-221-01
+Job Name:	BF775_Mono_ATACSeq_2
+Session:	19781
+Limits:		neednodes=1:ppn=4,nodes=1:ppn=4,pmem=2700mb,walltime=12:00:00
+Resources:	cput=00:05:40,mem=2760940kb,vmem=3273008kb,walltime=00:06:12
+Queue:		serial-short
+Account:	bws-221-ae
+Exit code:	0
+Nodes:	aw-4r14-n33
+Killing leftovers...
+
+End PBS Epilogue Fri Mar 27 11:55:12 EDT 2015 1427471712
+----------------------------------------
+#+end_src
+
+The Resources line shows how much CPU time, memory, virtual memory,
+and walltime was used. Exercises:
+
+[[file:hist.png]]
+
+- extract the wall time in minutes from each file using
+  regex, and make a histogram of times over all files. How much is the
+  average/min/max wall time?
+- extract all four numbers from the Resources line
+  (cput,mem,vmem,walltime) and make a single ggplot with four
+  panels. Each panel should be the histogram for one of the four
+  numbers. Hint: you should create a data table with columns variable
+  and value, where value is numeric/double and variable is one of
+  [cput_minutes, mem_kb, vmem_kb, walltime_minutes].

@@ -236,16 +236,17 @@ Note that in Python a =P= is required after the initial question mark
 of each group: =(?P<name>pattern)=. In contrast, in
 R/PCRE/namedCapture the =P= is allowed but not required.
 
-** Some examples, 30 minutes
+** Some exercises
 
-| code                       | functions                                  |
-|----------------------------+--------------------------------------------|
-| [[file:chr.pos.R]]             | str_match_named, str_match_all_named, gsub |
-| [[file:differences_from_R.py]] | re.search, re.compile                      |
-| [[file:chr_pos.py]]            | str.extract, str.findall, re.subn          |
-| [[file:qsub-out.R]]            | str_match_named                            |
-| [[file:trackDb.R]]             | str_match_all_named                        |
-| [[file:R-Forge.org][R-Forge exercises]]          | str_match_named, str_match_all_named       |
+| Exercises         | data                                | code/solution              | functions                                  |
+|-------------------+-------------------------------------+----------------------------+--------------------------------------------|
+|                   |                                     | [[file:chr.pos.R]]             | str_match_named, str_match_all_named, gsub |
+|                   |                                     | [[file:differences_from_R.py]] | re.search, re.compile                      |
+|                   |                                     | [[file:chr_pos.py]]            | str.extract, str.findall, re.subn          |
+| [[file:qsub-out/README.org][qsub exercises]]    | [[file:qsub-out][qsub data]]                           | [[file:qsub-out.R]]            | str_match_named                            |
+| [[file:trackDb.org][trackDb exercises]] | [[file:trackDb.txt]], [[file:trackDb2.txt]] | [[file:trackDb.R]]             | str_match_all_named                        |
+| [[file:R-Forge.org][R-Forge exercises]] | [[file:R-Forge/]]                       |                            | str_match_named, str_match_all_named       |
+| [[file:SweeD/README.org][SweeD exercises]]   | [[file:SweeD/]]                         |                            |                                            |
 
 ** Questions from the audience, 10 minutes
 

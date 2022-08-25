@@ -1,0 +1,163 @@
+
+
+                                      _______________
+
+                                           SweeD
+                                      _______________
+
+
+
+ SweeD version 3.3.1 released by Nikolaos Alachiotis and Pavlos Pavlidis in January 2015.
+
+
+ Command:
+
+	 /Users/mt2245/bioinformatics_tools/root/SweeD -name eleMax -input ../snpEff/elephants.SNPsOnly.ann.vcf -grid 1000 -osfs eleMaxSFS.txt -sampleList eleMax.lst -folded
+
+
+
+ Input file format (0:ms, 1:fasta, 2:macs, 3:vcf, 4:sf): 3
+ Total number of samples in the VCF:	13
+ Samples excluded from the analysis:	6
+
+
+ Alignment 1
+
+		Chromosome:		scaffold_0
+		Sequences:		14
+		Sites:			1670366
+		Discarded sites:	1264068
+
+		Processing:		155.53 seconds
+
+		Position:		8.936200e+07
+		Likelihood:		4.105582e+02
+		Alpha:			6.616326e-06
+
+
+ Alignment 2
+
+		Chromosome:		scaffold_1
+		Sequences:		14
+		Sites:			1447008
+		Discarded sites:	1093595
+
+		Processing:		138.83 seconds
+
+		Position:		8.722482e+07
+		Likelihood:		2.531514e+02
+		Alpha:			1.031963e-05
+
+
+ Alignment 3
+
+		Chromosome:		scaffold_2
+		Sequences:		14
+		Sites:			1379975
+		Discarded sites:	1043204
+
+		Processing:		134.50 seconds
+
+		Position:		8.461182e+07
+		Likelihood:		2.945708e+02
+		Alpha:			8.684652e-06
+
+
+ Alignment 4
+
+		Chromosome:		scaffold_3
+		Sequences:		14
+		Sites:			1293978
+		Discarded sites:	988465
+
+		Processing:		120.76 seconds
+
+		Position:		4.182126e+07
+		Likelihood:		6.110444e+02
+		Alpha:			3.335514e-06
+
+
+ Alignment 5
+
+		Chromosome:		scaffold_4
+		Sequences:		14
+		Sites:			1319920
+		Discarded sites:	1011446
+
+		Processing:		126.99 seconds
+
+		Position:		6.978721e+07
+		Likelihood:		2.884914e+02
+		Alpha:			1.062780e-05
+
+
+ Alignment 6
+
+		Chromosome:		scaffold_5
+		Sequences:		14
+		Sites:			1295460
+		Discarded sites:	990655
+
+		Processing:		119.64 seconds
+
+		Position:		8.837822e+07
+		Likelihood:		3.304343e+02
+		Alpha:			7.572795e-06
+
+
+ Alignment 7
+
+		Chromosome:		scaffold_6
+		Sequences:		14
+		Sites:			1197964
+		Discarded sites:	908454
+
+		Processing:		115.17 seconds
+
+		Position:		3.444713e+07
+		Likelihood:		3.261829e+02
+		Alpha:			3.427719e-06
+
+
+ Alignment 8
+
+		Chromosome:		scaffold_7
+		Sequences:		14
+		Sites:			1315248
+		Discarded sites:	998530
+
+		Processing:		125.20 seconds
+
+		Position:		2.337819e+07
+		Likelihood:		4.023517e+02
+		Alpha:			5.350802e-06
+
+
+ Alignment 9
+
+		Chromosome:		scaffold_8
+		Sequences:		14
+		Sites:			1110658
+		Discarded sites:	845039
+
+		Processing:		109.15 seconds
+
+		Position:		8.152571e+07
+		Likelihood:		3.114815e+02
+		Alpha:			3.899136e-06
+
+
+ Alignment 10
+
+		Chromosome:		scaffold_9
+		Sequences:		14
+		Sites:			1091036
+		Discarded sites:	833765
+
+		Processing:		104.91 seconds
+
+		Position:		2.669453e+07
+		Likelihood:		1.829336e+02
+		Alpha:			8.380941e-06
+
+

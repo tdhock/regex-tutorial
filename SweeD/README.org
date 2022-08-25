@@ -1,0 +1,77 @@
+SweeD is a bioinformatics command line program for DNA sequence
+alignment, which outputs two files. One is an Info file, such as the following,
+
+#+begin_src
+ Alignment 1
+
+		Chromosome:		scaffold_0
+		Sequences:		14
+		Sites:			1670366
+		Discarded sites:	1264068
+
+		Processing:		155.53 seconds
+
+		Position:		8.936200e+07
+		Likelihood:		4.105582e+02
+		Alpha:			6.616326e-06
+
+
+ Alignment 2
+
+		Chromosome:		scaffold_1
+		Sequences:		14
+		Sites:			1447008
+		Discarded sites:	1093595
+
+		Processing:		138.83 seconds
+
+		Position:		8.722482e+07
+		Likelihood:		2.531514e+02
+		Alpha:			1.031963e-05
+
+
+ Alignment 3
+
+		Chromosome:		scaffold_2
+		Sequences:		14
+		Sites:			1379975
+		Discarded sites:	1043204
+...
+#+end_src
+
+The Likelihood and Alpha values in the Info file above are average
+values over that alignment.
+
+The other file is a Report, such as the following,
+
+#+begin_src
+//1
+Position	Likelihood	Alpha
+700.0000	4.637328e-03	2.763840e+02
+130585.6172	3.781283e-01	8.490200e-04
+260471.2344	3.602315e-02	4.691340e-03
+...
+129496660.3359	1.165627e-02	3.384931e-02
+129626545.9531	2.233934e-02	3.602669e-02
+129756434.0000	3.850623e-01	4.812648e+01
+
+//2
+Position	Likelihood	Alpha
+135.0000	7.282316e-01	3.163686e+01
+111533.0625	2.548831e+00	4.932014e-04
+...
+#+end_src
+
+The Likelihood and Alpha values in the Report file above are
+Position-specific values.
+
+The "Alignment 1" info in the Info file corresponds to the "//1" in
+the Report file.
+
+Exercise: parse these two files and join them, outputting a single CSV
+file with columns Alignment, Position, Likelihood, Alpha, Chromosome,
+Sequences, ... After that, plot y=Likelihood as a function of
+x=Position, with different panels for every chromosome. In each panel
+title, show the chromosome, sequences, sites, and disarcarded sites,
+by using facet_wrap(~ Chromosome + Sequences + Sites + `Discarded
+sites`).  
