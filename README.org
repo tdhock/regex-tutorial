@@ -246,7 +246,8 @@ R/PCRE/namedCapture the =P= is allowed but not required.
 | [[file:qsub-out/README.org][qsub exercises]]    | [[file:qsub-out][qsub data]]                           | [[file:qsub-out.R]]            | str_match_named                            |
 | [[file:trackDb.org][trackDb exercises]] | [[file:trackDb.txt]], [[file:trackDb2.txt]] | [[file:trackDb.R]]             | str_match_all_named                        |
 | [[file:R-Forge.org][R-Forge exercises]] | [[file:R-Forge/]]                       |                            | str_match_named, str_match_all_named       |
-| [[file:SweeD/README.org][SweeD exercises]]   | [[file:SweeD/]]                         |                            |                                            |
+| [[file:SweeD/README.org][SweeD exercises]]   | [[file:SweeD/]]                         |                            | nc::capture_all_str                        |
+| [[file:NEWS/README.org][NEWS conversion]]   | [[file:NEWS/old/]]                      |                            | nc::capture_all_str                        |
 
 ** Questions from the audience, 10 minutes
 

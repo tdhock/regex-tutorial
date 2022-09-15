@@ -1,0 +1,20 @@
+TODOs
+
+2020.6.29
+
+Add arXiv citation in DESCRIPTION.
+
+2020.6.6
+
+n_updates parameter which controls how many dynamic programming
+updates are computed, default is data size which is same as previous
+behavior.
+
+2020.6.4
+
+support for penalty=Inf, only penalize changes outside of labels.
+
+2020.6.1
+
+First version coded for NeurIPS submission.
+

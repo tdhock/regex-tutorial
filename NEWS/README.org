@@ -1,0 +1,4 @@
+[[file:old/]] directory contains files to convert,
+should save output in [[file:new/]] directory.
+- see [[file:new/animint2.txt]] for an example of what the output should
+  look like.

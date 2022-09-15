@@ -1,0 +1,288 @@
+== TODO
+
+As of R 3.0, the "parser now incorporates code from Romain Francois'
+parser package, to support more detailed computation on the code, such
+as syntax highlighting, comment-based documentation, etc. Functions
+getParseData() and getParseText() access the data." We should exploit
+this in inlinedocs Parser Functions.
+
+Attempt doc list to Rd list conversion, so we can generate Rd using
+tools:::print.Rd. See code in etc/parseRd.R
+
+Try to get more tests working: R CMD check and Rd conversion to
+doclist checks.
+
+Rd generation for attrSetter<- functions?
+
+Functions with {} as default arguments => error. See
+etc/default-function.R
+
+2019.12.5
+
+deparse(width.cutoff=20L) is the minimal value to avoid long lines in
+Rd usage section for CRAN check.
+
+2019.8.21
+
+escape percents in Rd examples.
+
+2019.7.30
+
+New default parser functions: internal.links, external.links,
+arguments.code.
+
+2015.05.15
+
+Add Maintainer to DESCRIPTION.
+
+2015.06.05
+
+bugfix for example(do.not.generate).
+
+2015.06.04
+
+Tests pass with R-3.2.0, after fixing some bugs with escaping percents
+in quoted text in the R code of usage sections of Rd files
+(testfiles/escape.percent.R).
+
+For testfiles/wide.lines.R, now that we use deparse(width.cutoff=50L)
+rather than the default of 60 (which caused a NOTE for a line longer
+than 90 characters on R CMD check).
+
+2014.6.3
+
+Forked to tdhock/github.
+
+Use excludePattern to avoid processing .[rsqS] files, and allow NULL
+if you do not want to exclude any files.
+
+2014.2.11
+
+attr(o, "ex", exact=TRUE) to avoid taking other attributes with
+similar names when in fact no examples are present.
+
+2013.9.3 copy utils code to utils.R so we do not have to use utils:::
+and so we can now pass R CMD check for R-devel on CRAN.
+
+Authors@R support.
+
+2013.8.22 citation for JSS paper.
+
+2013.7.23 citation bugfix and if(interactive()) in
+package.skeleton.dx() examples to reduce check time.
+
+== 1.9.3 --- 6 March 2013
+
+Rd generation for "[.class" as in quadmod... this currently works but
+since when?
+
+== 1.9.2 --- 28 Jan 2013
+
+Pierre Neuvial reports that concatenating files with comments at the
+last line sometimes results in unexpected documentation associated
+with the first object defined in the next file. Thus now we issue a
+warning whenever there is a comment on the last line of an .R file.
+
+check for existence of files in removeAliasesfrom.Rd.file, since they
+sometimes will not exist due to do.not.generate.
+
+== 1.9.1 --- 21 May 2012
+
+use --as-cran for tests!
+
+R CMD check --as-cran inlinedocs_1.9.tar.gz had 
+* checking Rd cross-references ... WARNING
+... this seems to be related to \link{} tags in Rd?
+... or some strange bug in R CMD check?
+https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=14875
+
+pause for 4 seconds in example for do.not.generate. On windows the
+filesystem records mtimes with a resolution of 2 seconds, so if we
+want to see that a file has changed we need to wait at least this
+long.
+
+== 1.9 --- 13 Jan 2012 -> 5 April 2012
+
+move code for generating a DESCRIPTION file into package.skeleton.dx.
+
+doc bugfix for some \code{} chunks in inlinedocs that were
+disappearing.
+
+Added inst/silly/NAMESPACE to avoid warnings on package check, and
+copy this over to all the mini test packages that are created for each
+of the inst/testfiles.
+
+Use \s space instead of \W in regexp for "delete empty sections to
+suppress warnings in R CMD check." This was causing a bug for
+i.e. \code{+} and \code{%*%} in the doc for the FUN argument of the
+apply function.
+
+do.not.generate("rd1","rd2") returns a Parser Function which will
+cause rd1.Rd and rd2.Rd to not be generated, so you can write these Rd
+files by hand.
+
+defaults for DESCRIPTION entries.
+
+Changes from Markus Muller, excludePattern argument to package.skeleton.dx
+
+Suggestion from Mark Thyer to not put a return after EVERY comma in
+the usage section. Instead, we parse the expression and use format to
+add line breaks.
+
+== 1.8, 21 Oct 2011
+
+Remove inlinedocExample<- since this was deprecated and now giving a
+WARNING on package check.
+
+Take \author for Rd files from Author: section of DESCRIPTION, instead
+of Maintainer: section.
+
+bugfix for getSource, for R CMD check with R.2.14.
+
+== 1.7
+
+blank lines allowed after value comments.
+
+usage section broken over lines in modify.Rd.file for prettying pdf
+output.
+
+bugfix for when there are no objects defined in the
+package. previously forall functions would stop with an error, now we
+test for this condition before the line where we would get the error.
+
+getSource(FUN) function from Duncan Murdoch used to extract function
+source code, instead of attr(FUN,"source") for compatibility with
+R>=2.14.
+
+== 1.6
+
+Only do R CMD check in tests when we run interactively. If not
+CRAN/R-Forge gives a weird error.
+
+Remove support for examples.after.return.
+
+Multiparagraph descriptions and unit test.
+
+Description before unit test.
+
+Suppress warnings when we attempt to detach loaded packages, in order
+to avoid these warnings:
+
+> warnings()
+Warning messages:
+1: In FUN(X[[2L]], ...) :
+  Created a package name, "2011-05-11 14:11:30", when none found
+2: In FUN(X[[2L]], ...) :
+  Created a package name, "2011-05-11 14:11:30", when none found
+...
+
+Fix warning when S4 classes are defined in package code, by setting
+the .packageName variable in the env in apply.parsers, so we don't get
+this warning anymore
+
+Warning in getPackageName(where) :
+  Created a package name, "2011-04-07 15:29:30", when none found
+
+== 1.5.1
+
+Bugfix for S4 classes by setting the globalenv in apply.parsers to the
+env where we eval the pkg code. We were getting this error
+
+Error in assign(mname, def, where) : 
+  cannot add bindings to a locked environment
+
+== 1.5
+
+Check to make sure we are not extracting too many documentation
+objects, relative to the stored .result in unit tests.
+
+.names such as .s3method and .overwrite in inner documentation lists
+are ignored for find/replacement.
+
+.overwrite signals that all other items of the list should be used
+when combining, ignoring previous values stored in those slots.
+
+##sections<< permitted immediately after ###return value
+
+Report which of the users' documentation objects we failed on if the
+Parser Function in forall stops with an error.
+
+bugfix: for paren matching heuristic in prefixed.lines Parser
+Function, do not consider parens in comments.
+
+extended unit tests: now every testfile is assembled into a package
+that will be checked using R CMD check. If there are any warnings,
+then we will stop with an error. this poses problems for testfiles
+with extensive dependencies and references (such as
+scatterplot.R). For these, just set the .dontcheck variable in the
+testfile.
+
+== 1.4 unit tests for Parser Functions using inst/testfiles/*.R and
+the .result variable in each. we check first if all contents of
+.result are correctly extracted, then we check to make sure nothing
+more is extracted. This should ensure API stability.
+
+== 1.3 Bug fixes and new code contributed by Ph. Grosjean
+  
+* examples.after.return is modified to detect where examples start using a
+  specific mark (either ##examples<<, or #{{{examples). This way, it does not
+  get trap with multiple return() in the function, or the presence of a
+  return() in the examples
+
+* examples.in.attr parser is added. It look at an "ex" attribute containing
+  code of the examples, either as a character string, or as a function.
+  
+* Added dependence to 'utils' package (for things like package.skeleton())
+
+* Added the possibility to build a NAMESPACE (argument namespace in
+  package.skeleton.dx()). A NAMESPACE is also added to the inlinedocs package.
+  
+* When DESCRIPTION file is empty, fill required fields with reasonable values,
+  e.g., Package: with the same name as dir, Version: 1.0-0, etc.
+  
+* Automatic detection of S3 methods added, and correct formatting of usage and
+  addition of entries in NAMESPACE as required.
+  
+* Reformatting of special cases usages, like fun<-(x, value) => fun(x) <- value,
+  met<-.obj(x, ..., value) => method{met}{obj}(x, ...) <= value, and
+  %op%(e1, e2) <- e1 %op% e2
+  
+* Now the packages in the imports field are considered too, as well for building
+  the NAMESPACE file
+  
+* If there is an 'encoding' field in DESCRIPTION, it is now taken into account
+  (according to Writing R Extensions manual, it applies to to R code)!
+  
+* There is now the possbility to place external examples elsewhere
+  that in /tests. Just indicate the subdirectory wher you place them
+  in options(inlinedocs.exdir = "exsubsir")
+
+* The names of .Rd files was not computed correctly when functions
+  with names like `obj<-`, or `%op%`. Corrected.
+  
+* The presence of platform specific code in /R/unix or /R/windows is
+  not supported by inlinedocs (currnetly). However, this was ignored
+  silently. Now, package.skeleton.dx() stops process when it find one
+  of these subdirs.
+  
+* A couple of error messages where badly formatted when they included several
+  items like in stop("Need ",names(f)[f]," in ",descfile). Corrected.
+  
+* Wrong extraction of package names form 'Depends' field in case where packages
+  contain one or more dots in their names. Corrected.
+
+* It is necessary to eliminate 'R' from the list of packages to load from
+  'Depends' field. Corrected.
+
+* package.skeleton.dx() tried to load packages already laoded, and failed to
+  unload packages (including their namespaces, if possible) that where not
+  loaded before exiting. Corrected.
+
+== 1.2 new code contributions from thomas, extension mechanism using
+Parser Function list
+
+== 1.1 
+fixed ... argument bug
+
+== 1.0 
+

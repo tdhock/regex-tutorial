@@ -1,0 +1,120 @@
+TODO
+
+add test with tdhock/changepoint-data-structure/figure-loss-small.R --
+right now it works with update_axes but if I add clickSelects it stops
+working (but it should still work).
+
+support variable mapping and scales that can the user can
+interactively update.
+
+OPTIMIZATION: for the prostateLasso test, it would be great to be able
+to specify clickSelects=c(arclength="arclength.click") even if there
+is no column named arclength in the data -- this would mean to update
+the selector called "arclength" with the value in column
+"arclength.click" -- less disk space, and faster compiling.
+
+allow configurable text size via
+theme(axis.title=element_text(size=20)) etc.
+
+2022.9.14
+
+Allow configurable legend/axis text size via theme.
+
+2022.8.31
+
+User-configurable selection styles, alpha_off and colour_off.
+
+2022.8.25
+
+import data.table, for faster compilation.
+
+2022.5.25
+
+Add ability to rotate geom_text labels, following ggplot2's semantics of rotation direction. 
+
+2022.5.24 
+
+Fixed small test regression and set up Github Actions. Neither of these is user facing.
+
+
+2022.2.2
+
+Default x/y axis text size increased to 16px from 11px in animint.js.
+
+Suggest RColorBrewer to avoid CRAN NOTE
+"Undeclared package RColorBrewer in Rd xrefs".
+
+2022.1.25
+
+Remove geom/stat_boxplot/quantile due to errors from CRAN check.
+
+2020.9.18
+
+update moved mcmaster URL in docs.
+
+2020.8.19
+
+Move geom-specific code from saveLayer/if-else to Geom$export_animint
+and pre_process methods in Geom sub-classes.
+
+2020.7.9
+
+Using RSelenium Version 1.7.4.
+
+Removed Defunct and Redundant code/examples.
+
+User can test using docker to avoid incompatibility issues.
+
+imports knitr as knit_print imported in namespace.
+
+Use new grid::unitType() to determine unit type of margin in pt/points to line conversion.
+
+2020.3.2
+
+data.frame(stringsAsFactors=TRUE) in tests.
+
+2019.7.12
+
+Added three authors which are mentioned in Rd/R files.
+
+2019.7.3
+
+ggsave(file.path(tempdir(), f)) in examples.
+
+2019.7.2
+
+animint2dir writes to temp dir rather than user dir during examples/tests.
+
+2019.6.6 PR#27
+
+animint(out.dir="path/to/dir") is respected by print.animint
+
+animint2dir removes previous out.dir
+
+2019.6.4
+
+bugfix for facet_grid(scales/space="free")
+
+bugfix for update_axes with geom_abline
+
+bugfix for graph height computation, which only showed up when there
+were lots of rows in the facet spec.
+
+2018.12.14 
+
+animint fun, export print method.
+
+infinite values converted to range min/max before saving tsv files.
+
+2018.10.4
+
+DEP: no longer depend on any branch of ggplot2.
+
+train_layout from ggplot2 - R/panel.r function is now
+g_train_layout. train_layout from animint2 - R/z_facet.R function is
+the same. Both are internal functions.
+
+2017.08.24
+
+DSL: clickSelects/showSelected are now specified as parameters rather
+than aesthetics.

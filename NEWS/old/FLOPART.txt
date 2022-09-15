@@ -1,0 +1,35 @@
+TODOs
+
+2022.2.23
+
+error if label start = end.
+
+Rcpp errors contain more details about FLOPART_data() etc.
+
+2022.2.22
+
+FLOPART_interface returns segments table with 0 rows if there is
+infinite cost (no feasible model given label constraints).
+
+2022.2.15
+
+FLOPART_data error if missing counts.
+
+Include compression in FLOPART_data.
+
+2022.1.27
+
+FLOPART now works if annotation column of label data table is a factor
+(previously only worked if it was character).
+
+2021.4.28
+
+Rcpp instead of .C for C++ interface.
+
+export new R functions: get_label_code, FLOPART_interface,
+FLOPART_data, FLOPART.
+
+2021.4.27
+
+new C++ classes CostMatrix and MinimizeResult with helpful methods
+that make the code easier to read/understanding (especially decoding).

@@ -1,0 +1,60 @@
+TODOs
+
+2022.2.7
+
+Add arXiv link to DESCRIPTION, clarify outputs in aum_diffs.
+
+2022.2.3
+
+Remove un-necessary C++ code, just keep aum_sort and interface.
+
+2022.1.27
+
+rename test file.
+
+2021.9.23
+
+aum_sort.cpp: fix read out of bound when err_N=1, use std::sort
+instead of qsort.
+
+2021.3.9
+
+vignette comparing logistic regression and other loss functions to aum
+minimization.
+
+2021.3.2
+
+Use qsort (standard C) instead of qsort_r (not standard).
+
+2021.2.20
+
+error checking for min.lambda values input to aum_diffs_penalty.
+
+new aum_sort_interface C++ function (faster), older function renamed
+to aum_map_interface, separate source and header files.
+
+2021.2.16
+
+aum supports names for predictions (copied to row names of
+derivative_mat).
+
+2021.2.15
+
+more C++ error checking / tests.
+
+vignette comparing speed with penaltyLearning::ROChange.
+
+2021.2.14
+
+aum_diffs, aum_diffs_binary, aum_diffs_penalty for creating error
+diffs data frame required for input to aum.
+
+aum_errors for converting aum_diffs to canonical error functions
+(which start at fp=0 and end at fn=0). plot.aum_diffs uses this to
+show a default plot of the error functions.
+
+fn.not.zero example data taken from feaure-learning-benchmark.
+
+2021.2.12
+
+First draft.

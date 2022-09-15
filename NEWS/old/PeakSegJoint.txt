@@ -1,0 +1,268 @@
+TODOs
+
+2022.4.6
+
+Update C code to use Calloc/Free.
+
+2020.2.13
+
+fix int overflow problem in C code by using double instead.
+
+2018.10.3
+
+memory problem fix -- now we make sure that n_bins >= bin_factor*2.
+
+avoid memory leak by free'ing profile_list before stopping with an error.
+
+2018.01.09
+
+In PeakSegJointFaster, only consider peaks which are inside range of
+observed non-zero data.
+
+2017.12.23
+
+Added PeakSegJointFaster C code with corresponding R functions:
+- Step1 (GridSearch) and Step2 (SearchNearPeak) sub-routines
+  are run, with the assumption that peak is present in all samples
+  For samples with infeasible means during optimization,
+  we use flat loss rather than peak loss.
+- PeakSegJointFasterOne returns likelihood vectors for flat and peak models,
+  along with matrix of segment mean values, for one bin.factor value.
+- PeakSegJointFaster returns the same,
+  minimizing over several bin.factor values,
+  then computing modelSelection data.frames,
+  (the likelihood vectors are sorted to determine the path of models).
+  Infeasible models are excluded in R code before modelSelection.
+- example(PeakSegJointFasterOne) shows that it is O(N) whereas
+  PeakSegJointHeuristic is O(N^2).
+
+2017.08.11
+
+move some functions to PeakSegPipeline: mclapply funs, bigwig funs.
+
+halve test time for CRAN submission -- 30 minutes is way too long. to
+do that we remove test-functions-real-data.R for the CRAN submission:
+
+                               f seconds
+1:      test-functions-trivial.R   0.077
+2:    test-functions-converted.R   0.423
+3:     test-functions-features.R   0.526
+4:   test-functions-likelihood.R   2.928
+5:       test-functions-binSum.R  29.041
+6:     test-functions-no-zeros.R  38.127
+7: test-functions-PeakSegJoint.R  56.224
+8:    test-functions-real-data.R 674.881
+
+2017.08.08
+
+Remove free/malloc for seg[123]_mean_vec in C code, instead use
+pointers from one allocMatrix which is returned in the model_list, and
+can be used to quantify the peak height relative to nearby background.
+
+if(interactive()) to avoid slow CRAN check on
+example(PeakSegJointHeuristic)
+
+2017.06.20
+
+Import penaltyLearning, remove interval regression code.
+
+2017.05.05
+
+Suggest penaltyLearning, used in pipeline.R with colSums features.
+
+Use geom_rect rather than geom_step in problem.joint.plot, to avoid an
+error when the data set has only 1 row.
+
+2017.04.20
+
+better caching: readCoverage etc.
+
+problem.joint.predict.job with list column.
+
+2017.02.27
+
+multiClusterPeaks is a new R/C function that clusters peaks into
+overlapping groups, with at most 1 peak per sample (in contrast,
+clusterPeaks allows more than one per per sample).
+
+problem.joint.predict.many now prints progress 1 / N joint prediction
+problems, and skips a joint prediction problem if its peaks.bed file
+already exists (allows restarting).
+
+problem.joint.targets.train now prints progress 1 / N labeled joint
+problems.
+
+problem.joint now sets first and last chromStart to corresponding
+problem start/end, before giving the data to ProfileList and
+PeakSegJoint. This ensures that the peak start/end are never outside
+of the problem start/end.
+
+2016.11.01
+
+New functions problem.joint.predict.many, problem.joint.targets.train,
+problem.joint.train, problem.joint.plot, problem.joint.target,
+problem.joint.predict
+
+2016.10.16
+
+Depend ggplot2 >= 2.0
+
+New problem.joint function in pipeline.R which is used in
+https://github.com/tdhock/PeakSegFPOP 
+
+2016.01.22
+
+Docs for PeakSegJointError.
+
+2015.11.03
+
+Step6 outputs PeakSegJoint-predictions-viz/index.html which shows peak
+predictions with links to the UCSC genome browser. If an Input sample
+group is present, then we make a facetted scatterplot of Input versus
+other groups. If no Input sample group is present then we make a bar
+plot which shows only the other groups. If there are labels for Input
+samples, then we only report "specific" peaks in the output bed
+files. Specific peaks are defined as being present in not too many
+Input samples (threshold picked by minimizing the number of incorrect
+regions where Input samples are labeled as either up or down).
+
+2015.09.21
+
+Run test error estimation in parallel on chunk.order.seed and
+test.fold.
+
+2015.09.15
+
+Plot test fold distribution across chromosomes on test error summary
+page.
+
+peak.or.null returns model with 1 peak (not S peaks as was before).
+
+bugfix with train error animint for data sets with many (>100)
+samples.
+
+2015.09.14
+
+exec/Step*.R scripts re-organized so that the genome prediction
+problem may be split into any number of jobs, rather than just one job
+per chromosome. The number of jobs can be specified as the environment
+variable JOBS or the R variable n.jobs when running
+00_AllSteps_qsub.R.
+
+readBigWig is faster since we now use stdout + fread, rather than
+writing bedGraph to an intermediate file.
+
+2015.09.11
+
+Re-factor lots of the code so that we can handle an individual that
+has samples for more than one cell type. The inst/examples/ data set
+now includes bcell/McGill0322.bigwig and tcell/McGill0322.bigwig to
+simulate this case (although these two samples do not in fact come
+from the same individual). Now we call "bcell" and "tcell" the
+sample.group rather than cell.type, since sometimes e.g. for analyzing
+a bunch of H3K27ac samples, we want to include an "Input" negative
+control sample group (and this is not a cell type but a different
+experiment type).
+
+facet_grid(sample.group + sample.id ~ .) to see the sample group in
+the data viz output.
+
+Bugfix for test error computation in the output generated by
+exec/Step3e-estimate-test-error.R.
+
+IntervalRegressionProblems(factor.regularization=NULL) means compute
+just one model with initial.regularization (rather than a sequence of
+increasingly more regularized models). This is useful after CV has
+been used to choose the best regularization parameter, and we just
+want to fit the model with that parameter to the entire
+train+validation set.
+
+2015.09.04
+
+In pipeline, after training, for every test fold, plot test error as a
+function of number of training chunks, in order to see if the model
+could be improved by adding more labels.
+
+Use maxjobs.mclapply, a thin wrapper around mclapply which limits its
+memory usage, and avoids getting jobs killed on the cluster.
+
+2015.08.06
+
+BUGFIX for feature computation when one or more samples has no/zero
+coverage data.
+
+2015.08.05
+
+Support for data sets with two or more label files.
+
+Support for making predictions on samples with no labels at all --
+these samples should be used in both the fitting and prediction steps.
+
+2015.07.30
+
+test-qsub-pipeline.R makes sure the exec/*.R pipeline scripts run with
+no errors.
+
+PeakSegJoint.c changed so that the likelihood function is defined from
+the first base with data to the last base with data, on any sample
+(before, it was ALL samples, and this is problematic now that we
+assume the input is a sparse profile).
+
+2015.07.14
+
+Remove "read one sample coverage file and save the coverage profile
+for each labeled chunk" step from exec/ pipeline, since it is so fast
+with bigwig files now.
+
+2015.06.19
+
+To support sparse bigwig data (created with -bg rather than -bga
+option to coverageBed, resulting in no rows with 0 coverage), binSum
+no longer returns an error code when chromEnd[i] !=
+chromStart[i+1]. Instead, gaps in the coverage profile are properly
+treated as bases with 0 coverage.
+
+2015.05.22
+
+ConvertModelList returns modelSelection.
+
+2015.05.15
+
+peak1.infeasible data set.
+
+Step3 looks for a peak in the same place as previous model, but does
+not enforce the seg1 < seg2 > seg3 constraint.
+
+ConvertModelList returns segments for model with 0 peaks.
+
+PeakSegJointSeveral function for running the C solver using several
+suboptimality parameters, and taking the model with the min Poisson
+loss for each model size.
+
+rename seg_start_end to bin_start_end.
+
+2015.05.14
+
+real data sets where buggy heuristic does not recover visually optimal
+segmentations.
+
+bugfix for heuristic optimization for cases where there is a solution
+with non-zero index (writes new cumsum vec) before a better solution
+with zero index (does not write a new cumsum vec, and was stuck with
+the old cumsum vec).
+
+2015.05.05
+
+Squared hinge loss FISTA implementation.
+
+2015.04.17
+
+Bugfixes for C memory issues.
+
+2015.04.14
+
+Fast C implementation of PeakSegJointHeuristic.
+
+2015.04.02
+
+binSum, multi* copied from tdhock/PeakSegDP.
