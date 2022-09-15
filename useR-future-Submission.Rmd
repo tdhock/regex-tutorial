@@ -9,6 +9,107 @@ output: html_document
 
 **Keywords**: text, tabular, data, manipulation, parsing, reshape, regex, pattern, regular, expression, visualization.
 
+Submissions must be in English and include/indicate:
+
+    Language in which the tutorial can be taught
+    The title of the tutorial
+    A brief biography of the instructors
+    The broad topic it covers
+    Abstract (250 words max)
+    Intended audience and prerequisites
+    A brief outline of the tutorial
+    If it exists, a link to the tutorial materials and/or webpage
+
+Review Criteria
+
+Our program committee will carefully evaluate each submission’s overall quality, research scope, and potential appeal to the R community, and check its technical content and pedagogical approach.
+
+https://user2022.r-project.org/participate/tutorial-access/
+
+https://redcap.vanderbilt.edu/surveys/?s=DJX9LXFYKDW8HALT 
+
+ useR! 2022 has virtual and in-person components. Which type of tutorial are you proposing?
+virtual (Saturday, 18 June 2022)
+in-person (Monday, 20 June 2022) Nashville, Vanderbilt.
+either virtual or in-person, at the discretion of the organizing committee
+reset
+	
+
+useR! 2022 tutorials are organized into morning and afternoon sessions. 
+  	Virtual (Saturday, 18 June 2022) 	In-person (Monday, 20 June 2022)
+Morning 	6:30 - 10:00 CDT 	9:00 - 12:30 CDT
+Afternoon 	16:00 - 19:30 CDT 	14:00 - 17:30 CDT
+
+ 
+
+What is your preference for the timing of your tutorial?
+no preference, I can present during either the morning or afternoon sessions
+morning session
+afternoon session
+reset
+	
+Tutorials may be presented in English, French, or Spanish. Will your tutorial be in English, French, or Spanish?
+* must provide value
+English
+French
+Spanish
+reset
+	
+Including breaks, how long will your tutorial be?
+* must provide value
+1.5 hours 	2.5 hours 	3.5 hours
+	
+Change the slider above to set a response 	
+reset
+	
+How many participants can you accommodate in your tutorial?
+10
+20
+30
+40
+50
+unlimited
+reset
+	
+What is the title of your tutorial?
+* must provide value
+	
+Name of corresponding author/organizer
+* must provide value
+	
+Email address of corresponding author/organizer
+* must provide value
+	
+Please provide an introduction to each instructor (2-3 sentences).
+
+For example:
+
+Jon Arbuckle - Jon Arbuckle is a data scientist with interest in statistics and machine learning education, and experience in machine learning research. His work involves application of machine learning methods in the shipping industry.
+* must provide value
+Expand 
+	
+Please select a primary topic area for your tutorial.
+* must provide value
+	
+Please provide 3-5 keywords that identify the focus of your tutorial.
+
+For example:
+
+clinical trials, reporting, reproducibility
+* must provide value
+	
+Abstract. Please provide a brief summary of your tutorial (up to 250 words).
+* must provide value
+250 words remaining
+Expand 
+	
+Please describe the intended audience for your tutorial. For example, is your tutorial primarily for new users of R? Is it for R package developers? If there are prerequisites or requirements for participants, please list them here.
+* must provide value
+Expand 
+	
+Please provide a brief outline of the tutorial. Be sure to describe when and how students will actively engage with the material, including any hands-on examples, breakout sessions, or participant polling. If available, please include links to any instructional materials or relevant webpages.
+
+
 ## Goals/Aims/Learning objectives
 
 Following the course participants will be able to:
