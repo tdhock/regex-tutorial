@@ -2,3 +2,6 @@
 should save output in [[file:new/]] directory.
 - see [[file:new/animint2.txt]] for an example of what the output should
   look like.
+- see [[file:gcc-ChangeLog.txt]] for a more complicated file to parse,
+  from [[https://github.com/gcc-mirror/gcc/blob/502051957444a2fc392dd973e978664e2cd0be2b/ChangeLog][GCC project]].
+  
