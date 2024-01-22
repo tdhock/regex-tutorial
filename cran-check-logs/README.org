@@ -1,0 +1,3 @@
+There are many regexercises that could be done with the CRAN check logs.
+
+TODO not available exercises.

@@ -1,0 +1,2095 @@
+
+Note: the module "R" cannot be unloaded because it was not loaded.
+
+WARNING: ignoring environment value of R_HOME
+
+R Under development (unstable) (2024-01-20 r85814) -- "Unsuffered Consequences"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> cargs <- commandArgs(trailingOnly=TRUE)
+> if(length(cargs)==0){
++   cargs <- c(
++     "/scratch/th798/data.table-revdeps/2023-06-27/deps.csv",
++     "1294",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_release_1.14.8.tar.gz",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_master_1.14.9.88039186915028ab3c93ccfd8e22c0d1c3534b1a.tar.gz"
++ )
++ }
+> names(cargs) <- c("deps.csv", "task.str", "release", "master")
+> dput(cargs)
+c(deps.csv = "/scratch/th798/data.table-revdeps/2024-01-22/deps.csv", 
+task.str = "836", release = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_release_1.14.10.tar.gz", 
+master = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_master_1.14.99.cde7333938a590a3cddbda1b02103650e2f55d15.tar.gz"
+)
+> task.dir <- dirname(.libPaths()[1])
+> if(requireNamespace("R.cache"))R.cache::getCachePath()
+Loading required namespace: R.cache
+[1] "/tmp/th798/7340079/R-devel/836/R.cache"
+> task.id <- as.integer(cargs[["task.str"]])
+> deps.df <- read.csv(cargs[["deps.csv"]])
+> (rev.dep <- deps.df$Package[task.id])
+[1] "NNS"
+> job.dir <- file.path(dirname(cargs[["deps.csv"]]), "tasks", task.id)
+> setwd(task.dir)
+> .libPaths()
+[1] "/tmp/th798/7340079/R-devel/836/library"
+[2] "/projects/genomic-ml/R/R-devel/library"
+> options(repos=c(
++   "http://www.bioconductor.org/packages/release/bioc",
++   CRAN="http://cloud.r-project.org"))
+> 
+> install.time <- system.time({
++   install.packages(rev.dep, dep=TRUE)
++ })
+Installing package into '/tmp/th798/7340079/R-devel/836/library'
+(as 'lib' is unspecified)
+also installing the dependencies 'mclust', 'multicool', 'locfit', 'ash', 'ks', 'RcppGSL', 'dynlm', 'tdigest', 'hdrcde', 'TTR', 'RcppZiggurat', 'meboot', 'quantmod', 'Rfast', 'rgl'
+
+trying URL 'http://cloud.r-project.org/src/contrib/mclust_6.0.1.tar.gz'
+Content type 'application/x-gzip' length 2763121 bytes (2.6 MB)
+==================================================
+downloaded 2.6 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/multicool_1.0.0.tar.gz'
+Content type 'application/x-gzip' length 14680 bytes (14 KB)
+==================================================
+downloaded 14 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/locfit_1.5-9.8.tar.gz'
+Content type 'application/x-gzip' length 201120 bytes (196 KB)
+==================================================
+downloaded 196 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/ash_1.0-15.tar.gz'
+Content type 'application/x-gzip' length 7043 bytes
+==================================================
+downloaded 7043 bytes
+
+trying URL 'http://cloud.r-project.org/src/contrib/ks_1.14.2.tar.gz'
+Content type 'application/x-gzip' length 1119246 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/RcppGSL_0.3.13.tar.gz'
+Content type 'application/x-gzip' length 302527 bytes (295 KB)
+==================================================
+downloaded 295 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/dynlm_0.3-6.tar.gz'
+Content type 'application/x-gzip' length 17874 bytes (17 KB)
+==================================================
+downloaded 17 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/tdigest_0.4.1.tar.gz'
+Content type 'application/x-gzip' length 15691 bytes (15 KB)
+==================================================
+downloaded 15 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/hdrcde_3.4.tar.gz'
+Content type 'application/x-gzip' length 62285 bytes (60 KB)
+==================================================
+downloaded 60 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/TTR_0.24.4.tar.gz'
+Content type 'application/x-gzip' length 318965 bytes (311 KB)
+==================================================
+downloaded 311 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/RcppZiggurat_0.1.6.tar.gz'
+Content type 'application/x-gzip' length 405526 bytes (396 KB)
+==================================================
+downloaded 396 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/meboot_1.4-9.4.tar.gz'
+Content type 'application/x-gzip' length 463592 bytes (452 KB)
+==================================================
+downloaded 452 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/quantmod_0.4.25.tar.gz'
+Content type 'application/x-gzip' length 154706 bytes (151 KB)
+==================================================
+downloaded 151 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/Rfast_2.1.0.tar.gz'
+Content type 'application/x-gzip' length 331500 bytes (323 KB)
+==================================================
+downloaded 323 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/rgl_1.2.8.tar.gz'
+Content type 'application/x-gzip' length 2557113 bytes (2.4 MB)
+==================================================
+downloaded 2.4 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/NNS_10.5.tar.gz'
+Content type 'application/x-gzip' length 1460043 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+* installing *source* package 'mclust' ...
+** package 'mclust' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using Fortran compiler: 'GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gfortran  -fpic  -g -O2  -c dmvnorm.f -o dmvnorm.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c mclust.f -o mclust.o
+gfortran  -fpic  -g -O2  -c mclustaddson.f -o mclustaddson.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o mclust.so dmvnorm.o init.o mclust.o mclustaddson.o -L/home/th798/R/R-devel/lib -lRlapack -L/home/th798/R/R-devel/lib -lRblas -lgfortran -lm -lquadmath -lgfortran -lm -lquadmath
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-mclust/00new/mclust/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mclust)
+* installing *source* package 'multicool' ...
+** package 'multicool' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c compositions.cpp -o compositions.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c multicool.cpp -o multicool.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o multicool.so RcppExports.o compositions.o multicool.o
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-multicool/00new/multicool/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (multicool)
+* installing *source* package 'locfit' ...
+** package 'locfit' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c S_enter.c -o S_enter.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c band.c -o band.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dbinom.c -o dbinom.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dens_haz.c -o dens_haz.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dens_int.c -o dens_int.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dens_odi.c -o dens_odi.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c density.c -o density.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_atree.c -o ev_atree.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_interp.c -o ev_interp.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_kdtre.c -o ev_kdtre.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_main.c -o ev_main.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_sphere.c -o ev_sphere.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_trian.c -o ev_trian.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c family.c -o family.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c fitted.c -o fitted.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c frend.c -o frend.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_adap.c -o lf_adap.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_dercor.c -o lf_dercor.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_fitfun.c -o lf_fitfun.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_nbhd.c -o lf_nbhd.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_robust.c -o lf_robust.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_vari.c -o lf_vari.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_wdiag.c -o lf_wdiag.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lfstr.c -o lfstr.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c locfit.c -o locfit.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_chol.c -o m_chol.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_eigen.c -o m_eigen.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_icirc.c -o m_icirc.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_imont.c -o m_imont.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_isimp.c -o m_isimp.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_isphr.c -o m_isphr.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_jacob.c -o m_jacob.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_max.c -o m_max.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_qr.c -o m_qr.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_solve.c -o m_solve.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_svd.c -o m_svd.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_vector.c -o m_vector.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c math.c -o math.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c minmax.c -o minmax.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c pcomp.c -o pcomp.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c preplot.c -o preplot.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c prob.c -o prob.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c procv.c -o procv.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scb.c -o scb.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scb_cons.c -o scb_cons.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scb_crit.c -o scb_crit.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scb_iface.c -o scb_iface.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c simul.c -o simul.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c smisc.c -o smisc.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c startlf.c -o startlf.o
+gcc -std=gnu17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c weight.c -o weight.o
+gcc -std=gnu17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o locfit.so S_enter.o band.o dbinom.o dens_haz.o dens_int.o dens_odi.o density.o ev_atree.o ev_interp.o ev_kdtre.o ev_main.o ev_sphere.o ev_trian.o family.o fitted.o frend.o lf_adap.o lf_dercor.o lf_fitfun.o lf_nbhd.o lf_robust.o lf_vari.o lf_wdiag.o lfstr.o locfit.o m_chol.o m_eigen.o m_icirc.o m_imont.o m_isimp.o m_isphr.o m_jacob.o m_max.o m_qr.o m_solve.o m_svd.o m_vector.o math.o minmax.o pcomp.o preplot.o prob.o procv.o scb.o scb_cons.o scb_crit.o scb_iface.o simul.o smisc.o startlf.o weight.o
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-locfit/00new/locfit/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (locfit)
+* installing *source* package 'ash' ...
+** package 'ash' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using Fortran compiler: 'GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gfortran  -fpic  -g -O2  -c ash.f -o ash.o
+gfortran  -fpic  -g -O2  -c sort.f -o sort.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o ash.so ash.o sort.o -lgfortran -lm -lquadmath
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-ash/00new/ash/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ash)
+* installing *source* package 'RcppGSL' ...
+** package 'RcppGSL' successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gsl-config... /home/th798/.conda/envs/emacs1/bin/gsl-config
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I../inst/include -I'/projects/genomic-ml/R/R-devel/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I../inst/include -I'/projects/genomic-ml/R/R-devel/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c fastLm.cpp -o fastLm.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I../inst/include -I'/projects/genomic-ml/R/R-devel/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I../inst/include -I'/projects/genomic-ml/R/R-devel/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c setErrorHandler.cpp -o setErrorHandler.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o RcppGSL.so RcppExports.o fastLm.o init.o setErrorHandler.o -L/home/th798/.conda/envs/emacs1/lib -lgsl -lgslcblas -lm
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-RcppGSL/00new/RcppGSL/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RcppGSL)
+* installing *source* package 'dynlm' ...
+** package 'dynlm' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dynlm)
+* installing *source* package 'tdigest' ...
+** package 'tdigest' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c tdigest-main.c -o tdigest-main.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c tdigest.c -o tdigest.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o tdigest.so init.o tdigest-main.o tdigest.o
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-tdigest/00new/tdigest/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tdigest)
+* installing *source* package 'TTR' ...
+** package 'TTR' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c adjRatios.c -o adjRatios.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c aroon.c -o aroon.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c moving_averages.c -o moving_averages.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c percent_rank.c -o percent_rank.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c runfun.c -o runfun.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c sar.c -o sar.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c wilderSum.c -o wilderSum.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-devel/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c zigzag.c -o zigzag.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o TTR.so adjRatios.o aroon.o init.o moving_averages.o percent_rank.o runfun.o sar.o wilderSum.o zigzag.o
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-TTR/00new/TTR/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (TTR)
+* installing *source* package 'rgl' ...
+** package 'rgl' successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking how to run the C preprocessor... gcc -E
+checking for gcc... (cached) gcc
+checking whether the compiler supports GNU C... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to enable C11 features... (cached) none needed
+checking for libpng-config... yes
+configure: using libpng-config
+configure: using libpng dynamic linkage
+checking for X... libraries , headers 
+checking for XAllocClassHint... yes
+checking for GL/gl.h... no
+checking for GL/glu.h... no
+configure: WARNING: missing required header GL/gl.h
+configure: WARNING: missing required header GL/glu.h
+configure: compiling without OpenGL support
+configure: creating ./config.status
+config.status: creating R/noOpenGL.R
+config.status: creating src/useNULL/Makevars
+config.status: creating src/Makevars
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ABCLineSet.cpp -o ABCLineSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c BBoxDeco.cpp -o BBoxDeco.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Background.cpp -o Background.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ClipPlane.cpp -o ClipPlane.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Color.cpp -o Color.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Disposable.cpp -o Disposable.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Light.cpp -o Light.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c LineSet.cpp -o LineSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c LineStripSet.cpp -o LineStripSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Material.cpp -o Material.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c NULLgui.cpp -o NULLgui.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PlaneSet.cpp -o PlaneSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PointSet.cpp -o PointSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PrimitiveSet.cpp -o PrimitiveSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c R.cpp -o R.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RenderContext.cpp -o RenderContext.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Shape.cpp -o Shape.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SphereMesh.cpp -o SphereMesh.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SphereSet.cpp -o SphereSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SpriteSet.cpp -o SpriteSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Surface.cpp -o Surface.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c TextSet.cpp -o TextSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Texture.cpp -o Texture.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Viewpoint.cpp -o Viewpoint.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c api.cpp -o api.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c assert.cpp -o assert.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c callbacks.cpp -o callbacks.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c device.cpp -o device.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c devicemanager.cpp -o devicemanager.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c fps.cpp -o fps.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ftgl.cpp -o ftgl.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c geom.cpp -o geom.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fvisibility=hidden -fpic  -g -O2  -c gl.c -o gl.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fvisibility=hidden -fpic  -g -O2  -c gl2ps.c -o gl2ps.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c glErrors.cpp -o glErrors.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c glgui.cpp -o glgui.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c gui.cpp -o gui.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.cpp -o init.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c par3d.cpp -o par3d.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c pixmap.cpp -o pixmap.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c platform.cpp -o platform.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fvisibility=hidden -fpic  -g -O2  -c pretty.c -o pretty.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c render.cpp -o render.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c rglmath.cpp -o rglmath.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c rglview.cpp -o rglview.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scene.cpp -o scene.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c select.cpp -o select.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c subscene.cpp -o subscene.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c win32gui.cpp -o win32gui.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c win32lib.cpp -o win32lib.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c x11gui.cpp -o x11gui.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c x11lib.cpp -o x11lib.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o rgl.so ABCLineSet.o BBoxDeco.o Background.o ClipPlane.o Color.o Disposable.o Light.o LineSet.o LineStripSet.o Material.o NULLgui.o PlaneSet.o PointSet.o PrimitiveSet.o R.o RenderContext.o Shape.o SphereMesh.o SphereSet.o SpriteSet.o Surface.o TextSet.o Texture.o Viewpoint.o api.o assert.o callbacks.o device.o devicemanager.o fps.o ftgl.o geom.o gl.o gl2ps.o glErrors.o glgui.o gui.o init.o par3d.o pixmap.o platform.o pretty.o render.o rglmath.o rglview.o scene.o select.o subscene.o win32gui.o win32lib.o x11gui.o x11lib.o -L/home/th798/.conda/envs/emacs1/lib -lpng16
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-rgl/00new/rgl/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rgl)
+* installing *source* package 'ks' ...
+** package 'ks' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ks.c -o ks.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o ks.so ks.o
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-ks/00new/ks/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ks)
+* installing *source* package 'RcppZiggurat' ...
+** package 'RcppZiggurat' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I. -I../inst/include -I'/projects/genomic-ml/R/R-devel/library/Rcpp/include' -I'/tmp/th798/7340079/R-devel/836/library/RcppGSL/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I. -I../inst/include -I'/projects/genomic-ml/R/R-devel/library/Rcpp/include' -I'/tmp/th798/7340079/R-devel/836/library/RcppGSL/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ziggurat.cpp -o ziggurat.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o RcppZiggurat.so RcppExports.o ziggurat.o -L/home/th798/.conda/envs/emacs1/lib -lgsl -lgslcblas -lm
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-RcppZiggurat/00new/RcppZiggurat/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RcppZiggurat)
+* installing *source* package 'quantmod' ...
+** package 'quantmod' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (quantmod)
+* installing *source* package 'hdrcde' ...
+** package 'hdrcde' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using Fortran compiler: 'GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c linbin.f -o linbin.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o hdrcde.so init.o linbin.o -L/home/th798/R/R-devel/lib -lRlapack -L/home/th798/R/R-devel/lib -lRblas -lgfortran -lm -lquadmath -lgfortran -lm -lquadmath
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-hdrcde/00new/hdrcde/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hdrcde)
+* installing *source* package 'Rfast' ...
+** package 'Rfast' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++17
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -I../inst/include -I'/projects/genomic-ml/R/R-devel/library/Rcpp/include' -I'/projects/genomic-ml/R/R-devel/library/RcppArmadillo/include' -I'/projects/genomic-ml/R/R-devel/library/RcppParallel/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp -fpic  -g -O2  -c Coeff.cpp -o Coeff.o
+In file included from ../inst/include/Rfast/templates.h:10,
+                 from ../inst/include/Rfast/matrix.hpp:14,
+                 from ../inst/include/Rfast.h:5,
+                 from mn.h:4,
+                 from Coeff.cpp:4:
+../inst/include/Rfast/parallel.h:20:10: fatal error: execution: No such file or directory
+ #include <execution>
+          ^~~~~~~~~~~
+compilation terminated.
+make: *** [/home/th798/R/R-devel/etc/Makeconf:200: Coeff.o] Error 1
+ERROR: compilation failed for package 'Rfast'
+* removing '/tmp/th798/7340079/R-devel/836/library/Rfast'
+* installing *source* package 'meboot' ...
+** package 'meboot' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c meboot_init.c -o meboot_init.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c mrapprox.c -o mrapprox.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o meboot.so meboot_init.o mrapprox.o
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-meboot/00new/meboot/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (meboot)
+ERROR: dependency 'Rfast' is not available for package 'NNS'
+* removing '/tmp/th798/7340079/R-devel/836/library/NNS'
+
+The downloaded source packages are in
+	'/tmp/th798/7340079/Rtmp3MwptV/downloaded_packages'
+Warning messages:
+1: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'Rfast' had non-zero exit status
+2: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'NNS' had non-zero exit status
+> cat("Time to install revdep:\n")
+Time to install revdep:
+> print(install.time)
+   user  system elapsed 
+106.732  10.978 124.287 
+> downloaded_packages <- file.path(
++   tempdir(),
++   "downloaded_packages")
+> dl.glob <- file.path(
++   downloaded_packages,
++   paste0(rev.dep,"_*.tar.gz"))
+> rev.dep.dl.row <- cbind(rev.dep, Sys.glob(dl.glob))
+> colnames(rev.dep.dl.row) <- c("pkg","path")
+> rev.dep.release.tar.gz <- normalizePath(rev.dep.dl.row[,"path"], mustWork=TRUE)
+> pkg.Rcheck <- paste0(rev.dep, ".Rcheck")
+> 
+> proj.dir <- "~/genomic-ml/data.table-revdeps"
+> source(file.path(proj.dir, "myStatus.R"))
+> Rvers <- gsub("[()]", "", gsub(" ", "_", R.version[["version.string"]]))
+> dir.create(Rvers, showWarnings=FALSE)
+> Rcheck.list <- list()
+> for(dt.version.short in c("release", "master")){
++   dt.tar.gz <- cargs[[dt.version.short]]
++   dt.version <- gsub(".tar.gz|/.*?_", "", dt.tar.gz)
++   install.packages(dt.tar.gz, repos=NULL)
++   check.cmd <- get_check_cmd(rev.dep.release.tar.gz)
++   system(check.cmd)
++   dest.Rcheck <- file.path(
++     Rvers,
++     paste0(dt.version, ".Rcheck"))
++   unlink(dest.Rcheck, recursive=TRUE)
++   file.rename(pkg.Rcheck, dest.Rcheck)
++   Rcheck.list[[dt.version]] <- file.path(dest.Rcheck, "00check.log")
++ }
+Installing package into '/tmp/th798/7340079/R-devel/836/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** package 'data.table' successfully unpacked and MD5 sums checked
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o ijoin.o init.o inrange.o nafill.o nqrecreateindices.o openmp-utils.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7340079/R-devel/836/NNS.Rcheck'
+* using R Under development (unstable) (2024-01-20 r85814)
+* using platform: x86_64-pc-linux-gnu
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'NNS/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'NNS' version '10.5'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'Rfast'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7340079/R-devel/836/NNS.Rcheck/00check.log'
+for details.
+
+Installing package into '/tmp/th798/7340079/R-devel/836/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c idatetime.c -o idatetime.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c negate.c -o negate.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c programming.c -o programming.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o idatetime.o ijoin.o init.o inrange.o nafill.o negate.o nqrecreateindices.o openmp-utils.o programming.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7340079/R-devel/836/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7340079/R-devel/836/NNS.Rcheck'
+* using R Under development (unstable) (2024-01-20 r85814)
+* using platform: x86_64-pc-linux-gnu
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'NNS/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'NNS' version '10.5'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'Rfast'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7340079/R-devel/836/NNS.Rcheck/00check.log'
+for details.
+
+> system(paste(c("diff -u", Rcheck.list), collapse=" "))
+> library(data.table, lib.loc=R.home("library"))
+> (sig.diff.dt <- myDiff(Rvers))
+Empty data.table (0 rows and 3 cols): checking,master,release
+> 
+> ## If there are significant differences, use git bisect to find when
+> ## they started.
+> if(nrow(sig.diff.dt)){
++   dt.git <- file.path(task.dir, "data.table.git")
++   system(paste("git clone ~/R/data.table", dt.git))
++   release.tag <- gsub(".tar.gz|.*_", "", cargs[["release"]])
++   rev.parse.cmd <- paste(
++     "cd", dt.git, "&& git rev-parse master")
++   master.sha <- system(rev.parse.cmd, intern=TRUE)
++   merge.base.cmd <- paste(
++     "cd", dt.git, "&& git merge-base master", release.tag)
++   merge.base.sha <- system(merge.base.cmd, intern=TRUE)
++   old.sha <- merge.base.sha
++   run_R <- file.path(proj.dir, "install_dt_then_check_dep.R")
++   sig.diff.dt[, first.bad.commit := NA_character_]
++   sig.diff.dt[, comments := NA_character_]
++   for(diff.i in 1:nrow(sig.diff.dt)){
++     sig.diff.row <- sig.diff.dt[diff.i]
++     bisect.cmd <- paste(
++       "cd", dt.git, "&&",
++       "git bisect start &&",
++       "git bisect old", old.sha, "&&",
++       "git bisect new master &&",
++       "git bisect run",
++       R.home('bin/Rscript'),
++       run_R,
++       shQuote(sig.diff.row$checking),
++       sig.diff.row$release,
++       rev.dep.release.tar.gz,
++       release.tag)
++     print(bisect.cmd)
++     bisect.out <- system(bisect.cmd, intern=TRUE)
++     cat(bisect.out,sep="\n")
++     first.bad.sha <- nc::capture_all_str(
++       bisect.out,
++       sha="[0-9a-f]+",
++       " is the first new commit")$sha
++     parent.cmd <- paste(
++       "cd ~/R/data.table && git log --pretty=%P -n 1",
++       first.bad.sha)
++     parent.sha <- system(parent.cmd, intern=TRUE)
++     sig.diff.dt[diff.i, first.bad.commit := first.bad.sha]
++     parent.msg <- paste0("parent=", parent.sha)
++     this.comment <- if(parent.sha==old.sha){
++       paste(parent.msg, "same as git bisect old")
++     }else if(first.bad.sha==master.sha){
++       paste("same as git bisect new=master,", parent.msg)
++     }else{
++       parent.msg
++     }
++     sig.diff.dt[diff.i, comments := this.comment]
++   }
++   ## add CRAN column.
++   sig.diff.dt[, CRAN := {
++     flavor <- get_flavor(Rvers)
++     details <- data.table(flavor=unique(flavor))[, {
++       base <- "https://www.r-project.org/nosvn/R.check/"
++       u <- paste0(base, flavor, "/", rev.dep, "-00check.txt")
++       check.txt <- tempfile()
++       tryCatch({
++         download.file(u, check.txt, quiet=TRUE)
++       }, error=function(e){
++         NULL
++       })
++       check.lines <- if(file.exists(check.txt)){
++         readLines(check.txt,encoding="UTF-8")
++       }else{
++         ""
++       }
++       repl.lines <- gsub("[\u2018\u2019]", "'", check.lines)
++       ##gsub("[‘’]", "'", check.lines) does not work with LC_ALL=C.
++       myStatus(line.vec=repl.lines)
++     }, by=flavor]
++     select.dt <- data.table(flavor, checking)
++     details[select.dt, msg, on=.(flavor, checking)]
++   }]
++   dir.create(file.path(job.dir, Rvers))
++   diffs.csv <- file.path(job.dir, Rvers, "significant_differences.csv")
++   data.table::fwrite(sig.diff.dt, diffs.csv)
++   print(sig.diff.dt)
++ }
+> 
+WARNING: ignoring environment value of R_HOME
+
+R version 4.3.2 (2023-10-31) -- "Eye Holes"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> cargs <- commandArgs(trailingOnly=TRUE)
+> if(length(cargs)==0){
++   cargs <- c(
++     "/scratch/th798/data.table-revdeps/2023-06-27/deps.csv",
++     "1294",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_release_1.14.8.tar.gz",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_master_1.14.9.88039186915028ab3c93ccfd8e22c0d1c3534b1a.tar.gz"
++ )
++ }
+> names(cargs) <- c("deps.csv", "task.str", "release", "master")
+> dput(cargs)
+c(deps.csv = "/scratch/th798/data.table-revdeps/2024-01-22/deps.csv", 
+task.str = "836", release = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_release_1.14.10.tar.gz", 
+master = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_master_1.14.99.cde7333938a590a3cddbda1b02103650e2f55d15.tar.gz"
+)
+> task.dir <- dirname(.libPaths()[1])
+> if(requireNamespace("R.cache"))R.cache::getCachePath()
+Loading required namespace: R.cache
+[1] "/tmp/th798/7340079/R-4.3.2/836/R.cache"
+> task.id <- as.integer(cargs[["task.str"]])
+> deps.df <- read.csv(cargs[["deps.csv"]])
+> (rev.dep <- deps.df$Package[task.id])
+[1] "NNS"
+> job.dir <- file.path(dirname(cargs[["deps.csv"]]), "tasks", task.id)
+> setwd(task.dir)
+> .libPaths()
+[1] "/tmp/th798/7340079/R-4.3.2/836/library"
+[2] "/projects/genomic-ml/R/R-4.3.2/library"
+> options(repos=c(
++   "http://www.bioconductor.org/packages/release/bioc",
++   CRAN="http://cloud.r-project.org"))
+> 
+> install.time <- system.time({
++   install.packages(rev.dep, dep=TRUE)
++ })
+Installing package into '/tmp/th798/7340079/R-4.3.2/836/library'
+(as 'lib' is unspecified)
+also installing the dependencies 'kernlab', 'mclust', 'multicool', 'clock', 'gower', 'hardhat', 'ipred', 'locfit', 'ash', 'ks', 'RcppGSL', 'ModelMetrics', 'pROC', 'recipes', 'dynlm', 'tdigest', 'hdrcde', 'TTR', 'RcppZiggurat', 'caret', 'meboot', 'quantmod', 'Rfast', 'rgl'
+
+trying URL 'http://cloud.r-project.org/src/contrib/kernlab_0.9-32.tar.gz'
+Content type 'application/x-gzip' length 1215773 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/mclust_6.0.1.tar.gz'
+Content type 'application/x-gzip' length 2763121 bytes (2.6 MB)
+==================================================
+downloaded 2.6 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/multicool_1.0.0.tar.gz'
+Content type 'application/x-gzip' length 14680 bytes (14 KB)
+==================================================
+downloaded 14 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/clock_0.7.0.tar.gz'
+Content type 'application/x-gzip' length 558040 bytes (544 KB)
+==================================================
+downloaded 544 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/gower_1.0.1.tar.gz'
+Content type 'application/x-gzip' length 187590 bytes (183 KB)
+==================================================
+downloaded 183 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/hardhat_1.3.0.tar.gz'
+Content type 'application/x-gzip' length 872416 bytes (851 KB)
+==================================================
+downloaded 851 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/ipred_0.9-14.tar.gz'
+Content type 'application/x-gzip' length 176371 bytes (172 KB)
+==================================================
+downloaded 172 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/locfit_1.5-9.8.tar.gz'
+Content type 'application/x-gzip' length 201120 bytes (196 KB)
+==================================================
+downloaded 196 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/ash_1.0-15.tar.gz'
+Content type 'application/x-gzip' length 7043 bytes
+==================================================
+downloaded 7043 bytes
+
+trying URL 'http://cloud.r-project.org/src/contrib/ks_1.14.2.tar.gz'
+Content type 'application/x-gzip' length 1119246 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/RcppGSL_0.3.13.tar.gz'
+Content type 'application/x-gzip' length 302527 bytes (295 KB)
+==================================================
+downloaded 295 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/ModelMetrics_1.2.2.2.tar.gz'
+Content type 'application/x-gzip' length 17078 bytes (16 KB)
+==================================================
+downloaded 16 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/pROC_1.18.5.tar.gz'
+Content type 'application/x-gzip' length 696162 bytes (679 KB)
+==================================================
+downloaded 679 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/recipes_1.0.9.tar.gz'
+Content type 'application/x-gzip' length 827222 bytes (807 KB)
+==================================================
+downloaded 807 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/dynlm_0.3-6.tar.gz'
+Content type 'application/x-gzip' length 17874 bytes (17 KB)
+==================================================
+downloaded 17 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/tdigest_0.4.1.tar.gz'
+Content type 'application/x-gzip' length 15691 bytes (15 KB)
+==================================================
+downloaded 15 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/hdrcde_3.4.tar.gz'
+Content type 'application/x-gzip' length 62285 bytes (60 KB)
+==================================================
+downloaded 60 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/TTR_0.24.4.tar.gz'
+Content type 'application/x-gzip' length 318965 bytes (311 KB)
+==================================================
+downloaded 311 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/RcppZiggurat_0.1.6.tar.gz'
+Content type 'application/x-gzip' length 405526 bytes (396 KB)
+==================================================
+downloaded 396 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/caret_6.0-94.tar.gz'
+Content type 'application/x-gzip' length 2274203 bytes (2.2 MB)
+==================================================
+downloaded 2.2 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/meboot_1.4-9.4.tar.gz'
+Content type 'application/x-gzip' length 463592 bytes (452 KB)
+==================================================
+downloaded 452 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/quantmod_0.4.25.tar.gz'
+Content type 'application/x-gzip' length 154706 bytes (151 KB)
+==================================================
+downloaded 151 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/Rfast_2.1.0.tar.gz'
+Content type 'application/x-gzip' length 331500 bytes (323 KB)
+==================================================
+downloaded 323 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/rgl_1.2.8.tar.gz'
+Content type 'application/x-gzip' length 2557113 bytes (2.4 MB)
+==================================================
+downloaded 2.4 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/NNS_10.5.tar.gz'
+Content type 'application/x-gzip' length 1460043 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+* installing *source* package 'kernlab' ...
+** package 'kernlab' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c brweight.cpp -o brweight.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ctable.cpp -o ctable.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c cweight.cpp -o cweight.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dbreakpt.c -o dbreakpt.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dcauchy.c -o dcauchy.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dgpnrm.c -o dgpnrm.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dgpstep.c -o dgpstep.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dprecond.c -o dprecond.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dprsrch.c -o dprsrch.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dspcg.c -o dspcg.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dtron.c -o dtron.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dtrpcg.c -o dtrpcg.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dtrqsol.c -o dtrqsol.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c esa.cpp -o esa.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c expdecayweight.cpp -o expdecayweight.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c inductionsort.cpp -o inductionsort.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c kspectrumweight.cpp -o kspectrumweight.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lcp.cpp -o lcp.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c misc.c -o misc.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c msufsort.cpp -o msufsort.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c solvebqp.c -o solvebqp.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c stringk.c -o stringk.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c stringkernel.cpp -o stringkernel.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c svm.cpp -o svm.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c wkasailcp.cpp -o wkasailcp.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c wmsufsort.cpp -o wmsufsort.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o kernlab.so brweight.o ctable.o cweight.o dbreakpt.o dcauchy.o dgpnrm.o dgpstep.o dprecond.o dprsrch.o dspcg.o dtron.o dtrpcg.o dtrqsol.o esa.o expdecayweight.o inductionsort.o init.o kspectrumweight.o lcp.o misc.o msufsort.o solvebqp.o stringk.o stringkernel.o svm.o wkasailcp.o wmsufsort.o -L/home/th798/R/R-4.3.2/lib -lRlapack -L/home/th798/R/R-4.3.2/lib -lRblas -lgfortran -lm -lquadmath
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-kernlab/00new/kernlab/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for 'pattern' in package 'kernlab'
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (kernlab)
+* installing *source* package 'mclust' ...
+** package 'mclust' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using Fortran compiler: 'GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gfortran  -fpic  -g -O2  -c dmvnorm.f -o dmvnorm.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c mclust.f -o mclust.o
+gfortran  -fpic  -g -O2  -c mclustaddson.f -o mclustaddson.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o mclust.so dmvnorm.o init.o mclust.o mclustaddson.o -L/home/th798/R/R-4.3.2/lib -lRlapack -L/home/th798/R/R-4.3.2/lib -lRblas -lgfortran -lm -lquadmath -lgfortran -lm -lquadmath
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-mclust/00new/mclust/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mclust)
+* installing *source* package 'multicool' ...
+** package 'multicool' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c compositions.cpp -o compositions.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c multicool.cpp -o multicool.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o multicool.so RcppExports.o compositions.o multicool.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-multicool/00new/multicool/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (multicool)
+* installing *source* package 'clock' ...
+** package 'clock' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c duration.cpp -o duration.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c enums.cpp -o enums.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c format.cpp -o format.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c gregorian-year-day.cpp -o gregorian-year-day.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c gregorian-year-month-day.cpp -o gregorian-year-month-day.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c gregorian-year-month-weekday.cpp -o gregorian-year-month-weekday.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c iso-year-week-day.cpp -o iso-year-week-day.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c limits.cpp -o limits.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c naive-time.cpp -o naive-time.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c quarterly-year-quarter-day.cpp -o quarterly-year-quarter-day.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c rcrd.cpp -o rcrd.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c sys-time.cpp -o sys-time.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c time-point.cpp -o time-point.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c utils.cpp -o utils.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c week-year-week-day.cpp -o week-year-week-day.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c weekday.cpp -o weekday.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c zone.cpp -o zone.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/cpp11/include' -I'/projects/genomic-ml/R/R-4.3.2/library/tzdb/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c zoned-time.cpp -o zoned-time.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o clock.so cpp11.o duration.o enums.o format.o gregorian-year-day.o gregorian-year-month-day.o gregorian-year-month-weekday.o iso-year-week-day.o limits.o naive-time.o quarterly-year-quarter-day.o rcrd.o sys-time.o time-point.o utils.o week-year-week-day.o weekday.o zone.o zoned-time.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-clock/00new/clock/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (clock)
+* installing *source* package 'gower' ...
+** package 'gower' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp -fpic  -g -O2  -c R_register_native.c -o R_register_native.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp -fpic  -g -O2  -c gower.c -o gower.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o gower.so R_register_native.o gower.o -fopenmp
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-gower/00new/gower/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gower)
+* installing *source* package 'hardhat' ...
+** package 'hardhat' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hardhat)
+* installing *source* package 'ipred' ...
+** package 'ipred' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SdiffKM.c -o SdiffKM.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o ipred.so SdiffKM.o init.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-ipred/00new/ipred/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ipred)
+* installing *source* package 'locfit' ...
+** package 'locfit' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c S_enter.c -o S_enter.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c band.c -o band.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dbinom.c -o dbinom.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dens_haz.c -o dens_haz.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dens_int.c -o dens_int.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c dens_odi.c -o dens_odi.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c density.c -o density.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_atree.c -o ev_atree.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_interp.c -o ev_interp.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_kdtre.c -o ev_kdtre.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_main.c -o ev_main.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_sphere.c -o ev_sphere.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ev_trian.c -o ev_trian.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c family.c -o family.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c fitted.c -o fitted.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c frend.c -o frend.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_adap.c -o lf_adap.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_dercor.c -o lf_dercor.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_fitfun.c -o lf_fitfun.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_nbhd.c -o lf_nbhd.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_robust.c -o lf_robust.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_vari.c -o lf_vari.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lf_wdiag.c -o lf_wdiag.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lfstr.c -o lfstr.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c locfit.c -o locfit.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_chol.c -o m_chol.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_eigen.c -o m_eigen.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_icirc.c -o m_icirc.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_imont.c -o m_imont.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_isimp.c -o m_isimp.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_isphr.c -o m_isphr.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_jacob.c -o m_jacob.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_max.c -o m_max.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_qr.c -o m_qr.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_solve.c -o m_solve.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_svd.c -o m_svd.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c m_vector.c -o m_vector.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c math.c -o math.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c minmax.c -o minmax.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c pcomp.c -o pcomp.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c preplot.c -o preplot.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c prob.c -o prob.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c procv.c -o procv.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scb.c -o scb.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scb_cons.c -o scb_cons.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scb_crit.c -o scb_crit.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scb_iface.c -o scb_iface.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c simul.c -o simul.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c smisc.c -o smisc.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c startlf.c -o startlf.o
+gcc -std=gnu17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c weight.c -o weight.o
+gcc -std=gnu17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o locfit.so S_enter.o band.o dbinom.o dens_haz.o dens_int.o dens_odi.o density.o ev_atree.o ev_interp.o ev_kdtre.o ev_main.o ev_sphere.o ev_trian.o family.o fitted.o frend.o lf_adap.o lf_dercor.o lf_fitfun.o lf_nbhd.o lf_robust.o lf_vari.o lf_wdiag.o lfstr.o locfit.o m_chol.o m_eigen.o m_icirc.o m_imont.o m_isimp.o m_isphr.o m_jacob.o m_max.o m_qr.o m_solve.o m_svd.o m_vector.o math.o minmax.o pcomp.o preplot.o prob.o procv.o scb.o scb_cons.o scb_crit.o scb_iface.o simul.o smisc.o startlf.o weight.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-locfit/00new/locfit/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (locfit)
+* installing *source* package 'ash' ...
+** package 'ash' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using Fortran compiler: 'GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gfortran  -fpic  -g -O2  -c ash.f -o ash.o
+gfortran  -fpic  -g -O2  -c sort.f -o sort.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o ash.so ash.o sort.o -lgfortran -lm -lquadmath
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-ash/00new/ash/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ash)
+* installing *source* package 'RcppGSL' ...
+** package 'RcppGSL' successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gsl-config... /home/th798/.conda/envs/emacs1/bin/gsl-config
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I../inst/include -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I../inst/include -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c fastLm.cpp -o fastLm.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I../inst/include -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I../inst/include -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c setErrorHandler.cpp -o setErrorHandler.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o RcppGSL.so RcppExports.o fastLm.o init.o setErrorHandler.o -L/home/th798/.conda/envs/emacs1/lib -lgsl -lgslcblas -lm
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-RcppGSL/00new/RcppGSL/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RcppGSL)
+* installing *source* package 'ModelMetrics' ...
+** package 'ModelMetrics' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c auc_.cpp -o auc_.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c confusionMatrix_.cpp -o confusionMatrix_.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c error.cpp -o error.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c gini_.cpp -o gini_.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c logLoss_.cpp -o logLoss_.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o ModelMetrics.so RcppExports.o auc_.o confusionMatrix_.o error.o gini_.o logLoss_.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-ModelMetrics/00new/ModelMetrics/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ModelMetrics)
+* installing *source* package 'pROC' ...
+** package 'pROC' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RcppVersion.cpp -o RcppVersion.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c delong.cpp -o delong.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c perfsAll.cpp -o perfsAll.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o pROC.so RcppExports.o RcppVersion.o delong.o perfsAll.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-pROC/00new/pROC/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pROC)
+* installing *source* package 'dynlm' ...
+** package 'dynlm' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dynlm)
+* installing *source* package 'tdigest' ...
+** package 'tdigest' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c tdigest-main.c -o tdigest-main.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c tdigest.c -o tdigest.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o tdigest.so init.o tdigest-main.o tdigest.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-tdigest/00new/tdigest/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tdigest)
+* installing *source* package 'TTR' ...
+** package 'TTR' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c adjRatios.c -o adjRatios.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c aroon.c -o aroon.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c moving_averages.c -o moving_averages.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c percent_rank.c -o percent_rank.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c runfun.c -o runfun.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c sar.c -o sar.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c wilderSum.c -o wilderSum.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG  -I'/projects/genomic-ml/R/R-4.3.2/library/xts/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c zigzag.c -o zigzag.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o TTR.so adjRatios.o aroon.o init.o moving_averages.o percent_rank.o runfun.o sar.o wilderSum.o zigzag.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-TTR/00new/TTR/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (TTR)
+* installing *source* package 'rgl' ...
+** package 'rgl' successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking how to run the C preprocessor... gcc -E
+checking for gcc... (cached) gcc
+checking whether the compiler supports GNU C... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to enable C11 features... (cached) none needed
+checking for libpng-config... yes
+configure: using libpng-config
+configure: using libpng dynamic linkage
+checking for X... libraries , headers 
+checking for XAllocClassHint... yes
+checking for GL/gl.h... no
+checking for GL/glu.h... no
+configure: WARNING: missing required header GL/gl.h
+configure: WARNING: missing required header GL/glu.h
+configure: compiling without OpenGL support
+configure: creating ./config.status
+config.status: creating R/noOpenGL.R
+config.status: creating src/useNULL/Makevars
+config.status: creating src/Makevars
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ABCLineSet.cpp -o ABCLineSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c BBoxDeco.cpp -o BBoxDeco.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Background.cpp -o Background.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ClipPlane.cpp -o ClipPlane.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Color.cpp -o Color.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Disposable.cpp -o Disposable.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Light.cpp -o Light.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c LineSet.cpp -o LineSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c LineStripSet.cpp -o LineStripSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Material.cpp -o Material.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c NULLgui.cpp -o NULLgui.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PlaneSet.cpp -o PlaneSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PointSet.cpp -o PointSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PrimitiveSet.cpp -o PrimitiveSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c R.cpp -o R.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RenderContext.cpp -o RenderContext.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Shape.cpp -o Shape.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SphereMesh.cpp -o SphereMesh.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SphereSet.cpp -o SphereSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SpriteSet.cpp -o SpriteSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Surface.cpp -o Surface.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c TextSet.cpp -o TextSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Texture.cpp -o Texture.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Viewpoint.cpp -o Viewpoint.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c api.cpp -o api.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c assert.cpp -o assert.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c callbacks.cpp -o callbacks.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c device.cpp -o device.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c devicemanager.cpp -o devicemanager.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c fps.cpp -o fps.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ftgl.cpp -o ftgl.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c geom.cpp -o geom.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fvisibility=hidden -fpic  -g -O2  -c gl.c -o gl.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fvisibility=hidden -fpic  -g -O2  -c gl2ps.c -o gl2ps.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c glErrors.cpp -o glErrors.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c glgui.cpp -o glgui.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c gui.cpp -o gui.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.cpp -o init.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c par3d.cpp -o par3d.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c pixmap.cpp -o pixmap.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c platform.cpp -o platform.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fvisibility=hidden -fpic  -g -O2  -c pretty.c -o pretty.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c render.cpp -o render.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c rglmath.cpp -o rglmath.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c rglview.cpp -o rglview.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scene.cpp -o scene.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c select.cpp -o select.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c subscene.cpp -o subscene.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c win32gui.cpp -o win32gui.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c win32lib.cpp -o win32lib.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c x11gui.cpp -o x11gui.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DHAVE_PNG_H -I/home/th798/.conda/envs/emacs1/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c x11lib.cpp -o x11lib.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o rgl.so ABCLineSet.o BBoxDeco.o Background.o ClipPlane.o Color.o Disposable.o Light.o LineSet.o LineStripSet.o Material.o NULLgui.o PlaneSet.o PointSet.o PrimitiveSet.o R.o RenderContext.o Shape.o SphereMesh.o SphereSet.o SpriteSet.o Surface.o TextSet.o Texture.o Viewpoint.o api.o assert.o callbacks.o device.o devicemanager.o fps.o ftgl.o geom.o gl.o gl2ps.o glErrors.o glgui.o gui.o init.o par3d.o pixmap.o platform.o pretty.o render.o rglmath.o rglview.o scene.o select.o subscene.o win32gui.o win32lib.o x11gui.o x11lib.o -L/home/th798/.conda/envs/emacs1/lib -lpng16
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-rgl/00new/rgl/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rgl)
+* installing *source* package 'ks' ...
+** package 'ks' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ks.c -o ks.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o ks.so ks.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-ks/00new/ks/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ks)
+* installing *source* package 'recipes' ...
+** package 'recipes' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (recipes)
+* installing *source* package 'RcppZiggurat' ...
+** package 'RcppZiggurat' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I. -I../inst/include -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I'/tmp/th798/7340079/R-4.3.2/836/library/RcppGSL/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I. -I../inst/include -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I'/tmp/th798/7340079/R-4.3.2/836/library/RcppGSL/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ziggurat.cpp -o ziggurat.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o RcppZiggurat.so RcppExports.o ziggurat.o -L/home/th798/.conda/envs/emacs1/lib -lgsl -lgslcblas -lm
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-RcppZiggurat/00new/RcppZiggurat/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RcppZiggurat)
+* installing *source* package 'quantmod' ...
+** package 'quantmod' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (quantmod)
+* installing *source* package 'hdrcde' ...
+** package 'hdrcde' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using Fortran compiler: 'GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c linbin.f -o linbin.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o hdrcde.so init.o linbin.o -L/home/th798/R/R-4.3.2/lib -lRlapack -L/home/th798/R/R-4.3.2/lib -lRblas -lgfortran -lm -lquadmath -lgfortran -lm -lquadmath
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-hdrcde/00new/hdrcde/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hdrcde)
+* installing *source* package 'caret' ...
+** package 'caret' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c caret.c -o caret.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o caret.so caret.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-caret/00new/caret/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (caret)
+* installing *source* package 'Rfast' ...
+** package 'Rfast' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++17
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I../inst/include -I'/projects/genomic-ml/R/R-4.3.2/library/Rcpp/include' -I'/projects/genomic-ml/R/R-4.3.2/library/RcppArmadillo/include' -I'/projects/genomic-ml/R/R-4.3.2/library/RcppParallel/include' -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp -fpic  -g -O2  -c Coeff.cpp -o Coeff.o
+In file included from ../inst/include/Rfast/templates.h:10,
+                 from ../inst/include/Rfast/matrix.hpp:14,
+                 from ../inst/include/Rfast.h:5,
+                 from mn.h:4,
+                 from Coeff.cpp:4:
+../inst/include/Rfast/parallel.h:20:10: fatal error: execution: No such file or directory
+ #include <execution>
+          ^~~~~~~~~~~
+compilation terminated.
+make: *** [/home/th798/R/R-4.3.2/etc/Makeconf:200: Coeff.o] Error 1
+ERROR: compilation failed for package 'Rfast'
+* removing '/tmp/th798/7340079/R-4.3.2/836/library/Rfast'
+* installing *source* package 'meboot' ...
+** package 'meboot' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c meboot_init.c -o meboot_init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c mrapprox.c -o mrapprox.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o meboot.so meboot_init.o mrapprox.o
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-meboot/00new/meboot/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (meboot)
+ERROR: dependency 'Rfast' is not available for package 'NNS'
+* removing '/tmp/th798/7340079/R-4.3.2/836/library/NNS'
+
+The downloaded source packages are in
+	'/tmp/th798/7340079/RtmpgGScim/downloaded_packages'
+Warning messages:
+1: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'Rfast' had non-zero exit status
+2: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'NNS' had non-zero exit status
+> cat("Time to install revdep:\n")
+Time to install revdep:
+> print(install.time)
+   user  system elapsed 
+267.893  20.683 299.425 
+> downloaded_packages <- file.path(
++   tempdir(),
++   "downloaded_packages")
+> dl.glob <- file.path(
++   downloaded_packages,
++   paste0(rev.dep,"_*.tar.gz"))
+> rev.dep.dl.row <- cbind(rev.dep, Sys.glob(dl.glob))
+> colnames(rev.dep.dl.row) <- c("pkg","path")
+> rev.dep.release.tar.gz <- normalizePath(rev.dep.dl.row[,"path"], mustWork=TRUE)
+> pkg.Rcheck <- paste0(rev.dep, ".Rcheck")
+> 
+> proj.dir <- "~/genomic-ml/data.table-revdeps"
+> source(file.path(proj.dir, "myStatus.R"))
+> Rvers <- gsub("[()]", "", gsub(" ", "_", R.version[["version.string"]]))
+> dir.create(Rvers, showWarnings=FALSE)
+> Rcheck.list <- list()
+> for(dt.version.short in c("release", "master")){
++   dt.tar.gz <- cargs[[dt.version.short]]
++   dt.version <- gsub(".tar.gz|/.*?_", "", dt.tar.gz)
++   install.packages(dt.tar.gz, repos=NULL)
++   check.cmd <- get_check_cmd(rev.dep.release.tar.gz)
++   system(check.cmd)
++   dest.Rcheck <- file.path(
++     Rvers,
++     paste0(dt.version, ".Rcheck"))
++   unlink(dest.Rcheck, recursive=TRUE)
++   file.rename(pkg.Rcheck, dest.Rcheck)
++   Rcheck.list[[dt.version]] <- file.path(dest.Rcheck, "00check.log")
++ }
+Installing package into '/tmp/th798/7340079/R-4.3.2/836/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** package 'data.table' successfully unpacked and MD5 sums checked
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o ijoin.o init.o inrange.o nafill.o nqrecreateindices.o openmp-utils.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7340079/R-4.3.2/836/NNS.Rcheck'
+* using R version 4.3.2 (2023-10-31)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'NNS/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'NNS' version '10.5'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'Rfast'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7340079/R-4.3.2/836/NNS.Rcheck/00check.log'
+for details.
+
+Installing package into '/tmp/th798/7340079/R-4.3.2/836/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c idatetime.c -o idatetime.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c negate.c -o negate.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c programming.c -o programming.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o idatetime.o ijoin.o init.o inrange.o nafill.o negate.o nqrecreateindices.o openmp-utils.o programming.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7340079/R-4.3.2/836/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7340079/R-4.3.2/836/NNS.Rcheck'
+* using R version 4.3.2 (2023-10-31)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'NNS/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'NNS' version '10.5'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'Rfast'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7340079/R-4.3.2/836/NNS.Rcheck/00check.log'
+for details.
+
+> system(paste(c("diff -u", Rcheck.list), collapse=" "))
+> library(data.table, lib.loc=R.home("library"))
+> (sig.diff.dt <- myDiff(Rvers))
+Empty data.table (0 rows and 3 cols): checking,master,release
+> 
+> ## If there are significant differences, use git bisect to find when
+> ## they started.
+> if(nrow(sig.diff.dt)){
++   dt.git <- file.path(task.dir, "data.table.git")
++   system(paste("git clone ~/R/data.table", dt.git))
++   release.tag <- gsub(".tar.gz|.*_", "", cargs[["release"]])
++   rev.parse.cmd <- paste(
++     "cd", dt.git, "&& git rev-parse master")
++   master.sha <- system(rev.parse.cmd, intern=TRUE)
++   merge.base.cmd <- paste(
++     "cd", dt.git, "&& git merge-base master", release.tag)
++   merge.base.sha <- system(merge.base.cmd, intern=TRUE)
++   old.sha <- merge.base.sha
++   run_R <- file.path(proj.dir, "install_dt_then_check_dep.R")
++   sig.diff.dt[, first.bad.commit := NA_character_]
++   sig.diff.dt[, comments := NA_character_]
++   for(diff.i in 1:nrow(sig.diff.dt)){
++     sig.diff.row <- sig.diff.dt[diff.i]
++     bisect.cmd <- paste(
++       "cd", dt.git, "&&",
++       "git bisect start &&",
++       "git bisect old", old.sha, "&&",
++       "git bisect new master &&",
++       "git bisect run",
++       R.home('bin/Rscript'),
++       run_R,
++       shQuote(sig.diff.row$checking),
++       sig.diff.row$release,
++       rev.dep.release.tar.gz,
++       release.tag)
++     print(bisect.cmd)
++     bisect.out <- system(bisect.cmd, intern=TRUE)
++     cat(bisect.out,sep="\n")
++     first.bad.sha <- nc::capture_all_str(
++       bisect.out,
++       sha="[0-9a-f]+",
++       " is the first new commit")$sha
++     parent.cmd <- paste(
++       "cd ~/R/data.table && git log --pretty=%P -n 1",
++       first.bad.sha)
++     parent.sha <- system(parent.cmd, intern=TRUE)
++     sig.diff.dt[diff.i, first.bad.commit := first.bad.sha]
++     parent.msg <- paste0("parent=", parent.sha)
++     this.comment <- if(parent.sha==old.sha){
++       paste(parent.msg, "same as git bisect old")
++     }else if(first.bad.sha==master.sha){
++       paste("same as git bisect new=master,", parent.msg)
++     }else{
++       parent.msg
++     }
++     sig.diff.dt[diff.i, comments := this.comment]
++   }
++   ## add CRAN column.
++   sig.diff.dt[, CRAN := {
++     flavor <- get_flavor(Rvers)
++     details <- data.table(flavor=unique(flavor))[, {
++       base <- "https://www.r-project.org/nosvn/R.check/"
++       u <- paste0(base, flavor, "/", rev.dep, "-00check.txt")
++       check.txt <- tempfile()
++       tryCatch({
++         download.file(u, check.txt, quiet=TRUE)
++       }, error=function(e){
++         NULL
++       })
++       check.lines <- if(file.exists(check.txt)){
++         readLines(check.txt,encoding="UTF-8")
++       }else{
++         ""
++       }
++       repl.lines <- gsub("[\u2018\u2019]", "'", check.lines)
++       ##gsub("[‘’]", "'", check.lines) does not work with LC_ALL=C.
++       myStatus(line.vec=repl.lines)
++     }, by=flavor]
++     select.dt <- data.table(flavor, checking)
++     details[select.dt, msg, on=.(flavor, checking)]
++   }]
++   dir.create(file.path(job.dir, Rvers))
++   diffs.csv <- file.path(job.dir, Rvers, "significant_differences.csv")
++   data.table::fwrite(sig.diff.dt, diffs.csv)
++   print(sig.diff.dt)
++ }
+> 

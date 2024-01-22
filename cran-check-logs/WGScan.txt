@@ -1,0 +1,1077 @@
+
+Note: the module "R" cannot be unloaded because it was not loaded.
+
+WARNING: ignoring environment value of R_HOME
+
+R Under development (unstable) (2024-01-20 r85814) -- "Unsuffered Consequences"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> cargs <- commandArgs(trailingOnly=TRUE)
+> if(length(cargs)==0){
++   cargs <- c(
++     "/scratch/th798/data.table-revdeps/2023-06-27/deps.csv",
++     "1294",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_release_1.14.8.tar.gz",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_master_1.14.9.88039186915028ab3c93ccfd8e22c0d1c3534b1a.tar.gz"
++ )
++ }
+> names(cargs) <- c("deps.csv", "task.str", "release", "master")
+> dput(cargs)
+c(deps.csv = "/scratch/th798/data.table-revdeps/2024-01-22/deps.csv", 
+task.str = "1434", release = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_release_1.14.10.tar.gz", 
+master = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_master_1.14.99.cde7333938a590a3cddbda1b02103650e2f55d15.tar.gz"
+)
+> task.dir <- dirname(.libPaths()[1])
+> if(requireNamespace("R.cache"))R.cache::getCachePath()
+Loading required namespace: R.cache
+[1] "/tmp/th798/7340693/R-devel/1434/R.cache"
+> task.id <- as.integer(cargs[["task.str"]])
+> deps.df <- read.csv(cargs[["deps.csv"]])
+> (rev.dep <- deps.df$Package[task.id])
+[1] "WGScan"
+> job.dir <- file.path(dirname(cargs[["deps.csv"]]), "tasks", task.id)
+> setwd(task.dir)
+> .libPaths()
+[1] "/tmp/th798/7340693/R-devel/1434/library"
+[2] "/projects/genomic-ml/R/R-devel/library" 
+> options(repos=c(
++   "http://www.bioconductor.org/packages/release/bioc",
++   CRAN="http://cloud.r-project.org"))
+> 
+> install.time <- system.time({
++   install.packages(rev.dep, dep=TRUE)
++ })
+Installing package into '/tmp/th798/7340693/R-devel/1434/library'
+(as 'lib' is unspecified)
+also installing the dependencies 'SPAtest', 'SKAT', 'seqminer'
+
+trying URL 'http://cloud.r-project.org/src/contrib/SPAtest_3.1.2.tar.gz'
+Content type 'application/x-gzip' length 13683 bytes (13 KB)
+==================================================
+downloaded 13 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/SKAT_2.2.5.tar.gz'
+Content type 'application/x-gzip' length 1272492 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/seqminer_9.3.tar.gz'
+Content type 'application/x-gzip' length 8620222 bytes (8.2 MB)
+==================================================
+downloaded 8.2 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/WGScan_0.1.tar.gz'
+Content type 'application/x-gzip' length 53277 bytes (52 KB)
+==================================================
+downloaded 52 KB
+
+* installing *source* package 'SPAtest' ...
+** package 'SPAtest' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SPAtest)
+* installing *source* package 'seqminer' ...
+** package 'seqminer' successfully unpacked and MD5 sums checked
+** using staged installation
+configure: CC = gcc
+configure: CFLAGS = -g -O2
+configure: CXX = g++ -std=gnu++11
+configure: CXXFLAGS = -g -O2
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ -std=gnu++11 accepts -g... yes
+checking how to run the C++ preprocessor... g++ -std=gnu++11 -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for BZ2_bzDecompressInit in -lbz2... yes
+checking bzlib.h usability... yes
+checking bzlib.h presence... yes
+checking for bzlib.h... yes
+configure: Will use system-wide bzip2 library
+checking for ZSTD_compress in -lzstd... yes
+checking zstd.h usability... yes
+checking zstd.h presence... yes
+checking for zstd.h... yes
+configure: Will use system-wide zstd library
+checking for sqlite3_open in -lsqlite3... yes
+checking sqlite3.h usability... yes
+checking sqlite3.h presence... yes
+checking for sqlite3.h... yes
+configure: Will use system-wide sqlite library
+checking for regcomp in -lc... yes
+checking regex.h usability... yes
+checking regex.h presence... yes
+checking for regex.h... yes
+checking for working REG_STARTEND... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating src/config.h
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++17
+have bzip2
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c BCFReader.cpp -o BCFReader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c BGenFile.cpp -o BGenFile.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c BGenIndex.cpp -o BGenIndex.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c BGenVariant.cpp -o BGenVariant.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Exception.cpp -o Exception.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c FileIO.cpp -o FileIO.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c GeneLoader.cpp -o GeneLoader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c MmapFile.cpp -o MmapFile.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PatternMatch.cpp -o PatternMatch.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PeopleSet.cpp -o PeopleSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PlinkInputFile.cpp -o PlinkInputFile.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PlinkOutputFile.cpp -o PlinkOutputFile.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Profiler.cpp -o Profiler.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c R_CPP_interface.cpp -o R_CPP_interface.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RangeList.cpp -o RangeList.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Rannotation.cpp -o Rannotation.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SimpleMatrix.cpp -o SimpleMatrix.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SingleChromosomeBCFIndex.cpp -o SingleChromosomeBCFIndex.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SingleChromosomeVCFIndex.cpp -o SingleChromosomeVCFIndex.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c TypeConversion.cpp -o TypeConversion.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Utils.cpp -o Utils.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c VCFHeader.cpp -o VCFHeader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c VCFIndividual.cpp -o VCFIndividual.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c VCFInfo.cpp -o VCFInfo.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c VCFInputFile.cpp -o VCFInputFile.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c VCFUtil.cpp -o VCFUtil.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c bcf.c -o bcf.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c bcf_index.c -o bcf_index.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c bcfutils.c -o bcfutils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c bedidx.c -o bedidx.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c bgen2genoLoader.cpp -o bgen2genoLoader.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c bgzf.c -o bgzf.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c knetfile.c -o knetfile.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c kstring.c -o kstring.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c plink2genoLoader.cpp -o plink2genoLoader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c rvMetaLoader.cpp -o rvMetaLoader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scbcf2genoLoader.cpp -o scbcf2genoLoader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scvcf2genoLoader.cpp -o scvcf2genoLoader.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c seqForStat.c -o seqForStat.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c seqminer.c -o seqminer.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c seqminer_init.c -o seqminer_init.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c tabixLoader.cpp -o tabixLoader.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c tabix_index.c -o tabix_index.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c vcf.c -o vcf.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c vcf2genoLoader.cpp -o vcf2genoLoader.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o seqminer.so BCFReader.o BGenFile.o BGenIndex.o BGenVariant.o Exception.o FileIO.o GeneLoader.o MmapFile.o PatternMatch.o PeopleSet.o PlinkInputFile.o PlinkOutputFile.o Profiler.o R_CPP_interface.o RangeList.o Rannotation.o SimpleMatrix.o SingleChromosomeBCFIndex.o SingleChromosomeVCFIndex.o TypeConversion.o Utils.o VCFHeader.o VCFIndividual.o VCFInfo.o VCFInputFile.o VCFUtil.o bcf.o bcf_index.o bcfutils.o bedidx.o bgen2genoLoader.o bgzf.o knetfile.o kstring.o plink2genoLoader.o rvMetaLoader.o scbcf2genoLoader.o scvcf2genoLoader.o seqForStat.o seqminer.o seqminer_init.o tabixLoader.o tabix_index.o vcf.o vcf2genoLoader.o -lz -lm -lbz2 -lzstd -lsqlite3 -lzstd -lsqlite3
+installing to /tmp/th798/7340693/R-devel/1434/library/00LOCK-seqminer/00new/seqminer/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (seqminer)
+* installing *source* package 'SKAT' ...
+** package 'SKAT' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Binary_ComputeExact.cpp -o Binary_ComputeExact.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Binary_ComputeExactMC.cpp -o Binary_ComputeExactMC.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Binary_ComputeExactSKATO.cpp -o Binary_ComputeExactSKATO.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Binary_HyperGeo.cpp -o Binary_HyperGeo.o
+g++ -std=gnu++17 -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Binary_Permu_SKAT.cpp -o Binary_Permu_SKAT.o
+In file included from Binary_Permu_SKAT.cpp:4:
+/home/th798/R/R-devel/include/Rmath.h:210:15: error: 'std::Rf_beta' has not been declared
+ #define beta  Rf_beta
+               ^~~~~~~
+make: *** [/home/th798/R/R-devel/etc/Makeconf:200: Binary_Permu_SKAT.o] Error 1
+ERROR: compilation failed for package 'SKAT'
+* removing '/tmp/th798/7340693/R-devel/1434/library/SKAT'
+ERROR: dependency 'SKAT' is not available for package 'WGScan'
+* removing '/tmp/th798/7340693/R-devel/1434/library/WGScan'
+
+The downloaded source packages are in
+	'/tmp/th798/7340693/RtmpePR5qG/downloaded_packages'
+Warning messages:
+1: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'SKAT' had non-zero exit status
+2: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'WGScan' had non-zero exit status
+> cat("Time to install revdep:\n")
+Time to install revdep:
+> print(install.time)
+   user  system elapsed 
+ 51.171   5.243  59.523 
+> downloaded_packages <- file.path(
++   tempdir(),
++   "downloaded_packages")
+> dl.glob <- file.path(
++   downloaded_packages,
++   paste0(rev.dep,"_*.tar.gz"))
+> rev.dep.dl.row <- cbind(rev.dep, Sys.glob(dl.glob))
+> colnames(rev.dep.dl.row) <- c("pkg","path")
+> rev.dep.release.tar.gz <- normalizePath(rev.dep.dl.row[,"path"], mustWork=TRUE)
+> pkg.Rcheck <- paste0(rev.dep, ".Rcheck")
+> 
+> proj.dir <- "~/genomic-ml/data.table-revdeps"
+> source(file.path(proj.dir, "myStatus.R"))
+> Rvers <- gsub("[()]", "", gsub(" ", "_", R.version[["version.string"]]))
+> dir.create(Rvers, showWarnings=FALSE)
+> Rcheck.list <- list()
+> for(dt.version.short in c("release", "master")){
++   dt.tar.gz <- cargs[[dt.version.short]]
++   dt.version <- gsub(".tar.gz|/.*?_", "", dt.tar.gz)
++   install.packages(dt.tar.gz, repos=NULL)
++   check.cmd <- get_check_cmd(rev.dep.release.tar.gz)
++   system(check.cmd)
++   dest.Rcheck <- file.path(
++     Rvers,
++     paste0(dt.version, ".Rcheck"))
++   unlink(dest.Rcheck, recursive=TRUE)
++   file.rename(pkg.Rcheck, dest.Rcheck)
++   Rcheck.list[[dt.version]] <- file.path(dest.Rcheck, "00check.log")
++ }
+Installing package into '/tmp/th798/7340693/R-devel/1434/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** package 'data.table' successfully unpacked and MD5 sums checked
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o ijoin.o init.o inrange.o nafill.o nqrecreateindices.o openmp-utils.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7340693/R-devel/1434/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7340693/R-devel/1434/WGScan.Rcheck'
+* using R Under development (unstable) (2024-01-20 r85814)
+* using platform: x86_64-pc-linux-gnu
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'WGScan/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'WGScan' version '0.1'
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'SKAT'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7340693/R-devel/1434/WGScan.Rcheck/00check.log'
+for details.
+
+Installing package into '/tmp/th798/7340693/R-devel/1434/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c idatetime.c -o idatetime.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c negate.c -o negate.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c programming.c -o programming.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o idatetime.o ijoin.o init.o inrange.o nafill.o negate.o nqrecreateindices.o openmp-utils.o programming.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7340693/R-devel/1434/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7340693/R-devel/1434/WGScan.Rcheck'
+* using R Under development (unstable) (2024-01-20 r85814)
+* using platform: x86_64-pc-linux-gnu
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'WGScan/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'WGScan' version '0.1'
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'SKAT'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7340693/R-devel/1434/WGScan.Rcheck/00check.log'
+for details.
+
+> system(paste(c("diff -u", Rcheck.list), collapse=" "))
+> library(data.table, lib.loc=R.home("library"))
+> (sig.diff.dt <- myDiff(Rvers))
+Empty data.table (0 rows and 3 cols): checking,master,release
+> 
+> ## If there are significant differences, use git bisect to find when
+> ## they started.
+> if(nrow(sig.diff.dt)){
++   dt.git <- file.path(task.dir, "data.table.git")
++   system(paste("git clone ~/R/data.table", dt.git))
++   release.tag <- gsub(".tar.gz|.*_", "", cargs[["release"]])
++   rev.parse.cmd <- paste(
++     "cd", dt.git, "&& git rev-parse master")
++   master.sha <- system(rev.parse.cmd, intern=TRUE)
++   merge.base.cmd <- paste(
++     "cd", dt.git, "&& git merge-base master", release.tag)
++   merge.base.sha <- system(merge.base.cmd, intern=TRUE)
++   old.sha <- merge.base.sha
++   run_R <- file.path(proj.dir, "install_dt_then_check_dep.R")
++   sig.diff.dt[, first.bad.commit := NA_character_]
++   sig.diff.dt[, comments := NA_character_]
++   for(diff.i in 1:nrow(sig.diff.dt)){
++     sig.diff.row <- sig.diff.dt[diff.i]
++     bisect.cmd <- paste(
++       "cd", dt.git, "&&",
++       "git bisect start &&",
++       "git bisect old", old.sha, "&&",
++       "git bisect new master &&",
++       "git bisect run",
++       R.home('bin/Rscript'),
++       run_R,
++       shQuote(sig.diff.row$checking),
++       sig.diff.row$release,
++       rev.dep.release.tar.gz,
++       release.tag)
++     print(bisect.cmd)
++     bisect.out <- system(bisect.cmd, intern=TRUE)
++     cat(bisect.out,sep="\n")
++     first.bad.sha <- nc::capture_all_str(
++       bisect.out,
++       sha="[0-9a-f]+",
++       " is the first new commit")$sha
++     parent.cmd <- paste(
++       "cd ~/R/data.table && git log --pretty=%P -n 1",
++       first.bad.sha)
++     parent.sha <- system(parent.cmd, intern=TRUE)
++     sig.diff.dt[diff.i, first.bad.commit := first.bad.sha]
++     parent.msg <- paste0("parent=", parent.sha)
++     this.comment <- if(parent.sha==old.sha){
++       paste(parent.msg, "same as git bisect old")
++     }else if(first.bad.sha==master.sha){
++       paste("same as git bisect new=master,", parent.msg)
++     }else{
++       parent.msg
++     }
++     sig.diff.dt[diff.i, comments := this.comment]
++   }
++   ## add CRAN column.
++   sig.diff.dt[, CRAN := {
++     flavor <- get_flavor(Rvers)
++     details <- data.table(flavor=unique(flavor))[, {
++       base <- "https://www.r-project.org/nosvn/R.check/"
++       u <- paste0(base, flavor, "/", rev.dep, "-00check.txt")
++       check.txt <- tempfile()
++       tryCatch({
++         download.file(u, check.txt, quiet=TRUE)
++       }, error=function(e){
++         NULL
++       })
++       check.lines <- if(file.exists(check.txt)){
++         readLines(check.txt,encoding="UTF-8")
++       }else{
++         ""
++       }
++       repl.lines <- gsub("[\u2018\u2019]", "'", check.lines)
++       ##gsub("[‘’]", "'", check.lines) does not work with LC_ALL=C.
++       myStatus(line.vec=repl.lines)
++     }, by=flavor]
++     select.dt <- data.table(flavor, checking)
++     details[select.dt, msg, on=.(flavor, checking)]
++   }]
++   dir.create(file.path(job.dir, Rvers))
++   diffs.csv <- file.path(job.dir, Rvers, "significant_differences.csv")
++   data.table::fwrite(sig.diff.dt, diffs.csv)
++   print(sig.diff.dt)
++ }
+> 
+WARNING: ignoring environment value of R_HOME
+
+R version 4.3.2 (2023-10-31) -- "Eye Holes"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> cargs <- commandArgs(trailingOnly=TRUE)
+> if(length(cargs)==0){
++   cargs <- c(
++     "/scratch/th798/data.table-revdeps/2023-06-27/deps.csv",
++     "1294",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_release_1.14.8.tar.gz",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_master_1.14.9.88039186915028ab3c93ccfd8e22c0d1c3534b1a.tar.gz"
++ )
++ }
+> names(cargs) <- c("deps.csv", "task.str", "release", "master")
+> dput(cargs)
+c(deps.csv = "/scratch/th798/data.table-revdeps/2024-01-22/deps.csv", 
+task.str = "1434", release = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_release_1.14.10.tar.gz", 
+master = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_master_1.14.99.cde7333938a590a3cddbda1b02103650e2f55d15.tar.gz"
+)
+> task.dir <- dirname(.libPaths()[1])
+> if(requireNamespace("R.cache"))R.cache::getCachePath()
+Loading required namespace: R.cache
+[1] "/tmp/th798/7340693/R-4.3.2/1434/R.cache"
+> task.id <- as.integer(cargs[["task.str"]])
+> deps.df <- read.csv(cargs[["deps.csv"]])
+> (rev.dep <- deps.df$Package[task.id])
+[1] "WGScan"
+> job.dir <- file.path(dirname(cargs[["deps.csv"]]), "tasks", task.id)
+> setwd(task.dir)
+> .libPaths()
+[1] "/tmp/th798/7340693/R-4.3.2/1434/library"
+[2] "/projects/genomic-ml/R/R-4.3.2/library" 
+> options(repos=c(
++   "http://www.bioconductor.org/packages/release/bioc",
++   CRAN="http://cloud.r-project.org"))
+> 
+> install.time <- system.time({
++   install.packages(rev.dep, dep=TRUE)
++ })
+Installing package into '/tmp/th798/7340693/R-4.3.2/1434/library'
+(as 'lib' is unspecified)
+also installing the dependencies 'SPAtest', 'SKAT', 'seqminer'
+
+trying URL 'http://cloud.r-project.org/src/contrib/SPAtest_3.1.2.tar.gz'
+Content type 'application/x-gzip' length 13683 bytes (13 KB)
+==================================================
+downloaded 13 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/SKAT_2.2.5.tar.gz'
+Content type 'application/x-gzip' length 1272492 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/seqminer_9.3.tar.gz'
+Content type 'application/x-gzip' length 8620222 bytes (8.2 MB)
+==================================================
+downloaded 8.2 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/WGScan_0.1.tar.gz'
+Content type 'application/x-gzip' length 53277 bytes (52 KB)
+==================================================
+downloaded 52 KB
+
+* installing *source* package 'SPAtest' ...
+** package 'SPAtest' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SPAtest)
+* installing *source* package 'seqminer' ...
+** package 'seqminer' successfully unpacked and MD5 sums checked
+** using staged installation
+configure: CC = gcc
+configure: CFLAGS = -g -O2
+configure: CXX = g++ -std=gnu++11
+configure: CXXFLAGS = -g -O2
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ -std=gnu++11 accepts -g... yes
+checking how to run the C++ preprocessor... g++ -std=gnu++11 -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for BZ2_bzDecompressInit in -lbz2... yes
+checking bzlib.h usability... yes
+checking bzlib.h presence... yes
+checking for bzlib.h... yes
+configure: Will use system-wide bzip2 library
+checking for ZSTD_compress in -lzstd... yes
+checking zstd.h usability... yes
+checking zstd.h presence... yes
+checking for zstd.h... yes
+configure: Will use system-wide zstd library
+checking for sqlite3_open in -lsqlite3... yes
+checking sqlite3.h usability... yes
+checking sqlite3.h presence... yes
+checking for sqlite3.h... yes
+configure: Will use system-wide sqlite library
+checking for regcomp in -lc... yes
+checking regex.h usability... yes
+checking regex.h presence... yes
+checking for regex.h... yes
+checking for working REG_STARTEND... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating src/config.h
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+using C++17
+have bzip2
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c BCFReader.cpp -o BCFReader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c BGenFile.cpp -o BGenFile.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c BGenIndex.cpp -o BGenIndex.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c BGenVariant.cpp -o BGenVariant.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Exception.cpp -o Exception.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c FileIO.cpp -o FileIO.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c GeneLoader.cpp -o GeneLoader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c MmapFile.cpp -o MmapFile.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PatternMatch.cpp -o PatternMatch.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PeopleSet.cpp -o PeopleSet.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PlinkInputFile.cpp -o PlinkInputFile.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c PlinkOutputFile.cpp -o PlinkOutputFile.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Profiler.cpp -o Profiler.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c R_CPP_interface.cpp -o R_CPP_interface.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c RangeList.cpp -o RangeList.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Rannotation.cpp -o Rannotation.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SimpleMatrix.cpp -o SimpleMatrix.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SingleChromosomeBCFIndex.cpp -o SingleChromosomeBCFIndex.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c SingleChromosomeVCFIndex.cpp -o SingleChromosomeVCFIndex.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c TypeConversion.cpp -o TypeConversion.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Utils.cpp -o Utils.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c VCFHeader.cpp -o VCFHeader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c VCFIndividual.cpp -o VCFIndividual.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c VCFInfo.cpp -o VCFInfo.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c VCFInputFile.cpp -o VCFInputFile.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c VCFUtil.cpp -o VCFUtil.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c bcf.c -o bcf.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c bcf_index.c -o bcf_index.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c bcfutils.c -o bcfutils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c bedidx.c -o bedidx.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c bgen2genoLoader.cpp -o bgen2genoLoader.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c bgzf.c -o bgzf.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c knetfile.c -o knetfile.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c kstring.c -o kstring.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c plink2genoLoader.cpp -o plink2genoLoader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c rvMetaLoader.cpp -o rvMetaLoader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scbcf2genoLoader.cpp -o scbcf2genoLoader.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c scvcf2genoLoader.cpp -o scvcf2genoLoader.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c seqForStat.c -o seqForStat.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c seqminer.c -o seqminer.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c seqminer_init.c -o seqminer_init.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c tabixLoader.cpp -o tabixLoader.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c tabix_index.c -o tabix_index.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -D_USE_KNETFILE -I. -g -O2 -fpic  -g -O2  -c vcf.c -o vcf.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -D_USE_KNETFILE -I. -g -O2 -I. -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -Izstd/lib -Izstd/lib/common -DXXH_NAMESPACE=ZSTD_ -Izstd/lib/legacy -DZSTD_LEGACY_SUPPORT=5  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c vcf2genoLoader.cpp -o vcf2genoLoader.o
+g++ -std=gnu++17 -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o seqminer.so BCFReader.o BGenFile.o BGenIndex.o BGenVariant.o Exception.o FileIO.o GeneLoader.o MmapFile.o PatternMatch.o PeopleSet.o PlinkInputFile.o PlinkOutputFile.o Profiler.o R_CPP_interface.o RangeList.o Rannotation.o SimpleMatrix.o SingleChromosomeBCFIndex.o SingleChromosomeVCFIndex.o TypeConversion.o Utils.o VCFHeader.o VCFIndividual.o VCFInfo.o VCFInputFile.o VCFUtil.o bcf.o bcf_index.o bcfutils.o bedidx.o bgen2genoLoader.o bgzf.o knetfile.o kstring.o plink2genoLoader.o rvMetaLoader.o scbcf2genoLoader.o scvcf2genoLoader.o seqForStat.o seqminer.o seqminer_init.o tabixLoader.o tabix_index.o vcf.o vcf2genoLoader.o -lz -lm -lbz2 -lzstd -lsqlite3 -lzstd -lsqlite3
+installing to /tmp/th798/7340693/R-4.3.2/1434/library/00LOCK-seqminer/00new/seqminer/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (seqminer)
+* installing *source* package 'SKAT' ...
+** package 'SKAT' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: 'g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Binary_ComputeExact.cpp -o Binary_ComputeExact.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Binary_ComputeExactMC.cpp -o Binary_ComputeExactMC.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Binary_ComputeExactSKATO.cpp -o Binary_ComputeExactSKATO.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Binary_HyperGeo.cpp -o Binary_HyperGeo.o
+g++ -std=gnu++17 -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Binary_Permu_SKAT.cpp -o Binary_Permu_SKAT.o
+In file included from Binary_Permu_SKAT.cpp:4:
+/home/th798/R/R-4.3.2/include/Rmath.h:210:15: error: 'std::Rf_beta' has not been declared
+ #define beta  Rf_beta
+               ^~~~~~~
+make: *** [/home/th798/R/R-4.3.2/etc/Makeconf:200: Binary_Permu_SKAT.o] Error 1
+ERROR: compilation failed for package 'SKAT'
+* removing '/tmp/th798/7340693/R-4.3.2/1434/library/SKAT'
+ERROR: dependency 'SKAT' is not available for package 'WGScan'
+* removing '/tmp/th798/7340693/R-4.3.2/1434/library/WGScan'
+
+The downloaded source packages are in
+	'/tmp/th798/7340693/RtmpNJQHan/downloaded_packages'
+Warning messages:
+1: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'SKAT' had non-zero exit status
+2: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'WGScan' had non-zero exit status
+> cat("Time to install revdep:\n")
+Time to install revdep:
+> print(install.time)
+   user  system elapsed 
+ 50.964   5.151  59.003 
+> downloaded_packages <- file.path(
++   tempdir(),
++   "downloaded_packages")
+> dl.glob <- file.path(
++   downloaded_packages,
++   paste0(rev.dep,"_*.tar.gz"))
+> rev.dep.dl.row <- cbind(rev.dep, Sys.glob(dl.glob))
+> colnames(rev.dep.dl.row) <- c("pkg","path")
+> rev.dep.release.tar.gz <- normalizePath(rev.dep.dl.row[,"path"], mustWork=TRUE)
+> pkg.Rcheck <- paste0(rev.dep, ".Rcheck")
+> 
+> proj.dir <- "~/genomic-ml/data.table-revdeps"
+> source(file.path(proj.dir, "myStatus.R"))
+> Rvers <- gsub("[()]", "", gsub(" ", "_", R.version[["version.string"]]))
+> dir.create(Rvers, showWarnings=FALSE)
+> Rcheck.list <- list()
+> for(dt.version.short in c("release", "master")){
++   dt.tar.gz <- cargs[[dt.version.short]]
++   dt.version <- gsub(".tar.gz|/.*?_", "", dt.tar.gz)
++   install.packages(dt.tar.gz, repos=NULL)
++   check.cmd <- get_check_cmd(rev.dep.release.tar.gz)
++   system(check.cmd)
++   dest.Rcheck <- file.path(
++     Rvers,
++     paste0(dt.version, ".Rcheck"))
++   unlink(dest.Rcheck, recursive=TRUE)
++   file.rename(pkg.Rcheck, dest.Rcheck)
++   Rcheck.list[[dt.version]] <- file.path(dest.Rcheck, "00check.log")
++ }
+Installing package into '/tmp/th798/7340693/R-4.3.2/1434/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** package 'data.table' successfully unpacked and MD5 sums checked
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o ijoin.o init.o inrange.o nafill.o nqrecreateindices.o openmp-utils.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7340693/R-4.3.2/1434/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7340693/R-4.3.2/1434/WGScan.Rcheck'
+* using R version 4.3.2 (2023-10-31)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'WGScan/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'WGScan' version '0.1'
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'SKAT'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7340693/R-4.3.2/1434/WGScan.Rcheck/00check.log'
+for details.
+
+Installing package into '/tmp/th798/7340693/R-4.3.2/1434/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c idatetime.c -o idatetime.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c negate.c -o negate.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c programming.c -o programming.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o idatetime.o ijoin.o init.o inrange.o nafill.o negate.o nqrecreateindices.o openmp-utils.o programming.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7340693/R-4.3.2/1434/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7340693/R-4.3.2/1434/WGScan.Rcheck'
+* using R version 4.3.2 (2023-10-31)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'WGScan/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'WGScan' version '0.1'
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'SKAT'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7340693/R-4.3.2/1434/WGScan.Rcheck/00check.log'
+for details.
+
+> system(paste(c("diff -u", Rcheck.list), collapse=" "))
+> library(data.table, lib.loc=R.home("library"))
+> (sig.diff.dt <- myDiff(Rvers))
+Empty data.table (0 rows and 3 cols): checking,master,release
+> 
+> ## If there are significant differences, use git bisect to find when
+> ## they started.
+> if(nrow(sig.diff.dt)){
++   dt.git <- file.path(task.dir, "data.table.git")
++   system(paste("git clone ~/R/data.table", dt.git))
++   release.tag <- gsub(".tar.gz|.*_", "", cargs[["release"]])
++   rev.parse.cmd <- paste(
++     "cd", dt.git, "&& git rev-parse master")
++   master.sha <- system(rev.parse.cmd, intern=TRUE)
++   merge.base.cmd <- paste(
++     "cd", dt.git, "&& git merge-base master", release.tag)
++   merge.base.sha <- system(merge.base.cmd, intern=TRUE)
++   old.sha <- merge.base.sha
++   run_R <- file.path(proj.dir, "install_dt_then_check_dep.R")
++   sig.diff.dt[, first.bad.commit := NA_character_]
++   sig.diff.dt[, comments := NA_character_]
++   for(diff.i in 1:nrow(sig.diff.dt)){
++     sig.diff.row <- sig.diff.dt[diff.i]
++     bisect.cmd <- paste(
++       "cd", dt.git, "&&",
++       "git bisect start &&",
++       "git bisect old", old.sha, "&&",
++       "git bisect new master &&",
++       "git bisect run",
++       R.home('bin/Rscript'),
++       run_R,
++       shQuote(sig.diff.row$checking),
++       sig.diff.row$release,
++       rev.dep.release.tar.gz,
++       release.tag)
++     print(bisect.cmd)
++     bisect.out <- system(bisect.cmd, intern=TRUE)
++     cat(bisect.out,sep="\n")
++     first.bad.sha <- nc::capture_all_str(
++       bisect.out,
++       sha="[0-9a-f]+",
++       " is the first new commit")$sha
++     parent.cmd <- paste(
++       "cd ~/R/data.table && git log --pretty=%P -n 1",
++       first.bad.sha)
++     parent.sha <- system(parent.cmd, intern=TRUE)
++     sig.diff.dt[diff.i, first.bad.commit := first.bad.sha]
++     parent.msg <- paste0("parent=", parent.sha)
++     this.comment <- if(parent.sha==old.sha){
++       paste(parent.msg, "same as git bisect old")
++     }else if(first.bad.sha==master.sha){
++       paste("same as git bisect new=master,", parent.msg)
++     }else{
++       parent.msg
++     }
++     sig.diff.dt[diff.i, comments := this.comment]
++   }
++   ## add CRAN column.
++   sig.diff.dt[, CRAN := {
++     flavor <- get_flavor(Rvers)
++     details <- data.table(flavor=unique(flavor))[, {
++       base <- "https://www.r-project.org/nosvn/R.check/"
++       u <- paste0(base, flavor, "/", rev.dep, "-00check.txt")
++       check.txt <- tempfile()
++       tryCatch({
++         download.file(u, check.txt, quiet=TRUE)
++       }, error=function(e){
++         NULL
++       })
++       check.lines <- if(file.exists(check.txt)){
++         readLines(check.txt,encoding="UTF-8")
++       }else{
++         ""
++       }
++       repl.lines <- gsub("[\u2018\u2019]", "'", check.lines)
++       ##gsub("[‘’]", "'", check.lines) does not work with LC_ALL=C.
++       myStatus(line.vec=repl.lines)
++     }, by=flavor]
++     select.dt <- data.table(flavor, checking)
++     details[select.dt, msg, on=.(flavor, checking)]
++   }]
++   dir.create(file.path(job.dir, Rvers))
++   diffs.csv <- file.path(job.dir, Rvers, "significant_differences.csv")
++   data.table::fwrite(sig.diff.dt, diffs.csv)
++   print(sig.diff.dt)
++ }
+> 

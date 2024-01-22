@@ -1,0 +1,2169 @@
+
+Note: the module "R" cannot be unloaded because it was not loaded.
+
+WARNING: ignoring environment value of R_HOME
+
+R Under development (unstable) (2024-01-20 r85814) -- "Unsuffered Consequences"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> cargs <- commandArgs(trailingOnly=TRUE)
+> if(length(cargs)==0){
++   cargs <- c(
++     "/scratch/th798/data.table-revdeps/2023-06-27/deps.csv",
++     "1294",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_release_1.14.8.tar.gz",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_master_1.14.9.88039186915028ab3c93ccfd8e22c0d1c3534b1a.tar.gz"
++ )
++ }
+> names(cargs) <- c("deps.csv", "task.str", "release", "master")
+> dput(cargs)
+c(deps.csv = "/scratch/th798/data.table-revdeps/2024-01-22/deps.csv", 
+task.str = "113", release = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_release_1.14.10.tar.gz", 
+master = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_master_1.14.99.cde7333938a590a3cddbda1b02103650e2f55d15.tar.gz"
+)
+> task.dir <- dirname(.libPaths()[1])
+> if(requireNamespace("R.cache"))R.cache::getCachePath()
+Loading required namespace: R.cache
+[1] "/tmp/th798/7339335/R-devel/113/R.cache"
+> task.id <- as.integer(cargs[["task.str"]])
+> deps.df <- read.csv(cargs[["deps.csv"]])
+> (rev.dep <- deps.df$Package[task.id])
+[1] "bratteli"
+> job.dir <- file.path(dirname(cargs[["deps.csv"]]), "tasks", task.id)
+> setwd(task.dir)
+> .libPaths()
+[1] "/tmp/th798/7339335/R-devel/113/library"
+[2] "/projects/genomic-ml/R/R-devel/library"
+> options(repos=c(
++   "http://www.bioconductor.org/packages/release/bioc",
++   CRAN="http://cloud.r-project.org"))
+> 
+> install.time <- system.time({
++   install.packages(rev.dep, dep=TRUE)
++ })
+Installing package into '/tmp/th798/7339335/R-devel/113/library'
+(as 'lib' is unspecified)
+also installing the dependencies 'registry', 'ECOSolveR', 'scs', 'osqp', 'listcomp', 'ROI', 'CVXR', 'rcdd', 'Rglpk', 'ompr', 'ompr.roi', 'ROI.plugin.glpk', 'kantorovich'
+
+trying URL 'http://cloud.r-project.org/src/contrib/registry_0.5-1.tar.gz'
+Content type 'application/x-gzip' length 170969 bytes (166 KB)
+==================================================
+downloaded 166 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/ECOSolveR_0.5.5.tar.gz'
+Content type 'application/x-gzip' length 2191501 bytes (2.1 MB)
+==================================================
+downloaded 2.1 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/scs_3.2.4.tar.gz'
+Content type 'application/x-gzip' length 2374708 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/osqp_0.6.3.2.tar.gz'
+Content type 'application/x-gzip' length 144332 bytes (140 KB)
+==================================================
+downloaded 140 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/listcomp_0.4.1.tar.gz'
+Content type 'application/x-gzip' length 5654 bytes
+==================================================
+downloaded 5654 bytes
+
+trying URL 'http://cloud.r-project.org/src/contrib/ROI_1.0-1.tar.gz'
+Content type 'application/x-gzip' length 112839 bytes (110 KB)
+==================================================
+downloaded 110 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/CVXR_1.0-11.tar.gz'
+Content type 'application/x-gzip' length 997402 bytes (974 KB)
+==================================================
+downloaded 974 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/rcdd_1.6.tar.gz'
+Content type 'application/x-gzip' length 744363 bytes (726 KB)
+==================================================
+downloaded 726 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/Rglpk_0.6-5.1.tar.gz'
+Content type 'application/x-gzip' length 22100 bytes (21 KB)
+==================================================
+downloaded 21 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/ompr_1.0.4.tar.gz'
+Content type 'application/x-gzip' length 46843 bytes (45 KB)
+==================================================
+downloaded 45 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/ompr.roi_1.0.2.tar.gz'
+Content type 'application/x-gzip' length 6540 bytes
+==================================================
+downloaded 6540 bytes
+
+trying URL 'http://cloud.r-project.org/src/contrib/ROI.plugin.glpk_1.0-0.tar.gz'
+Content type 'application/x-gzip' length 4957 bytes
+==================================================
+downloaded 4957 bytes
+
+trying URL 'http://cloud.r-project.org/src/contrib/kantorovich_3.1.0.tar.gz'
+Content type 'application/x-gzip' length 26138 bytes (25 KB)
+==================================================
+downloaded 25 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/bratteli_1.0.0.tar.gz'
+Content type 'application/x-gzip' length 7253 bytes
+==================================================
+downloaded 7253 bytes
+
+* installing *source* package 'registry' ...
+** package 'registry' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (registry)
+* installing *source* package 'ECOSolveR' ...
+** package 'ECOSolveR' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+(cp -f ecos-2954b2a-changes/include/* ecos/include && \
+cp -f ecos-2954b2a-changes/ecos_bb/* ecos/ecos_bb && \
+cp -f ecos-2954b2a-changes/Makefile ecos && \
+cp -f ecos-2954b2a-changes/ecos-unix.mk ecos/ecos.mk && \
+(cd ecos && \
+make libecos.a CC="gcc" CFLAGS="-g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config" AR="ar" RANLIB="ranlib" && \
+make libecos_bb.a CC="gcc" CFLAGS="-g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config" AR="ar" RANLIB="ranlib") && \
+touch ecos.ts)
+/usr/bin/cp -f ecos-2954b2a-changes/include/ecos_bb.h ecos-2954b2a-changes/include/glblopts.h ecos/include
+/usr/bin/cp -f ecos-2954b2a-changes/ecos_bb/ecos_bb.c ecos-2954b2a-changes/ecos_bb/ecos_bb_preproc.c ecos/ecos_bb
+/usr/bin/cp -f ecos-2954b2a-changes/Makefile ecos
+/usr/bin/cp -f ecos-2954b2a-changes/ecos-unix.mk ecos/ecos.mk
+make[1]: Entering directory '/tmp/th798/7339335/Rtmpv0HvWv/R.INSTALL12468d73d09341/ECOSolveR/src/ecos'
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/ecos.c -o ecos.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/kkt.c -o kkt.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/cone.c -o cone.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/spla.c -o spla.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/ctrlc.c -o ctrlc.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/timer.c -o timer.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/preproc.c -o preproc.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/splamm.c -o splamm.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/equil.c -o equil.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/expcone.c -o expcone.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/wright_omega.c -o wright_omega.o
+( cd external/ldl    ; make )
+make[2]: Entering directory '/tmp/th798/7339335/Rtmpv0HvWv/R.INSTALL12468d73d09341/ECOSolveR/src/ecos/external/ldl'
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -I../SuiteSparse_config -Iinclude -c src/ldl.c -o ldl.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -I../SuiteSparse_config -Iinclude -DLDL_LONG -c src/ldl.c -o ldll.o
+ar rv  libldl.a ldl.o ldll.o
+ar: creating libldl.a
+a - ldl.o
+a - ldll.o
+ranlib libldl.a
+make[2]: Leaving directory '/tmp/th798/7339335/Rtmpv0HvWv/R.INSTALL12468d73d09341/ECOSolveR/src/ecos/external/ldl'
+ar -x external/ldl/libldl.a
+( cd external/amd    ; make )
+make[2]: Entering directory '/tmp/th798/7339335/Rtmpv0HvWv/R.INSTALL12468d73d09341/ECOSolveR/src/ecos/external/amd'
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -c src/amd_global.c -o amd_global.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_aat.c -o amd_i_aat.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_1.c -o amd_i_1.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_2.c -o amd_i_2.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_dump.c -o amd_i_dump.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_postorder.c -o amd_i_postorder.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_post_tree.c -o amd_i_post_tree.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_defaults.c -o amd_i_defaults.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_order.c -o amd_i_order.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_control.c -o amd_i_control.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_info.c -o amd_i_info.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_valid.c -o amd_i_valid.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_preprocess.c -o amd_i_preprocess.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_aat.c -o amd_l_aat.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_1.c -o amd_l_1.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_2.c -o amd_l_2.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_dump.c -o amd_l_dump.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_postorder.c -o amd_l_postorder.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_post_tree.c -o amd_l_post_tree.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_defaults.c -o amd_l_defaults.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_order.c -o amd_l_order.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_control.c -o amd_l_control.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_info.c -o amd_l_info.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_valid.c -o amd_l_valid.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_preprocess.c -o amd_l_preprocess.o
+ar rv libamd.a amd_global.o amd_i_aat.o amd_i_1.o amd_i_2.o amd_i_dump.o amd_i_postorder.o amd_i_post_tree.o amd_i_defaults.o amd_i_order.o amd_i_control.o amd_i_info.o amd_i_valid.o amd_i_preprocess.o amd_l_aat.o amd_l_1.o amd_l_2.o amd_l_dump.o amd_l_postorder.o amd_l_post_tree.o amd_l_defaults.o amd_l_order.o amd_l_control.o amd_l_info.o amd_l_valid.o amd_l_preprocess.o
+ar: creating libamd.a
+a - amd_global.o
+a - amd_i_aat.o
+a - amd_i_1.o
+a - amd_i_2.o
+a - amd_i_dump.o
+a - amd_i_postorder.o
+a - amd_i_post_tree.o
+a - amd_i_defaults.o
+a - amd_i_order.o
+a - amd_i_control.o
+a - amd_i_info.o
+a - amd_i_valid.o
+a - amd_i_preprocess.o
+a - amd_l_aat.o
+a - amd_l_1.o
+a - amd_l_2.o
+a - amd_l_dump.o
+a - amd_l_postorder.o
+a - amd_l_post_tree.o
+a - amd_l_defaults.o
+a - amd_l_order.o
+a - amd_l_control.o
+a - amd_l_info.o
+a - amd_l_valid.o
+a - amd_l_preprocess.o
+ranlib libamd.a
+make[2]: Leaving directory '/tmp/th798/7339335/Rtmpv0HvWv/R.INSTALL12468d73d09341/ECOSolveR/src/ecos/external/amd'
+ar -x external/amd/libamd.a
+ar rv libecos.a ecos.o kkt.o cone.o spla.o ctrlc.o timer.o preproc.o splamm.o equil.o expcone.o wright_omega.o ldll.o amd_l*.o amd_global.o
+ar: creating libecos.a
+a - ecos.o
+a - kkt.o
+a - cone.o
+a - spla.o
+a - ctrlc.o
+a - timer.o
+a - preproc.o
+a - splamm.o
+a - equil.o
+a - expcone.o
+a - wright_omega.o
+a - ldll.o
+a - amd_l_1.o
+a - amd_l_2.o
+a - amd_l_aat.o
+a - amd_l_control.o
+a - amd_l_defaults.o
+a - amd_l_dump.o
+a - amd_l_info.o
+a - amd_l_order.o
+a - amd_l_post_tree.o
+a - amd_l_postorder.o
+a - amd_l_preprocess.o
+a - amd_l_valid.o
+a - amd_global.o
+ranlib libecos.a
+make[1]: Leaving directory '/tmp/th798/7339335/Rtmpv0HvWv/R.INSTALL12468d73d09341/ECOSolveR/src/ecos'
+make[1]: Entering directory '/tmp/th798/7339335/Rtmpv0HvWv/R.INSTALL12468d73d09341/ECOSolveR/src/ecos'
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c ecos_bb/ecos_bb_preproc.c -o ecos_bb_preproc.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c ecos_bb/ecos_bb.c -o ecos_bb.o
+ar rv libecos_bb.a ecos.o kkt.o cone.o spla.o ctrlc.o timer.o preproc.o splamm.o equil.o expcone.o wright_omega.o ecos_bb_preproc.o ecos_bb.o ldll.o amd_l_1.o amd_l_defaults.o amd_l_valid.o amd_l_post_tree.o amd_l_2.o amd_l_postorder.o amd_l_info.o amd_l_preprocess.o amd_l_order.o amd_l_dump.o amd_l_control.o amd_l_aat.o amd_global.o
+ar: creating libecos_bb.a
+a - ecos.o
+a - kkt.o
+a - cone.o
+a - spla.o
+a - ctrlc.o
+a - timer.o
+a - preproc.o
+a - splamm.o
+a - equil.o
+a - expcone.o
+a - wright_omega.o
+a - ecos_bb_preproc.o
+a - ecos_bb.o
+a - ldll.o
+a - amd_l_1.o
+a - amd_l_defaults.o
+a - amd_l_valid.o
+a - amd_l_post_tree.o
+a - amd_l_2.o
+a - amd_l_postorder.o
+a - amd_l_info.o
+a - amd_l_preprocess.o
+a - amd_l_order.o
+a - amd_l_dump.o
+a - amd_l_control.o
+a - amd_l_aat.o
+a - amd_global.o
+ranlib libecos_bb.a
+make[1]: Leaving directory '/tmp/th798/7339335/Rtmpv0HvWv/R.INSTALL12468d73d09341/ECOSolveR/src/ecos'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -fpic  -g -O2  -c ecosolve.c -o ecosolve.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-devel/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -fpic  -g -O2  -c ecosolver_init.c -o ecosolver_init.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o ECOSolveR.so ecosolve.o ecosolver_init.o -Lecos -lecos -lecos_bb
+installing to /tmp/th798/7339335/R-devel/113/library/00LOCK-ECOSolveR/00new/ECOSolveR/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ECOSolveR)
+* installing *source* package 'scs' ...
+** package 'scs' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -O2  -c init.c -o init.o
+(cp -f scs_mods/rw.c scs_mods/scs.c scs/src && \
+cp -f scs_mods/private.c scs/linsys/cpu/direct && \
+cp -f scs_mods/scs.mk scs && \
+(cd scs && \
+(make purge && \
+make out/libscsdir.a CC="gcc" CFLAGS="-g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic " AR="ar" RANLIB="ranlib")) && \
+touch scs.ts)
+/usr/bin/cp -f scs_mods/rw.c scs_mods/scs.c scs/src
+/usr/bin/cp -f scs_mods/private.c scs/linsys/cpu/direct
+/usr/bin/cp -f scs_mods/scs.mk scs
+make[1]: Entering directory '/tmp/th798/7339335/Rtmp2bZOMZ/R.INSTALL12500227263c6/scs/src/scs'
+make[1]: Leaving directory '/tmp/th798/7339335/Rtmp2bZOMZ/R.INSTALL12500227263c6/scs/src/scs'
+make[1]: Entering directory '/tmp/th798/7339335/Rtmp2bZOMZ/R.INSTALL12500227263c6/scs/src/scs'
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK -c src/scs.c -o src/scs.o
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/util.o src/util.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/cones.o src/cones.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/exp_cone.o src/exp_cone.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/aa.o src/aa.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/rw.o src/rw.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/linalg.o src/linalg.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/ctrlc.o src/ctrlc.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/scs_version.o src/scs_version.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/normalize.o src/normalize.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/cpu/direct/private.o linsys/cpu/direct/private.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_control.o linsys/external/amd/amd_control.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_1.o linsys/external/amd/amd_1.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_valid.o linsys/external/amd/amd_valid.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_2.o linsys/external/amd/amd_2.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_post_tree.o linsys/external/amd/amd_post_tree.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_preprocess.o linsys/external/amd/amd_preprocess.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_aat.o linsys/external/amd/amd_aat.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_info.o linsys/external/amd/amd_info.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_global.o linsys/external/amd/amd_global.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_defaults.o linsys/external/amd/amd_defaults.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_postorder.o linsys/external/amd/amd_postorder.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_order.o linsys/external/amd/amd_order.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/SuiteSparse_config.o linsys/external/amd/SuiteSparse_config.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_dump.o linsys/external/amd/amd_dump.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/qdldl/qdldl.o linsys/external/qdldl/qdldl.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/scs_matrix.o linsys/scs_matrix.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/csparse.o linsys/csparse.c
+mkdir -p out
+ar rv out/libscsdir.a src/scs.o src/util.o src/cones.o src/exp_cone.o src/aa.o src/rw.o src/linalg.o src/ctrlc.o src/scs_version.o src/normalize.o linsys/cpu/direct/private.o linsys/external/amd/amd_control.o linsys/external/amd/amd_1.o linsys/external/amd/amd_valid.o linsys/external/amd/amd_2.o linsys/external/amd/amd_post_tree.o linsys/external/amd/amd_preprocess.o linsys/external/amd/amd_aat.o linsys/external/amd/amd_info.o linsys/external/amd/amd_global.o linsys/external/amd/amd_defaults.o linsys/external/amd/amd_postorder.o linsys/external/amd/amd_order.o linsys/external/amd/SuiteSparse_config.o linsys/external/amd/amd_dump.o linsys/external/qdldl/qdldl.o linsys/scs_matrix.o linsys/csparse.o
+ar: creating out/libscsdir.a
+a - src/scs.o
+a - src/util.o
+a - src/cones.o
+a - src/exp_cone.o
+a - src/aa.o
+a - src/rw.o
+a - src/linalg.o
+a - src/ctrlc.o
+a - src/scs_version.o
+a - src/normalize.o
+a - linsys/cpu/direct/private.o
+a - linsys/external/amd/amd_control.o
+a - linsys/external/amd/amd_1.o
+a - linsys/external/amd/amd_valid.o
+a - linsys/external/amd/amd_2.o
+a - linsys/external/amd/amd_post_tree.o
+a - linsys/external/amd/amd_preprocess.o
+a - linsys/external/amd/amd_aat.o
+a - linsys/external/amd/amd_info.o
+a - linsys/external/amd/amd_global.o
+a - linsys/external/amd/amd_defaults.o
+a - linsys/external/amd/amd_postorder.o
+a - linsys/external/amd/amd_order.o
+a - linsys/external/amd/SuiteSparse_config.o
+a - linsys/external/amd/amd_dump.o
+a - linsys/external/qdldl/qdldl.o
+a - linsys/scs_matrix.o
+a - linsys/csparse.o
+ranlib out/libscsdir.a
+make[1]: Leaving directory '/tmp/th798/7339335/Rtmp2bZOMZ/R.INSTALL12500227263c6/scs/src/scs'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -O2  -c scsr.c -o scsr.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o scs.so init.o scsr.o -Lscs/out -lscsdir -L/home/th798/R/R-devel/lib -lRlapack -L/home/th798/R/R-devel/lib -lRblas -lgfortran -lm -lquadmath
+installing to /tmp/th798/7339335/R-devel/113/library/00LOCK-scs/00new/scs/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (scs)
+* installing *source* package 'osqp' ...
+** package 'osqp' successfully unpacked and MD5 sums checked
+** using staged installation
+++ : /home/th798/R/R-devel
+++ test -z /home/th798/R/R-devel
++++ /home/th798/R/R-devel/bin/R CMD config CC
+++ CC=gcc
++++ /home/th798/R/R-devel/bin/R CMD config CFLAGS
+++ CFLAGS='-g -O2'
++++ /home/th798/R/R-devel/bin/R CMD config CPPFLAGS
+++ CPPFLAGS='-I/home/th798/.conda/envs/emacs1/include -I/home/th798/include'
++++ /home/th798/R/R-devel/bin/R CMD config CXX
+++ CXX='g++ -std=gnu++17'
++++ /home/th798/R/R-devel/bin/R CMD config CXXFLAGS
+++ CXXFLAGS='-g -O2'
++++ /home/th798/R/R-devel/bin/R CMD config LDFLAGS
+++ LDFLAGS='-L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64'
++++ command -v cmake
+++ '[' -x /home/th798/.conda/envs/emacs1/bin/cmake ']'
+++ echo 'Making fixes to osqp_sources for CRAN'
+Making fixes to osqp_sources for CRAN
+++ cd src
+++ /home/th798/R/R-devel/bin/Rscript ../inst/58f00bd_fixes/make_fixes.R
+[1] TRUE
+++ echo '-- Trying to build libosqp.a via cmake ...'
+-- Trying to build libosqp.a via cmake ...
+++ cd src/osqp_sources
+++ mkdir -p build
+++ cd build
+++ cmake -DR_HOME=/home/th798/R/R-devel -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS:bool=OFF -DCMAKE_POSITION_INDEPENDENT_CODE:bool=ON -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
+-- The C compiler identification is GNU 8.5.0
+-- The CXX compiler identification is GNU 8.5.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- We are on a Linux system
+-- Embedded is OFF
+-- Printing is ON
+-- Profiling is ON
+-- User interrupt is ON
+-- Floats are OFF
+-- Long integers (64bit) are ON
+-- Code coverage is OFF
+-- MKL Pardiso: ON
+-- We are building the R interface
+-- R exec is: /home/th798/bin/R
+-- R root dir is: WARNING: ignoring environment value of R_HOME
+/home/th798/lib64/R
+-- R includes are in: R_INCLUDE_DIRS-NOTFOUND
+-- Floats are OFF
+-- Long integers (64bit) are ON
+-- Configuring done
+CMake Error: The following variables are used in this project, but they are set to NOTFOUND.
+Please set them or make sure they are set and tested correctly in the CMake files:
+R_INCLUDE_DIRS (ADVANCED)
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/pardiso
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/pardiso
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/pardiso
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/pardiso
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/pardiso
+   used as include directory in directory /tmp/th798/7339335/Rtmpn9ETBU/R.INSTALL1256ef4eec89e0/osqp/src/osqp_sources/lin_sys/direct/pardiso
+
+CMake Error in CMakeLists.txt:
+  Found relative path while evaluating include directories of "osqpstatic":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/CMakeLists.txt:
+  Found relative path while evaluating include directories of
+  "linsys_pardiso":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/qdldl/CMakeLists.txt:
+  Found relative path while evaluating include directories of "linsys_qdldl":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/qdldl/qdldl_sources/CMakeLists.txt:
+  Found relative path while evaluating include directories of "qdldlobject":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/qdldl/qdldl_sources/CMakeLists.txt:
+  Found relative path while evaluating include directories of "qdldlstatic":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/qdldl/qdldl_sources/CMakeLists.txt:
+  Found relative path while evaluating include directories of "qdldl":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/qdldl/qdldl_sources/CMakeLists.txt:
+  Found relative path while evaluating include directories of
+  "qdldl_example":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+-- Generating done
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+ERROR: configuration failed for package 'osqp'
+* removing '/tmp/th798/7339335/R-devel/113/library/osqp'
+* installing *source* package 'listcomp' ...
+** package 'listcomp' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (listcomp)
+* installing *source* package 'rcdd' ...
+** package 'rcdd' successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for __gmpz_init in -lgmp... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c allfaces.c -o allfaces.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c allfaces_f.c -o allfaces_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddcore.c -o cddcore.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddcore_f.c -o cddcore_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddio.c -o cddio.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddio_f.c -o cddio_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddlib.c -o cddlib.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddlib_f.c -o cddlib_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddlp.c -o cddlp.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddlp_f.c -o cddlp_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddmp.c -o cddmp.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddmp_f.c -o cddmp_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddproj.c -o cddproj.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddproj_f.c -o cddproj_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c d2q.c -o d2q.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c die.c -o die.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c linearity.c -o linearity.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c linearity_f.c -o linearity_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c lpcdd.c -o lpcdd.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c lpcdd_f.c -o lpcdd_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c my_unif_rand.c -o my_unif_rand.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c mycddio.c -o mycddio.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c mycddio_f.c -o mycddio_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c nonred.c -o nonred.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c q2d.c -o q2d.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c q2q.c -o q2q.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qgram.c -o qgram.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qmatmult.c -o qmatmult.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qmin.c -o qmin.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qo.c -o qo.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qoq.c -o qoq.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qsign.c -o qsign.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qsump.c -o qsump.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c redund.c -o redund.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c redund_f.c -o redund_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c scdd.c -o scdd.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c scdd_f.c -o scdd_f.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c setoper.c -o setoper.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o rcdd.so allfaces.o allfaces_f.o cddcore.o cddcore_f.o cddio.o cddio_f.o cddlib.o cddlib_f.o cddlp.o cddlp_f.o cddmp.o cddmp_f.o cddproj.o cddproj_f.o d2q.o die.o init.o linearity.o linearity_f.o lpcdd.o lpcdd_f.o my_unif_rand.o mycddio.o mycddio_f.o nonred.o q2d.o q2q.o qgram.o qmatmult.o qmin.o qo.o qoq.o qsign.o qsump.o redund.o redund_f.o scdd.o scdd_f.o setoper.o -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -lgmp
+installing to /tmp/th798/7339335/R-devel/113/library/00LOCK-rcdd/00new/rcdd/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rcdd)
+* installing *source* package 'Rglpk' ...
+** package 'Rglpk' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Rglpk_error.c -o Rglpk_error.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Rglpk_initialize.c -o Rglpk_initialize.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Rglpk_read_file.c -o Rglpk_read_file.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Rglpk_solve.c -o Rglpk_solve.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o Rglpk.so Rglpk_error.o Rglpk_initialize.o Rglpk_read_file.o Rglpk_solve.o init.o -lglpk
+installing to /tmp/th798/7339335/R-devel/113/library/00LOCK-Rglpk/00new/Rglpk/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Rglpk)
+* installing *source* package 'ROI' ...
+** package 'ROI' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ROI)
+ERROR: dependency 'osqp' is not available for package 'CVXR'
+* removing '/tmp/th798/7339335/R-devel/113/library/CVXR'
+* installing *source* package 'ompr' ...
+** package 'ompr' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ompr)
+* installing *source* package 'ompr.roi' ...
+** package 'ompr.roi' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ompr.roi)
+* installing *source* package 'ROI.plugin.glpk' ...
+** package 'ROI.plugin.glpk' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+No man pages found in package  'ROI.plugin.glpk' 
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ROI.plugin.glpk)
+ERROR: dependency 'CVXR' is not available for package 'kantorovich'
+* removing '/tmp/th798/7339335/R-devel/113/library/kantorovich'
+ERROR: dependency 'kantorovich' is not available for package 'bratteli'
+* removing '/tmp/th798/7339335/R-devel/113/library/bratteli'
+
+The downloaded source packages are in
+	'/tmp/th798/7339335/RtmpOBIPtA/downloaded_packages'
+Warning messages:
+1: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'osqp' had non-zero exit status
+2: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'CVXR' had non-zero exit status
+3: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'kantorovich' had non-zero exit status
+4: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'bratteli' had non-zero exit status
+> cat("Time to install revdep:\n")
+Time to install revdep:
+> print(install.time)
+   user  system elapsed 
+ 31.744   6.568  44.288 
+> downloaded_packages <- file.path(
++   tempdir(),
++   "downloaded_packages")
+> dl.glob <- file.path(
++   downloaded_packages,
++   paste0(rev.dep,"_*.tar.gz"))
+> rev.dep.dl.row <- cbind(rev.dep, Sys.glob(dl.glob))
+> colnames(rev.dep.dl.row) <- c("pkg","path")
+> rev.dep.release.tar.gz <- normalizePath(rev.dep.dl.row[,"path"], mustWork=TRUE)
+> pkg.Rcheck <- paste0(rev.dep, ".Rcheck")
+> 
+> proj.dir <- "~/genomic-ml/data.table-revdeps"
+> source(file.path(proj.dir, "myStatus.R"))
+> Rvers <- gsub("[()]", "", gsub(" ", "_", R.version[["version.string"]]))
+> dir.create(Rvers, showWarnings=FALSE)
+> Rcheck.list <- list()
+> for(dt.version.short in c("release", "master")){
++   dt.tar.gz <- cargs[[dt.version.short]]
++   dt.version <- gsub(".tar.gz|/.*?_", "", dt.tar.gz)
++   install.packages(dt.tar.gz, repos=NULL)
++   check.cmd <- get_check_cmd(rev.dep.release.tar.gz)
++   system(check.cmd)
++   dest.Rcheck <- file.path(
++     Rvers,
++     paste0(dt.version, ".Rcheck"))
++   unlink(dest.Rcheck, recursive=TRUE)
++   file.rename(pkg.Rcheck, dest.Rcheck)
++   Rcheck.list[[dt.version]] <- file.path(dest.Rcheck, "00check.log")
++ }
+Installing package into '/tmp/th798/7339335/R-devel/113/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** package 'data.table' successfully unpacked and MD5 sums checked
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o ijoin.o init.o inrange.o nafill.o nqrecreateindices.o openmp-utils.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7339335/R-devel/113/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7339335/R-devel/113/bratteli.Rcheck'
+* using R Under development (unstable) (2024-01-20 r85814)
+* using platform: x86_64-pc-linux-gnu
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'bratteli/DESCRIPTION' ... OK
+* this is package 'bratteli' version '1.0.0'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'kantorovich'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7339335/R-devel/113/bratteli.Rcheck/00check.log'
+for details.
+
+Installing package into '/tmp/th798/7339335/R-devel/113/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c idatetime.c -o idatetime.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c negate.c -o negate.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c programming.c -o programming.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-devel/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o idatetime.o ijoin.o init.o inrange.o nafill.o negate.o nqrecreateindices.o openmp-utils.o programming.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7339335/R-devel/113/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7339335/R-devel/113/bratteli.Rcheck'
+* using R Under development (unstable) (2024-01-20 r85814)
+* using platform: x86_64-pc-linux-gnu
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'bratteli/DESCRIPTION' ... OK
+* this is package 'bratteli' version '1.0.0'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'kantorovich'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7339335/R-devel/113/bratteli.Rcheck/00check.log'
+for details.
+
+> system(paste(c("diff -u", Rcheck.list), collapse=" "))
+> library(data.table, lib.loc=R.home("library"))
+> (sig.diff.dt <- myDiff(Rvers))
+Empty data.table (0 rows and 3 cols): checking,master,release
+> 
+> ## If there are significant differences, use git bisect to find when
+> ## they started.
+> if(nrow(sig.diff.dt)){
++   dt.git <- file.path(task.dir, "data.table.git")
++   system(paste("git clone ~/R/data.table", dt.git))
++   release.tag <- gsub(".tar.gz|.*_", "", cargs[["release"]])
++   rev.parse.cmd <- paste(
++     "cd", dt.git, "&& git rev-parse master")
++   master.sha <- system(rev.parse.cmd, intern=TRUE)
++   merge.base.cmd <- paste(
++     "cd", dt.git, "&& git merge-base master", release.tag)
++   merge.base.sha <- system(merge.base.cmd, intern=TRUE)
++   old.sha <- merge.base.sha
++   run_R <- file.path(proj.dir, "install_dt_then_check_dep.R")
++   sig.diff.dt[, first.bad.commit := NA_character_]
++   sig.diff.dt[, comments := NA_character_]
++   for(diff.i in 1:nrow(sig.diff.dt)){
++     sig.diff.row <- sig.diff.dt[diff.i]
++     bisect.cmd <- paste(
++       "cd", dt.git, "&&",
++       "git bisect start &&",
++       "git bisect old", old.sha, "&&",
++       "git bisect new master &&",
++       "git bisect run",
++       R.home('bin/Rscript'),
++       run_R,
++       shQuote(sig.diff.row$checking),
++       sig.diff.row$release,
++       rev.dep.release.tar.gz,
++       release.tag)
++     print(bisect.cmd)
++     bisect.out <- system(bisect.cmd, intern=TRUE)
++     cat(bisect.out,sep="\n")
++     first.bad.sha <- nc::capture_all_str(
++       bisect.out,
++       sha="[0-9a-f]+",
++       " is the first new commit")$sha
++     parent.cmd <- paste(
++       "cd ~/R/data.table && git log --pretty=%P -n 1",
++       first.bad.sha)
++     parent.sha <- system(parent.cmd, intern=TRUE)
++     sig.diff.dt[diff.i, first.bad.commit := first.bad.sha]
++     parent.msg <- paste0("parent=", parent.sha)
++     this.comment <- if(parent.sha==old.sha){
++       paste(parent.msg, "same as git bisect old")
++     }else if(first.bad.sha==master.sha){
++       paste("same as git bisect new=master,", parent.msg)
++     }else{
++       parent.msg
++     }
++     sig.diff.dt[diff.i, comments := this.comment]
++   }
++   ## add CRAN column.
++   sig.diff.dt[, CRAN := {
++     flavor <- get_flavor(Rvers)
++     details <- data.table(flavor=unique(flavor))[, {
++       base <- "https://www.r-project.org/nosvn/R.check/"
++       u <- paste0(base, flavor, "/", rev.dep, "-00check.txt")
++       check.txt <- tempfile()
++       tryCatch({
++         download.file(u, check.txt, quiet=TRUE)
++       }, error=function(e){
++         NULL
++       })
++       check.lines <- if(file.exists(check.txt)){
++         readLines(check.txt,encoding="UTF-8")
++       }else{
++         ""
++       }
++       repl.lines <- gsub("[\u2018\u2019]", "'", check.lines)
++       ##gsub("[‘’]", "'", check.lines) does not work with LC_ALL=C.
++       myStatus(line.vec=repl.lines)
++     }, by=flavor]
++     select.dt <- data.table(flavor, checking)
++     details[select.dt, msg, on=.(flavor, checking)]
++   }]
++   dir.create(file.path(job.dir, Rvers))
++   diffs.csv <- file.path(job.dir, Rvers, "significant_differences.csv")
++   data.table::fwrite(sig.diff.dt, diffs.csv)
++   print(sig.diff.dt)
++ }
+> 
+WARNING: ignoring environment value of R_HOME
+
+R version 4.3.2 (2023-10-31) -- "Eye Holes"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> cargs <- commandArgs(trailingOnly=TRUE)
+> if(length(cargs)==0){
++   cargs <- c(
++     "/scratch/th798/data.table-revdeps/2023-06-27/deps.csv",
++     "1294",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_release_1.14.8.tar.gz",
++     "/scratch/th798/data.table-revdeps/2023-06-27/data.table_master_1.14.9.88039186915028ab3c93ccfd8e22c0d1c3534b1a.tar.gz"
++ )
++ }
+> names(cargs) <- c("deps.csv", "task.str", "release", "master")
+> dput(cargs)
+c(deps.csv = "/scratch/th798/data.table-revdeps/2024-01-22/deps.csv", 
+task.str = "113", release = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_release_1.14.10.tar.gz", 
+master = "/scratch/th798/data.table-revdeps/2024-01-22/data.table_master_1.14.99.cde7333938a590a3cddbda1b02103650e2f55d15.tar.gz"
+)
+> task.dir <- dirname(.libPaths()[1])
+> if(requireNamespace("R.cache"))R.cache::getCachePath()
+Loading required namespace: R.cache
+[1] "/tmp/th798/7339335/R-4.3.2/113/R.cache"
+> task.id <- as.integer(cargs[["task.str"]])
+> deps.df <- read.csv(cargs[["deps.csv"]])
+> (rev.dep <- deps.df$Package[task.id])
+[1] "bratteli"
+> job.dir <- file.path(dirname(cargs[["deps.csv"]]), "tasks", task.id)
+> setwd(task.dir)
+> .libPaths()
+[1] "/tmp/th798/7339335/R-4.3.2/113/library"
+[2] "/projects/genomic-ml/R/R-4.3.2/library"
+> options(repos=c(
++   "http://www.bioconductor.org/packages/release/bioc",
++   CRAN="http://cloud.r-project.org"))
+> 
+> install.time <- system.time({
++   install.packages(rev.dep, dep=TRUE)
++ })
+Installing package into '/tmp/th798/7339335/R-4.3.2/113/library'
+(as 'lib' is unspecified)
+also installing the dependencies 'registry', 'ECOSolveR', 'scs', 'osqp', 'listcomp', 'ROI', 'CVXR', 'lpSolve', 'rcdd', 'Rglpk', 'ompr', 'ompr.roi', 'ROI.plugin.glpk', 'kantorovich'
+
+trying URL 'http://cloud.r-project.org/src/contrib/registry_0.5-1.tar.gz'
+Content type 'application/x-gzip' length 170969 bytes (166 KB)
+==================================================
+downloaded 166 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/ECOSolveR_0.5.5.tar.gz'
+Content type 'application/x-gzip' length 2191501 bytes (2.1 MB)
+==================================================
+downloaded 2.1 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/scs_3.2.4.tar.gz'
+Content type 'application/x-gzip' length 2374708 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+trying URL 'http://cloud.r-project.org/src/contrib/osqp_0.6.3.2.tar.gz'
+Content type 'application/x-gzip' length 144332 bytes (140 KB)
+==================================================
+downloaded 140 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/listcomp_0.4.1.tar.gz'
+Content type 'application/x-gzip' length 5654 bytes
+==================================================
+downloaded 5654 bytes
+
+trying URL 'http://cloud.r-project.org/src/contrib/ROI_1.0-1.tar.gz'
+Content type 'application/x-gzip' length 112839 bytes (110 KB)
+==================================================
+downloaded 110 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/CVXR_1.0-11.tar.gz'
+Content type 'application/x-gzip' length 997402 bytes (974 KB)
+==================================================
+downloaded 974 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/lpSolve_5.6.20.tar.gz'
+Content type 'application/x-gzip' length 468218 bytes (457 KB)
+==================================================
+downloaded 457 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/rcdd_1.6.tar.gz'
+Content type 'application/x-gzip' length 744363 bytes (726 KB)
+==================================================
+downloaded 726 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/Rglpk_0.6-5.1.tar.gz'
+Content type 'application/x-gzip' length 22100 bytes (21 KB)
+==================================================
+downloaded 21 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/ompr_1.0.4.tar.gz'
+Content type 'application/x-gzip' length 46843 bytes (45 KB)
+==================================================
+downloaded 45 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/ompr.roi_1.0.2.tar.gz'
+Content type 'application/x-gzip' length 6540 bytes
+==================================================
+downloaded 6540 bytes
+
+trying URL 'http://cloud.r-project.org/src/contrib/ROI.plugin.glpk_1.0-0.tar.gz'
+Content type 'application/x-gzip' length 4957 bytes
+==================================================
+downloaded 4957 bytes
+
+trying URL 'http://cloud.r-project.org/src/contrib/kantorovich_3.1.0.tar.gz'
+Content type 'application/x-gzip' length 26138 bytes (25 KB)
+==================================================
+downloaded 25 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/bratteli_1.0.0.tar.gz'
+Content type 'application/x-gzip' length 7253 bytes
+==================================================
+downloaded 7253 bytes
+
+* installing *source* package 'registry' ...
+** package 'registry' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (registry)
+* installing *source* package 'ECOSolveR' ...
+** package 'ECOSolveR' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+(cp -f ecos-2954b2a-changes/include/* ecos/include && \
+cp -f ecos-2954b2a-changes/ecos_bb/* ecos/ecos_bb && \
+cp -f ecos-2954b2a-changes/Makefile ecos && \
+cp -f ecos-2954b2a-changes/ecos-unix.mk ecos/ecos.mk && \
+(cd ecos && \
+make libecos.a CC="gcc" CFLAGS="-g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config" AR="ar" RANLIB="ranlib" && \
+make libecos_bb.a CC="gcc" CFLAGS="-g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config" AR="ar" RANLIB="ranlib") && \
+touch ecos.ts)
+/usr/bin/cp -f ecos-2954b2a-changes/include/ecos_bb.h ecos-2954b2a-changes/include/glblopts.h ecos/include
+/usr/bin/cp -f ecos-2954b2a-changes/ecos_bb/ecos_bb.c ecos-2954b2a-changes/ecos_bb/ecos_bb_preproc.c ecos/ecos_bb
+/usr/bin/cp -f ecos-2954b2a-changes/Makefile ecos
+/usr/bin/cp -f ecos-2954b2a-changes/ecos-unix.mk ecos/ecos.mk
+make[1]: Entering directory '/tmp/th798/7339335/RtmpixC0Dr/R.INSTALL129f3b3fd71622/ECOSolveR/src/ecos'
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/ecos.c -o ecos.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/kkt.c -o kkt.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/cone.c -o cone.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/spla.c -o spla.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/ctrlc.c -o ctrlc.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/timer.c -o timer.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/preproc.c -o preproc.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/splamm.c -o splamm.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/equil.c -o equil.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/expcone.c -o expcone.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c src/wright_omega.c -o wright_omega.o
+( cd external/ldl    ; make )
+make[2]: Entering directory '/tmp/th798/7339335/RtmpixC0Dr/R.INSTALL129f3b3fd71622/ECOSolveR/src/ecos/external/ldl'
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -I../SuiteSparse_config -Iinclude -c src/ldl.c -o ldl.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -I../SuiteSparse_config -Iinclude -DLDL_LONG -c src/ldl.c -o ldll.o
+ar rv  libldl.a ldl.o ldll.o
+ar: creating libldl.a
+a - ldl.o
+a - ldll.o
+ranlib libldl.a
+make[2]: Leaving directory '/tmp/th798/7339335/RtmpixC0Dr/R.INSTALL129f3b3fd71622/ECOSolveR/src/ecos/external/ldl'
+ar -x external/ldl/libldl.a
+( cd external/amd    ; make )
+make[2]: Entering directory '/tmp/th798/7339335/RtmpixC0Dr/R.INSTALL129f3b3fd71622/ECOSolveR/src/ecos/external/amd'
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -c src/amd_global.c -o amd_global.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_aat.c -o amd_i_aat.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_1.c -o amd_i_1.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_2.c -o amd_i_2.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_dump.c -o amd_i_dump.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_postorder.c -o amd_i_postorder.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_post_tree.c -o amd_i_post_tree.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_defaults.c -o amd_i_defaults.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_order.c -o amd_i_order.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_control.c -o amd_i_control.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_info.c -o amd_i_info.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_valid.c -o amd_i_valid.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDINT -c src/amd_preprocess.c -o amd_i_preprocess.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_aat.c -o amd_l_aat.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_1.c -o amd_l_1.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_2.c -o amd_l_2.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_dump.c -o amd_l_dump.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_postorder.c -o amd_l_postorder.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_post_tree.c -o amd_l_post_tree.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_defaults.c -o amd_l_defaults.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_order.c -o amd_l_order.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_control.c -o amd_l_control.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_info.c -o amd_l_info.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_valid.c -o amd_l_valid.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -Iinclude -I../SuiteSparse_config -DDLONG -c src/amd_preprocess.c -o amd_l_preprocess.o
+ar rv libamd.a amd_global.o amd_i_aat.o amd_i_1.o amd_i_2.o amd_i_dump.o amd_i_postorder.o amd_i_post_tree.o amd_i_defaults.o amd_i_order.o amd_i_control.o amd_i_info.o amd_i_valid.o amd_i_preprocess.o amd_l_aat.o amd_l_1.o amd_l_2.o amd_l_dump.o amd_l_postorder.o amd_l_post_tree.o amd_l_defaults.o amd_l_order.o amd_l_control.o amd_l_info.o amd_l_valid.o amd_l_preprocess.o
+ar: creating libamd.a
+a - amd_global.o
+a - amd_i_aat.o
+a - amd_i_1.o
+a - amd_i_2.o
+a - amd_i_dump.o
+a - amd_i_postorder.o
+a - amd_i_post_tree.o
+a - amd_i_defaults.o
+a - amd_i_order.o
+a - amd_i_control.o
+a - amd_i_info.o
+a - amd_i_valid.o
+a - amd_i_preprocess.o
+a - amd_l_aat.o
+a - amd_l_1.o
+a - amd_l_2.o
+a - amd_l_dump.o
+a - amd_l_postorder.o
+a - amd_l_post_tree.o
+a - amd_l_defaults.o
+a - amd_l_order.o
+a - amd_l_control.o
+a - amd_l_info.o
+a - amd_l_valid.o
+a - amd_l_preprocess.o
+ranlib libamd.a
+make[2]: Leaving directory '/tmp/th798/7339335/RtmpixC0Dr/R.INSTALL129f3b3fd71622/ECOSolveR/src/ecos/external/amd'
+ar -x external/amd/libamd.a
+ar rv libecos.a ecos.o kkt.o cone.o spla.o ctrlc.o timer.o preproc.o splamm.o equil.o expcone.o wright_omega.o ldll.o amd_l*.o amd_global.o
+ar: creating libecos.a
+a - ecos.o
+a - kkt.o
+a - cone.o
+a - spla.o
+a - ctrlc.o
+a - timer.o
+a - preproc.o
+a - splamm.o
+a - equil.o
+a - expcone.o
+a - wright_omega.o
+a - ldll.o
+a - amd_l_1.o
+a - amd_l_2.o
+a - amd_l_aat.o
+a - amd_l_control.o
+a - amd_l_defaults.o
+a - amd_l_dump.o
+a - amd_l_info.o
+a - amd_l_order.o
+a - amd_l_post_tree.o
+a - amd_l_postorder.o
+a - amd_l_preprocess.o
+a - amd_l_valid.o
+a - amd_global.o
+ranlib libecos.a
+make[1]: Leaving directory '/tmp/th798/7339335/RtmpixC0Dr/R.INSTALL129f3b3fd71622/ECOSolveR/src/ecos'
+make[1]: Entering directory '/tmp/th798/7339335/RtmpixC0Dr/R.INSTALL129f3b3fd71622/ECOSolveR/src/ecos'
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c ecos_bb/ecos_bb_preproc.c -o ecos_bb_preproc.o
+gcc -g -O2  -fpic -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -DCTRLC=1 -DLDL_LONG -DDLONG -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config  -c ecos_bb/ecos_bb.c -o ecos_bb.o
+ar rv libecos_bb.a ecos.o kkt.o cone.o spla.o ctrlc.o timer.o preproc.o splamm.o equil.o expcone.o wright_omega.o ecos_bb_preproc.o ecos_bb.o ldll.o amd_l_1.o amd_l_defaults.o amd_l_valid.o amd_l_post_tree.o amd_l_2.o amd_l_postorder.o amd_l_info.o amd_l_preprocess.o amd_l_order.o amd_l_dump.o amd_l_control.o amd_l_aat.o amd_global.o
+ar: creating libecos_bb.a
+a - ecos.o
+a - kkt.o
+a - cone.o
+a - spla.o
+a - ctrlc.o
+a - timer.o
+a - preproc.o
+a - splamm.o
+a - equil.o
+a - expcone.o
+a - wright_omega.o
+a - ecos_bb_preproc.o
+a - ecos_bb.o
+a - ldll.o
+a - amd_l_1.o
+a - amd_l_defaults.o
+a - amd_l_valid.o
+a - amd_l_post_tree.o
+a - amd_l_2.o
+a - amd_l_postorder.o
+a - amd_l_info.o
+a - amd_l_preprocess.o
+a - amd_l_order.o
+a - amd_l_dump.o
+a - amd_l_control.o
+a - amd_l_aat.o
+a - amd_global.o
+ranlib libecos_bb.a
+make[1]: Leaving directory '/tmp/th798/7339335/RtmpixC0Dr/R.INSTALL129f3b3fd71622/ECOSolveR/src/ecos'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -fpic  -g -O2  -c ecosolve.c -o ecosolve.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -DCTRLC=1 -DLDL_LONG -DDLONG -I/home/th798/R/R-4.3.2/include -Iinclude -Iexternal/ldl/include -Iexternal/amd/include -Iexternal/SuiteSparse_config -I../SuiteSparse_config -Iecos/include -Iecos/external/SuiteSparse_config -fpic  -g -O2  -c ecosolver_init.c -o ecosolver_init.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o ECOSolveR.so ecosolve.o ecosolver_init.o -Lecos -lecos -lecos_bb
+installing to /tmp/th798/7339335/R-4.3.2/113/library/00LOCK-ECOSolveR/00new/ECOSolveR/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ECOSolveR)
+* installing *source* package 'scs' ...
+** package 'scs' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -O2  -c init.c -o init.o
+(cp -f scs_mods/rw.c scs_mods/scs.c scs/src && \
+cp -f scs_mods/private.c scs/linsys/cpu/direct && \
+cp -f scs_mods/scs.mk scs && \
+(cd scs && \
+(make purge && \
+make out/libscsdir.a CC="gcc" CFLAGS="-g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic " AR="ar" RANLIB="ranlib")) && \
+touch scs.ts)
+/usr/bin/cp -f scs_mods/rw.c scs_mods/scs.c scs/src
+/usr/bin/cp -f scs_mods/private.c scs/linsys/cpu/direct
+/usr/bin/cp -f scs_mods/scs.mk scs
+make[1]: Entering directory '/tmp/th798/7339335/RtmpXZOqYq/R.INSTALL12a7113a0d5c6c/scs/src/scs'
+make[1]: Leaving directory '/tmp/th798/7339335/RtmpXZOqYq/R.INSTALL12a7113a0d5c6c/scs/src/scs'
+make[1]: Entering directory '/tmp/th798/7339335/RtmpXZOqYq/R.INSTALL12a7113a0d5c6c/scs/src/scs'
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK -c src/scs.c -o src/scs.o
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/util.o src/util.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/cones.o src/cones.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/exp_cone.o src/exp_cone.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/aa.o src/aa.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/rw.o src/rw.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/linalg.o src/linalg.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/ctrlc.o src/ctrlc.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/scs_version.o src/scs_version.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o src/normalize.o src/normalize.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/cpu/direct/private.o linsys/cpu/direct/private.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_control.o linsys/external/amd/amd_control.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_1.o linsys/external/amd/amd_1.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_valid.o linsys/external/amd/amd_valid.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_2.o linsys/external/amd/amd_2.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_post_tree.o linsys/external/amd/amd_post_tree.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_preprocess.o linsys/external/amd/amd_preprocess.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_aat.o linsys/external/amd/amd_aat.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_info.o linsys/external/amd/amd_info.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_global.o linsys/external/amd/amd_global.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_defaults.o linsys/external/amd/amd_defaults.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_postorder.o linsys/external/amd/amd_postorder.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_order.o linsys/external/amd/amd_order.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/SuiteSparse_config.o linsys/external/amd/SuiteSparse_config.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/amd/amd_dump.o linsys/external/amd/amd_dump.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/external/qdldl/qdldl.o linsys/external/qdldl/qdldl.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/scs_matrix.o linsys/scs_matrix.c
+gcc -g -O2  -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -Wall -pedantic -funroll-loops -I. -Iinclude -Ilinsys -O3 -fPIC  -DCTRLC=1  -DGPU_TRANSPOSE_MAT=1  -DUSE_LAPACK   -c -o linsys/csparse.o linsys/csparse.c
+mkdir -p out
+ar rv out/libscsdir.a src/scs.o src/util.o src/cones.o src/exp_cone.o src/aa.o src/rw.o src/linalg.o src/ctrlc.o src/scs_version.o src/normalize.o linsys/cpu/direct/private.o linsys/external/amd/amd_control.o linsys/external/amd/amd_1.o linsys/external/amd/amd_valid.o linsys/external/amd/amd_2.o linsys/external/amd/amd_post_tree.o linsys/external/amd/amd_preprocess.o linsys/external/amd/amd_aat.o linsys/external/amd/amd_info.o linsys/external/amd/amd_global.o linsys/external/amd/amd_defaults.o linsys/external/amd/amd_postorder.o linsys/external/amd/amd_order.o linsys/external/amd/SuiteSparse_config.o linsys/external/amd/amd_dump.o linsys/external/qdldl/qdldl.o linsys/scs_matrix.o linsys/csparse.o
+ar: creating out/libscsdir.a
+a - src/scs.o
+a - src/util.o
+a - src/cones.o
+a - src/exp_cone.o
+a - src/aa.o
+a - src/rw.o
+a - src/linalg.o
+a - src/ctrlc.o
+a - src/scs_version.o
+a - src/normalize.o
+a - linsys/cpu/direct/private.o
+a - linsys/external/amd/amd_control.o
+a - linsys/external/amd/amd_1.o
+a - linsys/external/amd/amd_valid.o
+a - linsys/external/amd/amd_2.o
+a - linsys/external/amd/amd_post_tree.o
+a - linsys/external/amd/amd_preprocess.o
+a - linsys/external/amd/amd_aat.o
+a - linsys/external/amd/amd_info.o
+a - linsys/external/amd/amd_global.o
+a - linsys/external/amd/amd_defaults.o
+a - linsys/external/amd/amd_postorder.o
+a - linsys/external/amd/amd_order.o
+a - linsys/external/amd/SuiteSparse_config.o
+a - linsys/external/amd/amd_dump.o
+a - linsys/external/qdldl/qdldl.o
+a - linsys/scs_matrix.o
+a - linsys/csparse.o
+ranlib out/libscsdir.a
+make[1]: Leaving directory '/tmp/th798/7339335/RtmpXZOqYq/R.INSTALL12a7113a0d5c6c/scs/src/scs'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -I./scs/include -DUSE_LAPACK -DCOPYAMATRIX -fpic  -g -O2  -c scsr.c -o scsr.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o scs.so init.o scsr.o -Lscs/out -lscsdir -L/home/th798/R/R-4.3.2/lib -lRlapack -L/home/th798/R/R-4.3.2/lib -lRblas -lgfortran -lm -lquadmath
+installing to /tmp/th798/7339335/R-4.3.2/113/library/00LOCK-scs/00new/scs/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (scs)
+* installing *source* package 'osqp' ...
+** package 'osqp' successfully unpacked and MD5 sums checked
+** using staged installation
+++ : /home/th798/R/R-4.3.2
+++ test -z /home/th798/R/R-4.3.2
++++ /home/th798/R/R-4.3.2/bin/R CMD config CC
+++ CC=gcc
++++ /home/th798/R/R-4.3.2/bin/R CMD config CFLAGS
+++ CFLAGS='-g -O2'
++++ /home/th798/R/R-4.3.2/bin/R CMD config CPPFLAGS
+++ CPPFLAGS='-I/home/th798/.conda/envs/emacs1/include -I/home/th798/include'
++++ /home/th798/R/R-4.3.2/bin/R CMD config CXX
+++ CXX='g++ -std=gnu++17'
++++ /home/th798/R/R-4.3.2/bin/R CMD config CXXFLAGS
+++ CXXFLAGS='-g -O2'
++++ /home/th798/R/R-4.3.2/bin/R CMD config LDFLAGS
+++ LDFLAGS='-L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64'
++++ command -v cmake
+++ '[' -x /home/th798/.conda/envs/emacs1/bin/cmake ']'
+++ echo 'Making fixes to osqp_sources for CRAN'
+Making fixes to osqp_sources for CRAN
+++ cd src
+++ /home/th798/R/R-4.3.2/bin/Rscript ../inst/58f00bd_fixes/make_fixes.R
+[1] TRUE
+++ echo '-- Trying to build libosqp.a via cmake ...'
+-- Trying to build libosqp.a via cmake ...
+++ cd src/osqp_sources
+++ mkdir -p build
+++ cd build
+++ cmake -DR_HOME=/home/th798/R/R-4.3.2 -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS:bool=OFF -DCMAKE_POSITION_INDEPENDENT_CODE:bool=ON -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
+-- The C compiler identification is GNU 8.5.0
+-- The CXX compiler identification is GNU 8.5.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- We are on a Linux system
+-- Embedded is OFF
+-- Printing is ON
+-- Profiling is ON
+-- User interrupt is ON
+-- Floats are OFF
+-- Long integers (64bit) are ON
+-- Code coverage is OFF
+-- MKL Pardiso: ON
+-- We are building the R interface
+-- R exec is: /home/th798/bin/R
+-- R root dir is: WARNING: ignoring environment value of R_HOME
+/home/th798/lib64/R
+-- R includes are in: R_INCLUDE_DIRS-NOTFOUND
+-- Floats are OFF
+-- Long integers (64bit) are ON
+-- Configuring done
+CMake Error: The following variables are used in this project, but they are set to NOTFOUND.
+Please set them or make sure they are set and tested correctly in the CMake files:
+R_INCLUDE_DIRS (ADVANCED)
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/pardiso
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/pardiso
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/pardiso
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/pardiso
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/pardiso
+   used as include directory in directory /tmp/th798/7339335/Rtmpgfljo6/R.INSTALL12af693a97636a/osqp/src/osqp_sources/lin_sys/direct/pardiso
+
+CMake Error in CMakeLists.txt:
+  Found relative path while evaluating include directories of "osqpstatic":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/CMakeLists.txt:
+  Found relative path while evaluating include directories of
+  "linsys_pardiso":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/qdldl/CMakeLists.txt:
+  Found relative path while evaluating include directories of "linsys_qdldl":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/qdldl/qdldl_sources/CMakeLists.txt:
+  Found relative path while evaluating include directories of "qdldlobject":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/qdldl/qdldl_sources/CMakeLists.txt:
+  Found relative path while evaluating include directories of "qdldlstatic":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/qdldl/qdldl_sources/CMakeLists.txt:
+  Found relative path while evaluating include directories of "qdldl":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+CMake Error in lin_sys/direct/qdldl/qdldl_sources/CMakeLists.txt:
+  Found relative path while evaluating include directories of
+  "qdldl_example":
+
+    "R_INCLUDE_DIRS-NOTFOUND"
+
+
+
+-- Generating done
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+ERROR: configuration failed for package 'osqp'
+* removing '/tmp/th798/7339335/R-4.3.2/113/library/osqp'
+* installing *source* package 'listcomp' ...
+** package 'listcomp' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (listcomp)
+* installing *source* package 'lpSolve' ...
+** package 'lpSolve' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c colamd.c -o colamd.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c commonlib.c -o commonlib.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c hbio.c -o hbio.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c ini.c -o ini.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c isfixedvar.c -o isfixedvar.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_Hash.c -o lp_Hash.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_LUSOL.c -o lp_LUSOL.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_MDO.c -o lp_MDO.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_MPS.c -o lp_MPS.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_SOS.c -o lp_SOS.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_crash.c -o lp_crash.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_lib.c -o lp_lib.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_matrix.c -o lp_matrix.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_mipbb.c -o lp_mipbb.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_params.c -o lp_params.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_presolve.c -o lp_presolve.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_price.c -o lp_price.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_pricePSE.c -o lp_pricePSE.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_report.c -o lp_report.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_rlp.c -o lp_rlp.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_scale.c -o lp_scale.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_simplex.c -o lp_simplex.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_utils.c -o lp_utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lp_wlp.c -o lp_wlp.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lpslink56.c -o lpslink56.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lusol.c -o lusol.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c lusolio.c -o lusolio.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c mmio.c -o mmio.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c myblas.c -o myblas.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c sparselib.c -o sparselib.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I . -DINTEGERTIME -DPARSER_LP -DBUILDING_FOR_R -DYY_NEVER_INTERACTIVE -DUSRDLL -DCLOCKTIME -DRoleIsExternalInvEngine -DINVERSE_ACTIVE=INVERSE_LUSOL -DINLINE=static -DParanoia  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c yacc_read.c -o yacc_read.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o lpSolve.so colamd.o commonlib.o hbio.o ini.o init.o isfixedvar.o lp_Hash.o lp_LUSOL.o lp_MDO.o lp_MPS.o lp_SOS.o lp_crash.o lp_lib.o lp_matrix.o lp_mipbb.o lp_params.o lp_presolve.o lp_price.o lp_pricePSE.o lp_report.o lp_rlp.o lp_scale.o lp_simplex.o lp_utils.o lp_wlp.o lpslink56.o lusol.o lusolio.o mmio.o myblas.o sparselib.o yacc_read.o
+installing to /tmp/th798/7339335/R-4.3.2/113/library/00LOCK-lpSolve/00new/lpSolve/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (lpSolve)
+* installing *source* package 'rcdd' ...
+** package 'rcdd' successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for __gmpz_init in -lgmp... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c allfaces.c -o allfaces.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c allfaces_f.c -o allfaces_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddcore.c -o cddcore.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddcore_f.c -o cddcore_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddio.c -o cddio.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddio_f.c -o cddio_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddlib.c -o cddlib.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddlib_f.c -o cddlib_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddlp.c -o cddlp.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddlp_f.c -o cddlp_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddmp.c -o cddmp.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddmp_f.c -o cddmp_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddproj.c -o cddproj.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c cddproj_f.c -o cddproj_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c d2q.c -o d2q.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c die.c -o die.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c linearity.c -o linearity.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c linearity_f.c -o linearity_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c lpcdd.c -o lpcdd.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c lpcdd_f.c -o lpcdd_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c my_unif_rand.c -o my_unif_rand.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c mycddio.c -o mycddio.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c mycddio_f.c -o mycddio_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c nonred.c -o nonred.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c q2d.c -o q2d.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c q2q.c -o q2q.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qgram.c -o qgram.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qmatmult.c -o qmatmult.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qmin.c -o qmin.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qo.c -o qo.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qoq.c -o qoq.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qsign.c -o qsign.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c qsump.c -o qsump.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c redund.c -o redund.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c redund_f.c -o redund_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c scdd.c -o scdd.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c scdd_f.c -o scdd_f.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include -DGMPRATIONAL  -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -g -O2 -fvisibility=hidden -fpic  -g -O2  -c setoper.c -o setoper.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o rcdd.so allfaces.o allfaces_f.o cddcore.o cddcore_f.o cddio.o cddio_f.o cddlib.o cddlib_f.o cddlp.o cddlp_f.o cddmp.o cddmp_f.o cddproj.o cddproj_f.o d2q.o die.o init.o linearity.o linearity_f.o lpcdd.o lpcdd_f.o my_unif_rand.o mycddio.o mycddio_f.o nonred.o q2d.o q2q.o qgram.o qmatmult.o qmin.o qo.o qoq.o qsign.o qsump.o redund.o redund_f.o scdd.o scdd_f.o setoper.o -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -lgmp
+installing to /tmp/th798/7339335/R-4.3.2/113/library/00LOCK-rcdd/00new/rcdd/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rcdd)
+* installing *source* package 'Rglpk' ...
+** package 'Rglpk' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Rglpk_error.c -o Rglpk_error.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Rglpk_initialize.c -o Rglpk_initialize.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Rglpk_read_file.c -o Rglpk_read_file.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c Rglpk_solve.c -o Rglpk_solve.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o Rglpk.so Rglpk_error.o Rglpk_initialize.o Rglpk_read_file.o Rglpk_solve.o init.o -lglpk
+installing to /tmp/th798/7339335/R-4.3.2/113/library/00LOCK-Rglpk/00new/Rglpk/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Rglpk)
+* installing *source* package 'ROI' ...
+** package 'ROI' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ROI)
+ERROR: dependency 'osqp' is not available for package 'CVXR'
+* removing '/tmp/th798/7339335/R-4.3.2/113/library/CVXR'
+* installing *source* package 'ompr' ...
+** package 'ompr' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ompr)
+* installing *source* package 'ompr.roi' ...
+** package 'ompr.roi' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ompr.roi)
+* installing *source* package 'ROI.plugin.glpk' ...
+** package 'ROI.plugin.glpk' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+No man pages found in package  'ROI.plugin.glpk' 
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ROI.plugin.glpk)
+ERROR: dependency 'CVXR' is not available for package 'kantorovich'
+* removing '/tmp/th798/7339335/R-4.3.2/113/library/kantorovich'
+ERROR: dependency 'kantorovich' is not available for package 'bratteli'
+* removing '/tmp/th798/7339335/R-4.3.2/113/library/bratteli'
+
+The downloaded source packages are in
+	'/tmp/th798/7339335/Rtmp3nsbxm/downloaded_packages'
+Warning messages:
+1: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'osqp' had non-zero exit status
+2: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'CVXR' had non-zero exit status
+3: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'kantorovich' had non-zero exit status
+4: In install.packages(rev.dep, dep = TRUE) :
+  installation of package 'bratteli' had non-zero exit status
+> cat("Time to install revdep:\n")
+Time to install revdep:
+> print(install.time)
+   user  system elapsed 
+ 44.425   7.687  56.103 
+> downloaded_packages <- file.path(
++   tempdir(),
++   "downloaded_packages")
+> dl.glob <- file.path(
++   downloaded_packages,
++   paste0(rev.dep,"_*.tar.gz"))
+> rev.dep.dl.row <- cbind(rev.dep, Sys.glob(dl.glob))
+> colnames(rev.dep.dl.row) <- c("pkg","path")
+> rev.dep.release.tar.gz <- normalizePath(rev.dep.dl.row[,"path"], mustWork=TRUE)
+> pkg.Rcheck <- paste0(rev.dep, ".Rcheck")
+> 
+> proj.dir <- "~/genomic-ml/data.table-revdeps"
+> source(file.path(proj.dir, "myStatus.R"))
+> Rvers <- gsub("[()]", "", gsub(" ", "_", R.version[["version.string"]]))
+> dir.create(Rvers, showWarnings=FALSE)
+> Rcheck.list <- list()
+> for(dt.version.short in c("release", "master")){
++   dt.tar.gz <- cargs[[dt.version.short]]
++   dt.version <- gsub(".tar.gz|/.*?_", "", dt.tar.gz)
++   install.packages(dt.tar.gz, repos=NULL)
++   check.cmd <- get_check_cmd(rev.dep.release.tar.gz)
++   system(check.cmd)
++   dest.Rcheck <- file.path(
++     Rvers,
++     paste0(dt.version, ".Rcheck"))
++   unlink(dest.Rcheck, recursive=TRUE)
++   file.rename(pkg.Rcheck, dest.Rcheck)
++   Rcheck.list[[dt.version]] <- file.path(dest.Rcheck, "00check.log")
++ }
+Installing package into '/tmp/th798/7339335/R-4.3.2/113/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** package 'data.table' successfully unpacked and MD5 sums checked
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o ijoin.o init.o inrange.o nafill.o nqrecreateindices.o openmp-utils.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7339335/R-4.3.2/113/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7339335/R-4.3.2/113/bratteli.Rcheck'
+* using R version 4.3.2 (2023-10-31)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'bratteli/DESCRIPTION' ... OK
+* this is package 'bratteli' version '1.0.0'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'kantorovich'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7339335/R-4.3.2/113/bratteli.Rcheck/00check.log'
+for details.
+
+Installing package into '/tmp/th798/7339335/R-4.3.2/113/library'
+(as 'lib' is unspecified)
+* installing *source* package 'data.table' ...
+** using staged installation
+gcc 8.5.0
+zlib 1.2.13 is available ok
+R CMD SHLIB supports OpenMP without any extra hint
+** libs
+using C compiler: 'gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)'
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c assign.c -o assign.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c between.c -o between.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c bmerge.c -o bmerge.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c chmatch.c -o chmatch.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c cj.c -o cj.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c coalesce.c -o coalesce.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c dogroups.c -o dogroups.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fastmean.c -o fastmean.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fcast.c -o fcast.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fifelse.c -o fifelse.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fmelt.c -o fmelt.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c forder.c -o forder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frank.c -o frank.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fread.c -o fread.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c freadR.c -o freadR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c froll.c -o froll.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frollR.c -o frollR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c frolladaptive.c -o frolladaptive.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fsort.c -o fsort.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwrite.c -o fwrite.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c fwriteR.c -o fwriteR.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c gsumm.c -o gsumm.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c idatetime.c -o idatetime.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c ijoin.c -o ijoin.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c inrange.c -o inrange.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nafill.c -o nafill.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c negate.c -o negate.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c nqrecreateindices.c -o nqrecreateindices.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c openmp-utils.c -o openmp-utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c programming.c -o programming.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c quickselect.c -o quickselect.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c rbindlist.c -o rbindlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c reorder.c -o reorder.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c shift.c -o shift.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c snprintf.c -o snprintf.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c subset.c -o subset.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c transpose.c -o transpose.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c types.c -o types.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c uniqlist.c -o uniqlist.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c utils.c -o utils.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c vecseq.c -o vecseq.o
+gcc -I"/home/th798/R/R-4.3.2/include" -DNDEBUG   -I/home/th798/.conda/envs/emacs1/include -I/home/th798/include   -fopenmp  -fpic  -g -O2  -c wrappers.c -o wrappers.o
+gcc -shared -L/home/th798/.conda/envs/emacs1/lib -Wl,-rpath=/home/th798/.conda/envs/emacs1/lib -L/home/th798/lib -Wl,-rpath=/home/th798/lib -L/home/th798/lib64 -Wl,-rpath=/home/th798/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o idatetime.o ijoin.o init.o inrange.o nafill.o negate.o nqrecreateindices.o openmp-utils.o programming.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz
+PKG_CFLAGS = -fopenmp
+PKG_LIBS = -fopenmp -lz
+if [ "data.table.so" != "data_table.so" ]; then mv data.table.so data_table.so; fi
+if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id data_table.so data_table.so; fi
+installing to /tmp/th798/7339335/R-4.3.2/113/library/00LOCK-data.table/00new/data.table/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (data.table)
+* using log directory '/tmp/th798/7339335/R-4.3.2/113/bratteli.Rcheck'
+* using R version 4.3.2 (2023-10-31)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* R was compiled by
+    gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+    GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-20)
+* running under: Red Hat Enterprise Linux 8.9 (Ootpa)
+* using session charset: ASCII
+* checking for file 'bratteli/DESCRIPTION' ... OK
+* this is package 'bratteli' version '1.0.0'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'kantorovich'
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+
+Status: 1 ERROR
+See
+  '/tmp/th798/7339335/R-4.3.2/113/bratteli.Rcheck/00check.log'
+for details.
+
+> system(paste(c("diff -u", Rcheck.list), collapse=" "))
+> library(data.table, lib.loc=R.home("library"))
+> (sig.diff.dt <- myDiff(Rvers))
+Empty data.table (0 rows and 3 cols): checking,master,release
+> 
+> ## If there are significant differences, use git bisect to find when
+> ## they started.
+> if(nrow(sig.diff.dt)){
++   dt.git <- file.path(task.dir, "data.table.git")
++   system(paste("git clone ~/R/data.table", dt.git))
++   release.tag <- gsub(".tar.gz|.*_", "", cargs[["release"]])
++   rev.parse.cmd <- paste(
++     "cd", dt.git, "&& git rev-parse master")
++   master.sha <- system(rev.parse.cmd, intern=TRUE)
++   merge.base.cmd <- paste(
++     "cd", dt.git, "&& git merge-base master", release.tag)
++   merge.base.sha <- system(merge.base.cmd, intern=TRUE)
++   old.sha <- merge.base.sha
++   run_R <- file.path(proj.dir, "install_dt_then_check_dep.R")
++   sig.diff.dt[, first.bad.commit := NA_character_]
++   sig.diff.dt[, comments := NA_character_]
++   for(diff.i in 1:nrow(sig.diff.dt)){
++     sig.diff.row <- sig.diff.dt[diff.i]
++     bisect.cmd <- paste(
++       "cd", dt.git, "&&",
++       "git bisect start &&",
++       "git bisect old", old.sha, "&&",
++       "git bisect new master &&",
++       "git bisect run",
++       R.home('bin/Rscript'),
++       run_R,
++       shQuote(sig.diff.row$checking),
++       sig.diff.row$release,
++       rev.dep.release.tar.gz,
++       release.tag)
++     print(bisect.cmd)
++     bisect.out <- system(bisect.cmd, intern=TRUE)
++     cat(bisect.out,sep="\n")
++     first.bad.sha <- nc::capture_all_str(
++       bisect.out,
++       sha="[0-9a-f]+",
++       " is the first new commit")$sha
++     parent.cmd <- paste(
++       "cd ~/R/data.table && git log --pretty=%P -n 1",
++       first.bad.sha)
++     parent.sha <- system(parent.cmd, intern=TRUE)
++     sig.diff.dt[diff.i, first.bad.commit := first.bad.sha]
++     parent.msg <- paste0("parent=", parent.sha)
++     this.comment <- if(parent.sha==old.sha){
++       paste(parent.msg, "same as git bisect old")
++     }else if(first.bad.sha==master.sha){
++       paste("same as git bisect new=master,", parent.msg)
++     }else{
++       parent.msg
++     }
++     sig.diff.dt[diff.i, comments := this.comment]
++   }
++   ## add CRAN column.
++   sig.diff.dt[, CRAN := {
++     flavor <- get_flavor(Rvers)
++     details <- data.table(flavor=unique(flavor))[, {
++       base <- "https://www.r-project.org/nosvn/R.check/"
++       u <- paste0(base, flavor, "/", rev.dep, "-00check.txt")
++       check.txt <- tempfile()
++       tryCatch({
++         download.file(u, check.txt, quiet=TRUE)
++       }, error=function(e){
++         NULL
++       })
++       check.lines <- if(file.exists(check.txt)){
++         readLines(check.txt,encoding="UTF-8")
++       }else{
++         ""
++       }
++       repl.lines <- gsub("[\u2018\u2019]", "'", check.lines)
++       ##gsub("[‘’]", "'", check.lines) does not work with LC_ALL=C.
++       myStatus(line.vec=repl.lines)
++     }, by=flavor]
++     select.dt <- data.table(flavor, checking)
++     details[select.dt, msg, on=.(flavor, checking)]
++   }]
++   dir.create(file.path(job.dir, Rvers))
++   diffs.csv <- file.path(job.dir, Rvers, "significant_differences.csv")
++   data.table::fwrite(sig.diff.dt, diffs.csv)
++   print(sig.diff.dt)
++ }
+> 
