@@ -248,7 +248,8 @@ R/PCRE/namedCapture the =P= is allowed but not required.
 | [[file:R-Forge.org][R-Forge exercises]] | [[file:R-Forge/]]                       |                            | str_match_named, str_match_all_named       |
 | [[file:SweeD/README.org][SweeD exercises]]   | [[file:SweeD/]]                         |                            | nc::capture_all_str                        |
 | [[file:NEWS/README.org][NEWS conversion]]   | [[file:NEWS/old/]]                      |                            | nc::capture_all_str                        |
-| [[file:cran-check-logs/README.org][CRAN check logs]]   | [[file:cran-check-logs/]]               | TODO blog link             | nc::capture_all_str                        |
+| [[file:cran-check-logs/README.org][CRAN check logs]]   | [[file:cran-check-logs/]]               | [[https://tdhock.github.io/blog/2024/nc-parse-check-logs/][blog link]]                  | nc::capture_all_str                        |
+| [[file:torchvision-docs/README.org][torchvision docs]]  | [[file:torchvision-docs/]]              | TODO                       | nc::capture_all_str                        |
 
 ** Questions from the audience, 10 minutes
 

@@ -1,0 +1,48 @@
+ETH3D `Low-Res Two-View <https://www.eth3d.net/datasets>`_ dataset.
+
+    The dataset is expected to have the following structure: ::
+
+        root
+            ETH3D
+                two_view_training
+                    scene1
+                        im1.png
+                        im0.png
+                        images.txt
+                        cameras.txt
+                        calib.txt
+                    scene2
+                        im1.png
+                        im0.png
+                        images.txt
+                        cameras.txt
+                        calib.txt
+                    ...
+                two_view_training_gt
+                    scene1
+                        disp0GT.pfm
+                        mask0nocc.png
+                    scene2
+                        disp0GT.pfm
+                        mask0nocc.png
+                    ...
+                two_view_testing
+                    scene1
+                        im1.png
+                        im0.png
+                        images.txt
+                        cameras.txt
+                        calib.txt
+                    scene2
+                        im1.png
+                        im0.png
+                        images.txt
+                        cameras.txt
+                        calib.txt
+                    ...
+
+    Args:
+        root (string): Root directory of the ETH3D Dataset.
+        split (string, optional): The dataset split of scenes, either "train" (default) or "test".
+        transforms (callable, optional): A function/transform that takes in a sample and returns a transformed version.
+    

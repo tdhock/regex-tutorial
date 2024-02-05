@@ -1,0 +1,15 @@
+`Omniglot <https://github.com/brendenlake/omniglot>`_ Dataset.
+
+    Args:
+        root (string): Root directory of dataset where directory
+            ``omniglot-py`` exists.
+        background (bool, optional): If True, creates dataset from the "background" set, otherwise
+            creates from the "evaluation" set. This terminology is defined by the authors.
+        transform (callable, optional): A function/transform that  takes in an PIL image
+            and returns a transformed version. E.g, ``transforms.RandomCrop``
+        target_transform (callable, optional): A function/transform that takes in the
+            target and transforms it.
+        download (bool, optional): If true, downloads the dataset zip files from the internet and
+            puts it in root directory. If the zip files are already downloaded, they are not
+            downloaded again.
+    

@@ -1,0 +1,18 @@
+`Imagenette <https://github.com/fastai/imagenette#imagenette-1>`_ image classification dataset.
+
+    Args:
+        root (string): Root directory of the Imagenette dataset.
+        split (string, optional): The dataset split. Supports ``"train"`` (default), and ``"val"``.
+        size (string, optional): The image size. Supports ``"full"`` (default), ``"320px"``, and ``"160px"``.
+        download (bool, optional): If ``True``, downloads the dataset components and places them in ``root``. Already
+            downloaded archives are not downloaded again.
+        transform (callable, optional): A function/transform that  takes in an PIL image and returns a transformed
+            version, e.g. ``transforms.RandomCrop``.
+        target_transform (callable, optional): A function/transform that takes in the target and transforms it.
+
+     Attributes:
+        classes (list): List of the class name tuples.
+        class_to_idx (dict): Dict with items (class name, class index).
+        wnids (list): List of the WordNet IDs.
+        wnid_to_idx (dict): Dict with items (WordNet ID, class index).
+    

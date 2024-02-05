@@ -1,0 +1,20 @@
+`Stanford Cars <https://ai.stanford.edu/~jkrause/cars/car_dataset.html>`_ Dataset
+
+    The Cars dataset contains 16,185 images of 196 classes of cars. The data is
+    split into 8,144 training images and 8,041 testing images, where each class
+    has been split roughly in a 50-50 split
+
+    .. note::
+
+        This class needs `scipy <https://docs.scipy.org/doc/>`_ to load target files from `.mat` format.
+
+    Args:
+        root (string): Root directory of dataset
+        split (string, optional): The dataset split, supports ``"train"`` (default) or ``"test"``.
+        transform (callable, optional): A function/transform that  takes in an PIL image
+            and returns a transformed version. E.g, ``transforms.RandomCrop``
+        target_transform (callable, optional): A function/transform that takes in the
+            target and transforms it.
+        download (bool, optional): If True, downloads the dataset from the internet and
+            puts it in root directory. If dataset is already downloaded, it is not
+            downloaded again.

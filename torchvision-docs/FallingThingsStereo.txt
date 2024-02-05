@@ -1,0 +1,43 @@
+`FallingThings <https://research.nvidia.com/publication/2018-06_falling-things-synthetic-dataset-3d-object-detection-and-pose-estimation>`_ dataset.
+
+    The dataset is expected to have the following structure: ::
+
+        root
+            FallingThings
+                single
+                    dir1
+                        scene1
+                            _object_settings.json
+                            _camera_settings.json
+                            image1.left.depth.png
+                            image1.right.depth.png
+                            image1.left.jpg
+                            image1.right.jpg
+                            image2.left.depth.png
+                            image2.right.depth.png
+                            image2.left.jpg
+                            image2.right
+                            ...
+                        scene2
+                    ...
+                mixed
+                    scene1
+                        _object_settings.json
+                        _camera_settings.json
+                        image1.left.depth.png
+                        image1.right.depth.png
+                        image1.left.jpg
+                        image1.right.jpg
+                        image2.left.depth.png
+                        image2.right.depth.png
+                        image2.left.jpg
+                        image2.right
+                        ...
+                    scene2
+                    ...
+
+    Args:
+        root (string): Root directory where FallingThings is located.
+        variant (string): Which variant to use. Either "single", "mixed", or "both".
+        transforms (callable, optional): A function/transform that takes in a sample and returns a transformed version.
+    

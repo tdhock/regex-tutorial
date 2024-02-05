@@ -1,0 +1,28 @@
+`QMNIST <https://github.com/facebookresearch/qmnist>`_ Dataset.
+
+    Args:
+        root (string): Root directory of dataset whose ``raw``
+            subdir contains binary files of the datasets.
+        what (string,optional): Can be 'train', 'test', 'test10k',
+            'test50k', or 'nist' for respectively the mnist compatible
+            training set, the 60k qmnist testing set, the 10k qmnist
+            examples that match the mnist testing set, the 50k
+            remaining qmnist testing examples, or all the nist
+            digits. The default is to select 'train' or 'test'
+            according to the compatibility argument 'train'.
+        compat (bool,optional): A boolean that says whether the target
+            for each example is class number (for compatibility with
+            the MNIST dataloader) or a torch vector containing the
+            full qmnist information. Default=True.
+        download (bool, optional): If True, downloads the dataset from
+            the internet and puts it in root directory. If dataset is
+            already downloaded, it is not downloaded again.
+        transform (callable, optional): A function/transform that
+            takes in an PIL image and returns a transformed
+            version. E.g, ``transforms.RandomCrop``
+        target_transform (callable, optional): A function/transform
+            that takes in the target and transforms it.
+        train (bool,optional,compatibility): When argument 'what' is
+            not specified, this boolean decides whether to load the
+            training set or the testing set.  Default: True.
+    

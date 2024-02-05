@@ -1,0 +1,35 @@
+The specification for a module, used for loading.
+
+    A module's spec is the source for information about the module.  For
+    data associated with the module, including source, use the spec's
+    loader.
+
+    `name` is the absolute name of the module.  `loader` is the loader
+    to use when loading the module.  `parent` is the name of the
+    package the module is in.  The parent is derived from the name.
+
+    `is_package` determines if the module is considered a package or
+    not.  On modules this is reflected by the `__path__` attribute.
+
+    `origin` is the specific location used by the loader from which to
+    load the module, if that information is available.  When filename is
+    set, origin will match.
+
+    `has_location` indicates that a spec's "origin" reflects a location.
+    When this is True, `__file__` attribute of the module is set.
+
+    `cached` is the location of the cached bytecode file, if any.  It
+    corresponds to the `__cached__` attribute.
+
+    `submodule_search_locations` is the sequence of path entries to
+    search when importing submodules.  If set, is_package should be
+    True--and False otherwise.
+
+    Packages are simply modules that (may) have submodules.  If a spec
+    has a non-None value in `submodule_search_locations`, the import
+    system will consider modules loaded from the spec as packages.
+
+    Only finders (see importlib.abc.MetaPathFinder and
+    importlib.abc.PathEntryFinder) should modify ModuleSpec instances.
+
+    

@@ -1,0 +1,5 @@
+All of the *.txt files in this directory are taken from
+torchvision.datasets (0.17.0) python doc strings.
+
+For each data set with an argument named 'split', report the possible
+values it can take (as documented).

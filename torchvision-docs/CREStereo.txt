@@ -1,0 +1,40 @@
+Synthetic dataset used in training the `CREStereo <https://arxiv.org/pdf/2203.11483.pdf>`_ architecture.
+    Dataset details on the official paper `repo <https://github.com/megvii-research/CREStereo>`_.
+
+    The dataset is expected to have the following structure: ::
+
+        root
+            CREStereo
+                tree
+                    img1_left.jpg
+                    img1_right.jpg
+                    img1_left.disp.jpg
+                    img1_right.disp.jpg
+                    img2_left.jpg
+                    img2_right.jpg
+                    img2_left.disp.jpg
+                    img2_right.disp.jpg
+                    ...
+                shapenet
+                    img1_left.jpg
+                    img1_right.jpg
+                    img1_left.disp.jpg
+                    img1_right.disp.jpg
+                    ...
+                reflective
+                    img1_left.jpg
+                    img1_right.jpg
+                    img1_left.disp.jpg
+                    img1_right.disp.jpg
+                    ...
+                hole
+                    img1_left.jpg
+                    img1_right.jpg
+                    img1_left.disp.jpg
+                    img1_right.disp.jpg
+                    ...
+
+    Args:
+        root (str): Root directory of the dataset.
+        transforms (callable, optional): A function/transform that takes in a sample and returns a transformed version.
+    

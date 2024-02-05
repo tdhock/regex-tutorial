@@ -1,0 +1,26 @@
+
+    Carla simulator data linked in the `CREStereo github repo <https://github.com/megvii-research/CREStereo>`_.
+
+    The dataset is expected to have the following structure: ::
+
+        root
+            carla-highres
+                trainingF
+                    scene1
+                        img0.png
+                        img1.png
+                        disp0GT.pfm
+                        disp1GT.pfm
+                        calib.txt
+                    scene2
+                        img0.png
+                        img1.png
+                        disp0GT.pfm
+                        disp1GT.pfm
+                        calib.txt
+                    ...
+
+    Args:
+        root (string): Root directory where `carla-highres` is located.
+        transforms (callable, optional): A function/transform that takes in a sample and returns a transformed version.
+    

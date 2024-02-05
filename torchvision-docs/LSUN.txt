@@ -1,0 +1,14 @@
+`LSUN <https://www.yf.io/p/lsun>`_ dataset.
+
+    You will need to install the ``lmdb`` package to use this dataset: run
+    ``pip install lmdb``
+
+    Args:
+        root (string): Root directory for the database files.
+        classes (string or list): One of {'train', 'val', 'test'} or a list of
+            categories to load. e,g. ['bedroom_train', 'church_outdoor_train'].
+        transform (callable, optional): A function/transform that  takes in an PIL image
+            and returns a transformed version. E.g, ``transforms.RandomCrop``
+        target_transform (callable, optional): A function/transform that takes in the
+            target and transforms it.
+    
