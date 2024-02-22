@@ -1,3 +1,73 @@
 There are many regexercises that could be done with the CRAN check logs.
 
-TODO not available exercises.
+** Exercise 1: determine which packages are not available
+
+Output in log looks like below when packages are not available at install time.
+
+#+begin_src
+ERROR: dependency 'GenomeInfoDb' is not available for package 'Biostrings'
+ERROR: dependencies 'GenomicRanges', 'GenomeInfoDb', 'Biostrings' are not available for package 'SeqArray'
+Warning: dependency 'RandomFields' is not available
+Warning: dependencies 'RGtk2', 'cairoDevice' are not available
+#+end_src
+
+Output with one row per dependent package not available, and columns
+for dependent package name, and package trying to install.
+
+** Exercise 2: but not available for checking
+
+Output looks like below when packages are not available at check time.
+
+#+begin_src
+Package required but not available: 'Rcmdr'
+
+Package suggested but not available for checking: 'tkrplot'
+
+Packages required but not available: 'maftools', 'NMF'
+
+Packages suggested but not available for checking:
+  'Biobase', 'Biostrings', 'BSgenome', 'BSgenome.Hsapiens.UCSC.hg19',
+  'GenomicRanges', 'GenSA', 'IRanges'
+
+Package suggested but not available for checking: 'gWidgets2tcltk'
+
+Packages required but not available:
+  'adjclust', 'BiocGenerics', 'csaw', 'InteractionSet', 'limma',
+  'SummarizedExperiment', 'HiCDOC'
+
+Package which this enhances but not available for checking: 'rkward'
+
+Packages which this enhances but not available for checking: 'chron', 'tis'
+
+Packages which this enhances but not available for checking:
+  'AER', 'betareg', 'ordinal', 'survey'
+#+end_src
+
+Output should be one row per package not available, and columns for
+dependent package name, type of dependency (suggests, required, etc),
+package with the dependency.
+
+** Exercise 3: get download info
+
+Output looks like below,
+
+#+begin_src
+Installing package into '/tmp/th798/7339244/R-devel/27/library'
+(as 'lib' is unspecified)
+also installing the dependency 'tinytest'
+
+trying URL 'http://cloud.r-project.org/src/contrib/tinytest_1.4.1.tar.gz'
+Content type 'application/x-gzip' length 587352 bytes (573 KB)
+==================================================
+downloaded 573 KB
+
+trying URL 'http://cloud.r-project.org/src/contrib/AMR_2.1.1.tar.gz'
+Content type 'application/x-gzip' length 1968120 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+* installing *source* package 'tinytest' ...
+#+end_src
+
+Output with one row per download and columns for repos, package,
+version, bytes.
