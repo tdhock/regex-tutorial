@@ -9,7 +9,9 @@ In this 60 minute tutorial I will explain how to use named capture
 regular expressions to extract data from several different kinds
 structured text data.
 
-For additional reading see my R journal articles about [[https://github.com/tdhock/namedCapture-article][namedCapture]] and [[https://github.com/tdhock/nc-article][nc]].
+For additional reading see my R journal articles about
+[[https://github.com/tdhock/namedCapture-article][namedCapture]] and
+[[https://github.com/tdhock/nc-article][nc]].
 
 ** Motivation for using named capture regular expressions, 5 minutes
 
@@ -172,12 +174,17 @@ matches. This functionality is provided by [[http://www.emacswiki.org/emacs/ReBu
 emacs]]) and web pages such as [[http://pythex.org/][pythex]].
 
 For a subject =s= (R character vector or Python pandas Series) and a
-regular expression pattern =p= (string),
+regular expression pattern =p=,
 
-| R namedCapture package      | Python pandas         | returns                     |
-|-----------------------------+-----------------------+-----------------------------|
-| =str_match_named(s, p)=     | =s.str.extract(p)=    | first match in each subject |
-| =str_match_all_named(s, p)= | =s.str.extractall(p)= | all matches in each subject |
+| R nc package              | Python pandas         | returns     |
+|---------------------------+-----------------------+-------------|
+| =capture_first_vec(s, p)= | =s.str.extract(p)=    | first match |
+| =capture_all_str(s, p)=   | =s.str.extractall(p)= | all matches |
+
+Note that in R/nc, the pattern =p= should be defined as a list, with
+named elements used as capture groups (without literal parentheses);
+in Python pandas, =p= is a string with capture groups defined as
+=(P?<name>pattern)=.
 
 *** Named capture in R
 
@@ -190,28 +197,18 @@ second argument =s= is the character vector of *subjects* (strings to
 parse). However their output is a bunch of integers and group names,
 which is not very user-friendly.
 
-Instead I recommend using the [[https://github.com/tdhock/namedCapture][namedCapture]] package, which provides the
-=str_match_named(s, p)= and =str_match_all_named(s, p)=
+Instead I recommend using the nc package, which provides the
+=capture_first_vec(s, p)= and =capture_all_str(s, p)=
 functions. They are a user-friendly interface to the base =regexpr=
-and =gregexpr= functions. They return character matrices with column
-names as defined in the named groups of the regular expression. To
-install the namedCapture package, run the following commands in R:
+and =gregexpr= functions. They return data tables with column
+names as defined in the regular expression. To
+install the nc package, run the following command in R:
 
 #+BEGIN_SRC R
-if(!require(devtools))install.packages("devtools")
-devtools::install_github("tdhock/namedCapture")
+install.packages("nc")
 #+END_SRC
 
-Notes on related functions/packages: 
-- =regexec= and =regmatches= in base R implement extracting capture
-  groups but the =regexec= man page indicates that perl=TRUE (and thus
-  named capture) is not implemented.
-- =stringr::str_match= and =stringi::stri_match= implement extracting
-  capture groups, but [[https://github.com/hadley/stringr/pull/16][the stringi package does not support named capture yet as such a
- feature set is still considered as experimental in ICU]]. 
-- https://github.com/tdhock/revector provides fast C code for a
-  *vector* of named capture regular expressions (base R only provides
-  functions for a single regular expression).
+Notes on related functions/packages: read [[https://github.com/tdhock/namedCapture-article][my research paper about namedCapture]].
   
 *** Named capture in Python
 
@@ -224,32 +221,27 @@ named capture regular expressions via the =s.str.extract(p)= and
 =s.str.extractall(p)= methods for a *subject* Series =s= and a regular
 expression *pattern* =p=. Both methods are an interface to the =re=
 module, and return a =DataFrame= with one row per match and one column
-per capture group. To install pandas execute one of the following
-shell commands:
+per capture group. To install pandas, execute the shell command:
 
 #+BEGIN_SRC shell-script
 pip install pandas
-easy_install pandas
 #+END_SRC
-
-Note that in Python a =P= is required after the initial question mark
-of each group: =(?P<name>pattern)=. In contrast, in
-R/PCRE/namedCapture the =P= is allowed but not required.
 
 ** Some exercises
 
-| Exercises         | data                                | code/solution              | functions                                  |
-|-------------------+-------------------------------------+----------------------------+--------------------------------------------|
-|                   |                                     | [[file:chr.pos.R]]             | str_match_named, str_match_all_named, gsub |
-|                   |                                     | [[file:differences_from_R.py]] | re.search, re.compile                      |
-|                   |                                     | [[file:chr_pos.py]]            | str.extract, str.findall, re.subn          |
-| [[file:qsub-out/README.org][qsub exercises]]    | [[file:qsub-out][qsub data]]                           | [[file:qsub-out.R]]            | str_match_named                            |
-| [[file:trackDb.org][trackDb exercises]] | [[file:trackDb.txt]], [[file:trackDb2.txt]] | [[file:trackDb.R]]             | str_match_all_named                        |
-| [[file:R-Forge.org][R-Forge exercises]] | [[file:R-Forge/]]                       |                            | str_match_named, str_match_all_named       |
-| [[file:SweeD/README.org][SweeD exercises]]   | [[file:SweeD/]]                         |                            | nc::capture_all_str                        |
-| [[file:NEWS/README.org][NEWS conversion]]   | [[file:NEWS/old/]]                      |                            | nc::capture_all_str                        |
-| [[file:cran-check-logs/README.org][CRAN check logs]]   | [[file:cran-check-logs/]]               | [[https://tdhock.github.io/blog/2024/nc-parse-check-logs/][blog link]]                  | nc::capture_all_str                        |
-| [[file:torchvision-docs/README.org][torchvision docs]]  | [[file:torchvision-docs/]]              | TODO                       | nc::capture_all_str                        |
+| Exercises         | data                                | code/solution              | functions                                |
+|-------------------+-------------------------------------+----------------------------+------------------------------------------|
+|                   |                                     | [[file:chr.pos.R]]             | capture_first_vec, capture_all_str, gsub |
+|                   |                                     | [[file:differences_from_R.py]] | re.search, re.compile                    |
+|                   |                                     | [[file:chr_pos.py]]            | str.extract, str.findall, re.subn        |
+| [[file:qsub-out/README.org][qsub exercises]]    | [[file:qsub-out][qsub data]]                           | [[file:qsub-out.R]]            | capture_first_vec                        |
+| [[file:trackDb.org][trackDb exercises]] | [[file:trackDb.txt]], [[file:trackDb2.txt]] | [[file:trackDb.R]]             | capture_all_str                          |
+| [[file:R-Forge.org][R-Forge exercises]] | [[file:R-Forge/]]                       |                            | capture_first_vec, capture_all_str       |
+| [[file:SweeD/README.org][SweeD exercises]]   | [[file:SweeD/]]                         |                            | capture_all_str                          |
+| [[file:NEWS/README.org][NEWS conversion]]   | [[file:NEWS/old/]]                      |                            | capture_all_str                          |
+| [[file:cran-check-logs/README.org][CRAN check logs]]   | [[file:cran-check-logs/]]               | [[https://tdhock.github.io/blog/2024/nc-parse-check-logs/][blog link]]                  | capture_all_str                          |
+| [[file:torchvision-docs/README.org][torchvision docs]]  | [[file:torchvision-docs/]]              | TODO                       | capture_all_str                          |
+| [[file:mutate/README.org][universalmutator]]  | [[file:mutate/]]                        | [[file:mutate/mutate.R]]       | capture_first_vec, capture_all_str       |
 
 ** Questions from the audience, 10 minutes
 
@@ -263,74 +255,38 @@ Russ Cox's "[[https://swtch.com/~rsc/regexp/regexp1.html][Regular Expression Mat
 explains that due to backreference support, several common regular
 expression engines can have an exponential runtime (including PCRE
 which is used by R and Python). One way to achieve a speedup is to
-drop backreference support and use the [[https://github.com/google/re2][re2]] C++ library, [[https://github.com/google/re2/wiki/Syntax][which supports
-named capture]]. [[https://github.com/qinwf][Qin Wenfeng]] implemented the excellent [[https://github.com/qinwf/re2r][re2r]] package as
-his [[https://github.com/rstats-gsoc/gsoc2016/wiki/re2-regular-expressions][Google Summer of Code 2016 project]]. If you need a provably fast
+drop backreference support and use the [[https://github.com/google/re2][re2]] C++ library, [[https://github.com/google/re2/wiki/Syntax][which supports named capture]].
+If you need a provably fast
 (polynomial time) regular expression engine in R, I recommend using
-re2r! One example of when re2r is useful: [[https://docs.microsoft.com/en-us/dotnet/standard/base-types/best-practices][validating email using a
-specific problematic pattern]]. Also speed benchmarks below and in the
-[[http://qinwenfeng.com/re2r_doc/re2r-benchmark.html][re2r vignette]].
+the corresponding R package, re2. One example of when re2 is useful:
+[[https://docs.microsoft.com/en-us/dotnet/standard/base-types/best-practices][validating email using a specific problematic pattern]].
+See also speed benchmark figure in my [[https://github.com/tdhock/namedCapture-article][namedCapture paper]].
 
 | R function            | library | named capture | complexity  |
 |-----------------------+---------+---------------+-------------|
 | regexpr(perl=FALSE)   | TRE     | no            | polynomial  |
-| stringi::stri_match() | ICU     | no            | exponential |
+| stringi::stri_match() | ICU     | yes           | exponential |
 | regexpr(perl=TRUE)    | PCRE    | yes           | exponential |
-| str_match_re2()       | re2     | yes           | polynomial  |
+| re2::re2_match()      | RE2     | yes           | polynomial  |
 
 #+BEGIN_SRC R
-  if(!require(re2r))devtools::install_github("qinwf/re2r", build_vignettes=FALSE, dep=FALSE)
+  if(!require(re2))install.packages("re2")
   if(!require(stringi))install.packages("stringi")
-  
+  if(!require(atime))install.packages("atime")
   max.N <- 25
-  times.list <- list()
-  for(N in 1:max.N){
-    cat(sprintf("subject/pattern size %4d / %4d\n", N, max.N))
-    subject <- paste(rep("a", N), collapse="")
-    pattern <- paste(rep(c("a?", "a"), each=N), collapse="")
-    N.times <- microbenchmark::microbenchmark(
-      ICU=stringi::stri_match(subject, regex=pattern),
-      PCRE=regexpr(pattern, subject, perl=TRUE),
-      TRE=regexpr(pattern, subject, perl=FALSE),
-      RE2=re2r::re2_match(pattern, subject),
-      times=10)
-    times.list[[N]] <- data.frame(N, N.times)
-  }
-  times <- do.call(rbind, times.list)
-  save(times, file="times.RData")
-  
-  library(ggplot2)
-  library(directlabels)
-  linear.legend <- ggplot()+
-    ggtitle("Timing regular expressions in R, linear scale")+
-    scale_y_continuous("seconds")+
-    scale_x_continuous("subject/pattern size",
-                       limits=c(1, 27),
-                       breaks=c(1, 5, 10, 15, 20, 25))+
-    geom_point(aes(N, time/1e9, color=expr),
-               shape=1,
-               data=times)
-  (linear.dl <- direct.label(linear.legend, "last.polygons"))
-  png("figure-complexity-linear.png")
-  print(linear.dl)
-  dev.off()
-  
-  log.legend <- ggplot()+
-    ggtitle("Timing regular expressions in R, log scale")+
-    scale_y_log10("seconds")+
-    scale_x_log10("subject/pattern size",
-                  limits=c(1, 30),
-                  breaks=c(1, 5, 10, 15, 20, 25))+
-    geom_point(aes(N, time/1e9, color=expr),
-               shape=1,
-               data=times)
-  (log.dl <- direct.label(log.legend, "last.polygons"))
-  png("figure-complexity-log.png")
-  print(log.dl)
-  dev.off()
+  atime.list <- atime::atime(
+    N=1:max.N, 
+    setup={
+      subject <- paste(rep("a", N), collapse="")
+      pattern <- paste(rep(c("a?", "a"), each=N), collapse="")
+    },
+    seconds.limit=0.1,
+    ICU=stringi::stri_match(subject, regex=pattern),
+    PCRE=regexpr(pattern, subject, perl=TRUE),
+    TRE=regexpr(pattern, subject, perl=FALSE),
+    RE2=re2::re2_match(pattern, subject))
+  plot(atime.list)
 #+END_SRC
-
-[[file:figure-complexity-linear.png]] 
 
 [[file:figure-complexity-log.png]]  
 
