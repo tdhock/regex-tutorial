@@ -229,19 +229,20 @@ pip install pandas
 
 ** Some exercises
 
-| Exercises         | data                                | code/solution              | functions                                |
-|-------------------+-------------------------------------+----------------------------+------------------------------------------|
-|                   |                                     | [[file:chr.pos.R]]             | capture_first_vec, capture_all_str, gsub |
-|                   |                                     | [[file:differences_from_R.py]] | re.search, re.compile                    |
-|                   |                                     | [[file:chr_pos.py]]            | str.extract, str.findall, re.subn        |
-| [[file:qsub-out/README.org][qsub exercises]]    | [[file:qsub-out][qsub data]]                           | [[file:qsub-out.R]]            | capture_first_vec                        |
-| [[file:trackDb.org][trackDb exercises]] | [[file:trackDb.txt]], [[file:trackDb2.txt]] | [[file:trackDb.R]]             | capture_all_str                          |
-| [[file:R-Forge.org][R-Forge exercises]] | [[file:R-Forge/]]                       |                            | capture_first_vec, capture_all_str       |
-| [[file:SweeD/README.org][SweeD exercises]]   | [[file:SweeD/]]                         |                            | capture_all_str                          |
-| [[file:NEWS/README.org][NEWS conversion]]   | [[file:NEWS/old/]]                      |                            | capture_all_str                          |
-| [[file:cran-check-logs/README.org][CRAN check logs]]   | [[file:cran-check-logs/]]               | [[https://tdhock.github.io/blog/2024/nc-parse-check-logs/][blog link]]                  | capture_all_str                          |
-| [[file:torchvision-docs/README.org][torchvision docs]]  | [[file:torchvision-docs/]]              | TODO                       | capture_all_str                          |
-| [[file:mutate/README.org][universalmutator]]  | [[file:mutate/]]                        | [[file:mutate/mutate.R]]       | capture_first_vec, capture_all_str       |
+| Exercises               | data                                                  | code/solution              | functions                                |
+|-------------------------+-------------------------------------------------------+----------------------------+------------------------------------------|
+|                         |                                                       | [[file:chr.pos.R]]             | capture_first_vec, capture_all_str, gsub |
+|                         |                                                       | [[file:differences_from_R.py]] | re.search, re.compile                    |
+|                         |                                                       | [[file:chr_pos.py]]            | str.extract, str.findall, re.subn        |
+| [[file:qsub-out/README.org][qsub exercises]]          | [[file:qsub-out][qsub data]]                                             | [[file:qsub-out.R]]            | capture_first_vec                        |
+| [[file:trackDb.org][trackDb exercises]]       | [[file:trackDb.txt]], [[file:trackDb2.txt]]                   | [[file:trackDb.R]]             | capture_all_str                          |
+| [[file:R-Forge.org][R-Forge exercises]]       | [[file:R-Forge/]]                                         |                            | capture_first_vec, capture_all_str       |
+| [[file:SweeD/README.org][SweeD exercises]]         | [[file:SweeD/]]                                           |                            | capture_all_str                          |
+| [[file:NEWS/README.org][NEWS conversion]]         | [[file:NEWS/old/]]                                        |                            | capture_all_str                          |
+| [[file:cran-check-logs/README.org][CRAN check logs]]         | [[file:cran-check-logs/]]                                 | [[https://tdhock.github.io/blog/2024/nc-parse-check-logs/][blog link]]                  | capture_all_str                          |
+| [[file:torchvision-docs/README.org][torchvision docs]]        | [[file:torchvision-docs/]]                                | TODO                       | capture_all_str                          |
+| [[file:mutate/README.org][universalmutator]]        | [[file:mutate/]]                                          | [[file:mutate/mutate.R]]       | capture_first_vec, capture_all_str       |
+| [[file:dom-win-key-codes/README.md][Key names and hex codes]] | [[file:dom-win-key-codes/Keyboard_event_key_values.html]] | [[https://tdhock.github.io/blog/2024/chromote-key-codes/][blog link]]                  | capture_all_str                          |
 
 ** Questions from the audience, 10 minutes
 
