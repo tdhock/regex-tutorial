@@ -239,10 +239,12 @@ pip install pandas
 | [[file:R-Forge.org][R-Forge exercises]]       | [[file:R-Forge/]]                                         |                            | capture_first_vec, capture_all_str       |
 | [[file:SweeD/README.org][SweeD exercises]]         | [[file:SweeD/]]                                           |                            | capture_all_str                          |
 | [[file:NEWS/README.org][NEWS conversion]]         | [[file:NEWS/old/]]                                        |                            | capture_all_str                          |
-| [[file:cran-check-logs/README.org][CRAN check logs]]         | [[file:cran-check-logs/]]                                 | [[https://tdhock.github.io/blog/2024/nc-parse-check-logs/][blog link]]                  | capture_all_str                          |
+| [[file:cran-check-logs/README.org][CRAN check logs]]         | [[file:cran-check-logs/]]                                 | [[https://tdhock.github.io/blog/2024/nc-parse-check-logs/][blog]]                       | capture_all_str                          |
 | [[file:torchvision-docs/README.org][torchvision docs]]        | [[file:torchvision-docs/]]                                | TODO                       | capture_all_str                          |
 | [[file:mutate/README.org][universalmutator]]        | [[file:mutate/]]                                          | [[file:mutate/mutate.R]]       | capture_first_vec, capture_all_str       |
-| [[file:dom-win-key-codes/README.md][Key names and hex codes]] | [[file:dom-win-key-codes/Keyboard_event_key_values.html]] | [[https://tdhock.github.io/blog/2024/chromote-key-codes/][blog link]]                  | capture_all_str                          |
+| [[file:dom-win-key-codes/README.md][Key names and hex codes]] | [[file:dom-win-key-codes/Keyboard_event_key_values.html]] | [[https://tdhock.github.io/blog/2024/chromote-key-codes/][blog]]                       | capture_all_str                          |
+| [[file:naming-styles/README.org][Variable name styles]]    | [[file:naming-styles/expected.R]]                         | [[https://github.com/Rdatatable/data.table/issues/6371#issuecomment-2296368792][issue]]                      | grepl                                    |
+| [[file:biblio/README.org][Bibliography parsing]]    | [[file:biblio]]                                           | [[https://tdhock.github.io/blog/2024/auto-pubs-page/][blog]]                       | capture_first_vec, capture_all_str       |
 
 ** Questions from the audience, 10 minutes
 

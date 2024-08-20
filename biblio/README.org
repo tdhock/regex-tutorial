@@ -1,3 +1,5 @@
+* Convert medline to bibtex
+
 ** Parsing nbib files
 
 The MEDLINE nbib citation format looks like [[file:PMC3045577.nbib]],
@@ -60,3 +62,20 @@ bibtex/latex. Exercise: use a regex to parse
 [[file:namedCapture-refs.bib]]. How many references are there of each
 type? Are there any authors which are cited in multiple different
 papers?
+
+
+* Convert bibtex to markdown
+
+Exercise: start with a bibtex file, for example [[https://tdhock.github.io/assets/TDH-refs.bib][my citation database]],
+
+- use =nc::capture_all_str= to convert each =@= entry of the bib file,
+  to a row in a table with columns =type=, =key=, =contents=.
+- use =nc::capture_all_str= again on =contents= to convert each field
+  (variable={value}) to a row in a table with columns =variable= and
+  =value=.
+- use =strsplit= on the =author= field to get a list of authors.
+- use =nc::capture_first_vec= to convert each author name to a row in
+  a table with columns =given= and =family=. Hint: use a pattern with
+  alternatives, maybe even =nc::alternatives_with_shared_groups=.
+- convert R table to markdown list or table, including =links= field
+  which is already markdown.

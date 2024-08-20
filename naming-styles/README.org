@@ -1,0 +1,15 @@
+In R =data.table= consistent style in variable names is important, and
+in Aug 2024 there was a discussion which involved categorizing the
+styles of arguments.
+
+- "simple" means the argument is only one word/letter (no need for choice between camel/simple/R/etc)
+- "abbrev" means one word (abbreviated).
+- "acronym" means several words abbreviated using the first letter of each word.
+- "minimal" means more than one word (possibly abbreviated), no space between.
+- "dot" means . instead of space.
+- "camel" means capitalize first letter of word instead of space.
+
+Exercise for the reader: write R regex code to compute the styles of
+each argument, and make sure that your computation is the same as the
+=expected= column in [[file:expected.R]]. Hint: you will have to use a
+dictionary of words, abbreviations, acronyms.
