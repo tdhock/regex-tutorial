@@ -1,0 +1,7 @@
+Look at [[file:2024-09-09-canada-list-of-risky-research-orgs.html]] and
+use regex to create tables
+
+- 103 rows (one for each organization) and 4 columns: name, country,
+  aliases (character), and n.aliases (int). There should be 94 rows
+  with aliases, and others with no aliases.
+- 254 rows, one for each alias.
