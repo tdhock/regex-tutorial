@@ -305,3 +305,5 @@ is the book "Mastering Regular Expressions," by Jeffrey
 E.F. Freidl. It contains a discussion of Python and named capture, but
 discusses neither pandas nor R.
 
+[[https://tobyhodges.gitbooks.io/introduction-to-regular-expressions/content/1-introduction.html][Toby Hodges' Introduction to Regular Expressions]].
+
