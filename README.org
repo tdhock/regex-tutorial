@@ -246,6 +246,7 @@ pip install pandas
 | [[file:naming-styles/README.org][Variable name styles]]      | [[file:naming-styles/expected.R]]       | [[https://github.com/Rdatatable/data.table/issues/6371#issuecomment-2296368792][issue]]                      | grepl                                    |
 | [[file:biblio/README.org][Bibliography parsing]]      | [[file:biblio]]                         | [[https://tdhock.github.io/blog/2024/auto-pubs-page/][blog]]                       | capture_first_vec, capture_all_str       |
 | [[file:collaboration-not-allowed/README.org][Collaboration not allowed]] | [[file:collaboration-not-allowed/2024-09-09-canada-list-of-risky-research-orgs.html][HTML]]                                | [[https://tdhock.github.io/blog/2024/collaborations-not-allowed/][blog]]                       | capture_all_str, strsplit, etc.          |
+| [[https://tdhock.github.io/blog/2026/links-to-bibtex/][Markdown link to bib]]      | [[https://github.com/animint/animint-manual-en/tree/1eb3e69e4f1e97e53a8a0153d73677743e802f0b][Markdown]]                            | [[https://tdhock.github.io/blog/2026/links-to-bibtex/][blog]]                       | capture_all_str                          |
 
 ** Questions from the audience, 10 minutes
 
