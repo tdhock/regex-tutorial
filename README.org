@@ -83,7 +83,7 @@ second is clearer for two reasons:
 | Kuchling et al | 1997 | Named capture in Python1.5      |
 | R core         | 2002 | PCRE in R                       |
 | Hazel          | 2003 | Named capture in PCRE           |
-| Hocking        | 2011 | Named capture in R              |
+| Hocking        | 2011 | Named capture in R, [[file:Hocking-useR-2011-slides.pdf][slides]]      |
 | Hocking        | 2016 | extractall in Python pandas     |
 
 Regular sets and regular expressions were introduced on paper by
